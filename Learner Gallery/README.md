@@ -1,9 +1,8 @@
 <img src="imgs/celebration-learn.jpg" align="right" width="250">
-
-# Reflections and Products
-We use this space to highlight how our learners interact with the program and Pod 3 curriculum, and to share their achievements!
+# Learner Gallery
+Here we share the reflections, creations, and achievements of our Pod 3 community. These pieces capture how learners make the curriculum their own!
 
 ## Michelle Eliason (2025-2026 Cohort)
-<img src="imgs/michelle.jpg" align = "left" width = "100"><br>
+<img src="imgs/michelle.jpg" align="left" width="100"><br>
 
-Michelle created this incredibly detailed manual that helped her break down the concepts covered over the 8 weeks of bootcamp. We share it here with her permission, check it out! [Michelle's Pod 3 Manual](https://drive.google.com/file/d/1QHNbt5lK58X4utUNrGokQH99b6JDjIyJ/view)
+Michelle created this incredibly thorough manual as her way of making sense of the bootcamp's 8 weeks of content. It's an impressive way of making learning explicit and shareable! [Michelle's Pod 3 Manual](https://drive.google.com/file/d/1QHNbt5lK58X4utUNrGokQH99b6JDjIyJ/view)
