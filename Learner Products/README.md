@@ -1,5 +1,5 @@
-# Testimonies and Products
 <img src="imgs/celebration-learn.jpg" align="center" width="300">
+# Testimonies and Products
 We use this space to highlight how our learners interact with the program and Pod 3 curriculum, and to share their achievements!
 <br><br><br><br>
 
