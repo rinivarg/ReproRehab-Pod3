@@ -1,7 +1,7 @@
 <img src="imgs/celebration-learn.jpg" align="right" width="250">
 
-# Learner Gallery
-Here we share the reflections, creations, and achievements of our Pod 3 community. These pieces capture how learners make the curriculum their own!
+# Reflections and Products
+We use this space to highlight how our learners interact with the program and Pod 3 curriculum, and to share their achievements!
 
 ## Michelle Eliason (2025-2026 Cohort)
 <img src="imgs/michelle.jpg" align = "left" width = "100"><br>
