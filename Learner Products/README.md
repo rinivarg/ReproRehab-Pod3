@@ -1,7 +1,7 @@
 # Testimonies and Products
-<img src="imgs/celebration-learn.jpg" align="right" width="300">
+<img src="imgs/celebration-learn.jpg" align="right" width="200">
 We use this space to highlight how our learners interact with the program and Pod 3 curriculum, and to share their achievements!
-<br><br><br>
+<br><br><br><br>
 
 ## Michelle Eliason (2025-2026 Cohort)
 <img src="imgs/michelle.jpg" align = "left" width = "120"><br>
