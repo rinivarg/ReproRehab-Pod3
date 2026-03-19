@@ -3,7 +3,7 @@
 
 We use this space to highlight how our learners interact with the program and Pod 3 curriculum, and to share their achievements!
 
-<div style="clear: both;"></div>
+<br><br><br>
 
 ## Michelle Eliason (2025-2026 Cohort)
 <img src="imgs/michelle.jpg" align = "left" width = "120"><br>
