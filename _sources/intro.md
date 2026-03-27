@@ -2,14 +2,15 @@
 ## Advanced R Programming Bootcamp
 
 <div style="text-align: center; margin: 40px 0;">
-    <img src="pod3-logo.png" alt="Pod 3 Logo" width="400">
+    <img src="ReproRehab-06_square_Pod3.png" alt="Pod 3 Logo" width="400">
 </div>
 
 ---
 
-## Welcome! 👋
+## Welcome!
 
-This interactive codebook contains Pod 3's weekly materials for the **ReproRehab Advanced R Programming Bootcamp** (2025-26).
+This textbook contains Pod 3's weekly materials for the **ReproRehab Advanced R Programming Bootcamp** (2025-26).
+Visit the repository anytime by clicking the GitHub icon on top.
 
 ### What You'll Find Here
 
@@ -23,11 +24,11 @@ This interactive codebook contains Pod 3's weekly materials for the **ReproRehab
 
 ### How to Use This Book
 
-📖 **Read & Learn**: Browse through the chapters to see code, explanations, and outputs
+**Read & Learn**: Browse through the chapters to see code, explanations, and outputs
 
-🔗 **Run Interactively**: Click the Google Colab button within each notebook to run code in your browser
+**Run Interactively**: Click the Google Colab button within each notebook to run code in your browser
 
-💾 **Download**: Download notebooks to run locally on your machine
+**Download**: Download notebooks to run locally on your machine (these are also available in the repository)
 
 ### About ReproRehab
 
