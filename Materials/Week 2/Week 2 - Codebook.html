@@ -1,0 +1,1512 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Week 2: Importing Data &#8212; ReproRehab Pod 3 Codebooks</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Materials/Week 2/Week 2 - Codebook';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Week 3: Clean and Merge Data" href="../Week%203/Week%203%20-%20Codebook.html" />
+    <link rel="prev" title="Week 1: Getting started with R" href="../Week%201/Week%201%20-%20Codebook.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">ReproRehab Pod 3 Codebooks</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    ReproRehab Pod 3 - Weekly Codebooks
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Week%201/Week%201%20-%20Codebook.html">Week 1: Getting started with R</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 2: Importing Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Week%203/Week%203%20-%20Codebook.html">Week 3: Clean and Merge Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Week%204/Week%204%20-%20Codebook.html">Week 4: Visualizing Data</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Week%205/Week%205%20-%20Codebook.html">Week 5: Statistics</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Week%206/Week%206%20-%20Codebook.html"><strong>Week 6</strong>: Codebooks &amp; Cloud Computing</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Week%207%20%26%208/Week%207%20%26%208%20-%20Codebook.html">Week 7 &amp; 8: Putting it all together!</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/rinivarg/ReproRehab-Pod3/blob/main/./Materials/Week 2/Week 2 - Codebook.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/rinivarg/ReproRehab-Pod3" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/rinivarg/ReproRehab-Pod3/issues/new?title=Issue%20on%20page%20%2FMaterials/Week 2/Week 2 - Codebook.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/Materials/Week 2/Week 2 - Codebook.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Week 2: Importing Data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clear-the-entire-workspace">Clear the entire workspace</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-required-libraries">Load required libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#theme-defaults">Theme defaults</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieve-the-folder-path-to-the-data-files-a-k-a-the-root-folder">Retrieve the folder path to the data files, a.k.a, the <em>Root Folder</em></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-subfolders-and-files-are-within-the-root-folder-let-s-check">What subfolders and files are within the root folder? Let’s check.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#so-as-you-see-above-the-data-are-quite-messy">So, as you see above, the data are quite messy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#now-we-do-this-iteratively">Now we do this iteratively.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-list-of-all-the-folder-names-within-the-root-folder">create a list of all the folder names within the root folder</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-an-empty-data-frame-that-can-accommodate-any-variable-type">create an empty data.frame that can accommodate any variable type</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-1-using-a-for-loop-to-compile-the-master-dataset">Method 1: using a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop to compile the master dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#last-step-check-the-compiled-dataset-dimensions">Last step! Check the compiled dataset dimensions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-2-using-map-df-in-the-purrr-package">Method 2: using <code class="docutils literal notranslate"><span class="pre">map_df</span></code> in the <em>purrr</em> package</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-3-combined-power-of-r-libraries">Method 3: combined power of R libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization">Visualization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#each-timepoint-for-each-trial-for-per-participant">Each timepoint for each trial for per participant</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#smoothed-traces-across-time-for-each-trial-per-participant">Smoothed traces across time for each trial per participant</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#each-trial-averaged-across-particpants">Each trial averaged across particpants</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-end">The End</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p><a href="https://colab.research.google.com/github/rinivarg/ReproRehab2024-Pod3/blob/main/Materials/Week%202/Week%202%20-%20Codebook.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
+<section class="tex2jax_ignore mathjax_ignore" id="week-2-importing-data">
+<h1>Week 2: Importing Data<a class="headerlink" href="#week-2-importing-data" title="Permalink to this heading">#</a></h1>
+<p>This week we’ll cover importing data from common formats and 3 methods to programmatically listing and reading files from subfolders.
+<div style="display:flex; justify-content:space-between; align-items:flex-start; gap:1rem;">
+<div style="max-width:55%; text-align:left;">
+<img src="./imgs/importing-data-into-r.png" alt="Importing data - Courtesy of STHDA" style="width:100%; height:auto;">
+<div style="text-align:right; font-size:small; margin-top:0.25rem;">
+Courtesy of <a href="https://www.sthda.com/english/wiki/importing-data-into-r#google_vignette" target="_blank">STHDA</a>
+</div>
+</div>
+<div style="max-width:35%; text-align:right;">
+<img src="./imgs/dir-structure.png" alt="directory structure" style="width:100%; height:auto;">
+</div>
+</div></p>
+<section id="clear-the-entire-workspace">
+<h2>Clear the entire workspace<a class="headerlink" href="#clear-the-entire-workspace" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="o">=</span><span class="nf">ls</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="load-required-libraries">
+<h2>Load required libraries<a class="headerlink" href="#load-required-libraries" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">ReqdLibs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;here&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;purrr&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;readxl&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;chron&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">			 </span><span class="s">&quot;ggplot2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ggthemes&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;dplyr&quot;</span><span class="p">)</span>
+<span class="nf">invisible</span><span class="p">(</span><span class="nf">lapply</span><span class="p">(</span><span class="n">ReqdLibs</span><span class="p">,</span><span class="w"> </span><span class="n">library</span><span class="p">,</span><span class="w"> </span><span class="n">character.only</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>here() starts at /Users/rinivarghese/Documents/My Documents/JHU-KKI/Lab/Professional-Dev/ReproRehab/02_Bootcamp/ReproRehab_Bootcamp
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Attaching package: ‘dplyr’
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following objects are masked from ‘package:stats’:
+
+    filter, lag
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="theme-defaults">
+<h2>Theme defaults<a class="headerlink" href="#theme-defaults" title="Permalink to this heading">#</a></h2>
+<p>This is only for the Jupyter Notebook so you the figures axes are larger</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">thm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">theme</span><span class="p">(</span><span class="n">strip.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bold&quot;</span><span class="p">),</span>
+<span class="w">             </span><span class="n">strip.text.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bold&quot;</span><span class="p">),</span>
+<span class="w">             </span><span class="n">legend.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">16</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bold&quot;</span><span class="p">),</span>
+<span class="w">             </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;top&quot;</span><span class="p">,</span>
+<span class="w">             </span><span class="n">legend.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">16</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bold&quot;</span><span class="p">),</span>
+<span class="w">             </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bold&quot;</span><span class="p">),</span>
+<span class="w">             </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">18</span><span class="p">),</span>
+<span class="w">             </span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">22</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bold&quot;</span><span class="p">),</span><span class="w"> </span><span class="c1"># nolint</span>
+<span class="w">             </span><span class="n">axis.ticks.length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">unit</span><span class="p">(</span><span class="m">0.3</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cm&quot;</span><span class="p">),</span>
+<span class="w">             </span><span class="n">axis.line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_line</span><span class="p">(</span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.85</span><span class="p">),</span>
+<span class="w">             </span><span class="n">axis.ticks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_line</span><span class="p">(</span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.85</span><span class="p">),</span>
+<span class="w">             </span><span class="n">axis.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">24</span><span class="p">),</span>
+<span class="w">             </span><span class="n">axis.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">25</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="retrieve-the-folder-path-to-the-data-files-a-k-a-the-root-folder">
+<h2>Retrieve the folder path to the data files, a.k.a, the <em>Root Folder</em><a class="headerlink" href="#retrieve-the-folder-path-to-the-data-files-a-k-a-the-root-folder" title="Permalink to this heading">#</a></h2>
+<p>Note that this section is slightly different from the R project folder because the Jupyter notebook is outside teh R project folder and is read within the root folder <code class="docutils literal notranslate"><span class="pre">ReproRehab_Bootcamp</span></code> so we are going to need to direct it to the <code class="docutils literal notranslate"><span class="pre">Materials/Week</span> <span class="pre">2/R</span> <span class="pre">project</span></code> folder.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">folder_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">here</span><span class="p">(</span><span class="s">&quot;Materials/Week 2/R project&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Raw Data&quot;</span><span class="p">)</span>
+<span class="c1"># output the folder name</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">folder_path</span><span class="p">)</span>
+<span class="c1"># make sure it exists</span>
+<span class="nf">dir.exists</span><span class="p">(</span><span class="n">folder_path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;/Users/rinivarghese/Documents/My Documents/JHU-KKI/Lab/Professional-Dev/ReproRehab/02_Bootcamp/ReproRehab_Bootcamp/Materials/Week 2/R project/Raw Data&quot;
+</pre></div>
+</div>
+<div class="output text_html">TRUE</div></div>
+</div>
+</section>
+<section id="what-subfolders-and-files-are-within-the-root-folder-let-s-check">
+<h2>What subfolders and files are within the root folder? Let’s check.<a class="headerlink" href="#what-subfolders-and-files-are-within-the-root-folder-let-s-check" title="Permalink to this heading">#</a></h2>
+<p>OK, once we have the <em>‘folder path’</em> to the root folder, i.e., <code class="docutils literal notranslate"><span class="pre">Raw</span> <span class="pre">Data</span></code>, it is important to know exactly what the structure within is. <br> In our case, the structure looks something like this:<br><br>
+<code class="docutils literal notranslate"><span class="pre">Raw</span> <span class="pre">Data/</span></code> <br>
+<code class="docutils literal notranslate"><span class="pre">├──</span> <span class="pre">sub1/</span></code> <br>
+<code class="docutils literal notranslate"><span class="pre">│</span>&#160;&#160; <span class="pre">├──</span> <span class="pre">sub1_rest.xlsx</span></code> <br>
+<code class="docutils literal notranslate"><span class="pre">│</span>&#160;&#160; <span class="pre">├──</span> <span class="pre">sub1_trial1.xlsx</span></code> <br>
+<code class="docutils literal notranslate"><span class="pre">│</span>&#160;&#160; <span class="pre">├──</span> <span class="pre">sub1_trial2.xlsx</span></code> <br>
+<code class="docutils literal notranslate"><span class="pre">│</span>&#160;&#160; <span class="pre">└──</span> <span class="pre">...</span></code><br>
+<code class="docutils literal notranslate"><span class="pre">├──</span> <span class="pre">sub2/</span></code> <br>
+<code class="docutils literal notranslate"><span class="pre">│</span>&#160;&#160; <span class="pre">├──</span> <span class="pre">sub2_rest.xlsx</span></code> <br>
+<code class="docutils literal notranslate"><span class="pre">│</span>&#160;&#160; <span class="pre">├──</span> <span class="pre">sub2_trial1.xlsx</span></code> <br>
+<code class="docutils literal notranslate"><span class="pre">│</span>&#160;&#160; <span class="pre">├──</span> <span class="pre">sub2_trial2.xlsx</span></code> <br>
+<code class="docutils literal notranslate"><span class="pre">│</span>&#160;&#160; <span class="pre">└──</span> <span class="pre">...</span></code><br>
+<code class="docutils literal notranslate"><span class="pre">├──</span> <span class="pre">sub3/</span></code><br>
+<code class="docutils literal notranslate"><span class="pre">│</span>&#160;&#160; <span class="pre">├──</span> <span class="pre">sub3_rest.xlsx</span></code> <br>
+<code class="docutils literal notranslate"><span class="pre">│</span>&#160;&#160; <span class="pre">├──</span> <span class="pre">sub3_trial1.xlsx</span></code> <br>
+<code class="docutils literal notranslate"><span class="pre">│</span>&#160;&#160; <span class="pre">├──</span> <span class="pre">sub3_trial2.xlsx</span></code> <br>
+<code class="docutils literal notranslate"><span class="pre">│</span>&#160;&#160; <span class="pre">└──</span> <span class="pre">...</span></code><br>
+<code class="docutils literal notranslate"><span class="pre">└──</span> <span class="pre">...</span></code><br></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># options(warn=0)</span>
+<span class="n">subfolder_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">here</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span><span class="s">&#39;Sub1&#39;</span><span class="p">)</span>
+
+<span class="n">files.test</span><span class="o">=</span><span class="nf">list.files</span><span class="p">(</span><span class="n">subfolder_path</span><span class="p">)</span>
+<span class="n">files.test</span>
+
+<span class="c1">#Let&#39;s read in one file to see how ugly the data are</span>
+<span class="n">temp0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">read_excel</span><span class="p">(</span><span class="nf">here</span><span class="p">(</span><span class="n">subfolder_path</span><span class="p">,</span><span class="n">files.test</span><span class="p">[</span><span class="m">1</span><span class="p">]),)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">temp0</span><span class="p">,</span><span class="m">20</span><span class="p">)</span>
+
+<span class="nf">dim</span><span class="p">(</span><span class="n">temp0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'Sub1_rest.xlsx'</li><li>'Sub1_trial1.xlsx'</li><li>'Sub1_trial2.xlsx'</li><li>'Sub1_trial3.xlsx'</li><li>'Sub1_trial4.xlsx'</li><li>'Sub1_trial5.xlsx'</li><li>'Sub1_trial6.xlsx'</li></ol>
+</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...3`
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...6`
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...9`
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...11`
+</pre></div>
+</div>
+<div class="output text_html"><table class="dataframe">
+<caption>A tibble: 20 × 129</caption>
+<thead>
+	<tr><th scope=col>ID code:</th><th scope=col>11</th><th scope=col>...3</th><th scope=col>Test number:</th><th scope=col>88</th><th scope=col>...6</th><th scope=col>Barometric press. (mmHg):</th><th scope=col>750</th><th scope=col>...9</th><th scope=col>t</th><th scope=col>⋯</th><th scope=col>BR</th><th scope=col>O2 Cost</th><th scope=col>EEtot</th><th scope=col>IC</th><th scope=col>Step</th><th scope=col>LogVE</th><th scope=col>P(A-a)O2</th><th scope=col>User 1</th><th scope=col>User 2</th><th scope=col>User 3</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;lgl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;lgl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;lgl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>⋯</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>Last name:  </td><td>SUBJECT           </td><td>NA</td><td>Test date:          </td><td>6/21/2017         </td><td>NA</td><td>Temperature (degrees C): </td><td>22                 </td><td>NA</td><td>hh:mm:ss</td><td>⋯</td><td>% </td><td>ml/Kg/m</td><td>Kcal                 </td><td>l </td><td># </td><td>l/min             </td><td>Kpa        </td><td>---</td><td>---</td><td>---</td></tr>
+	<tr><td>First name: </td><td>NO1               </td><td>NA</td><td>Test time:          </td><td>10:16             </td><td>NA</td><td>Humidity;%               </td><td>50                 </td><td>NA</td><td>0       </td><td>⋯</td><td>NA</td><td>NA     </td><td>NA                   </td><td>NA</td><td>NA</td><td>NA                </td><td>NA         </td><td>NA </td><td>NA </td><td>NA </td></tr>
+	<tr><td>Sex:        </td><td>M                 </td><td>NA</td><td>N. of steps:        </td><td>53                </td><td>NA</td><td>Temp. flowm. (degrees C):</td><td>34                 </td><td>NA</td><td>00:00:02</td><td>⋯</td><td>92</td><td>0      </td><td>0                    </td><td>0 </td><td>1 </td><td>1.1454686564195442</td><td>19.61348207</td><td>0  </td><td>0  </td><td>0  </td></tr>
+	<tr><td>Age:        </td><td>26                </td><td>NA</td><td>Duration (hh:mm:ss):</td><td>00:02:59          </td><td>NA</td><td>Humidity flowm.;%        </td><td>100                </td><td>NA</td><td>00:00:05</td><td>⋯</td><td>93</td><td>0      </td><td>3.7885775056101641E-2</td><td>0 </td><td>2 </td><td>1.065215743354984 </td><td>19.61348207</td><td>0  </td><td>0  </td><td>0  </td></tr>
+	<tr><td>Height (in):</td><td>72.834645669291334</td><td>NA</td><td>BSA (m^2):          </td><td>2.1000404912839743</td><td>NA</td><td>STPD:                    </td><td>0.81451179368695192</td><td>NA</td><td>00:00:08</td><td>⋯</td><td>93</td><td>0      </td><td>0.11936544607175556  </td><td>0 </td><td>3 </td><td>1.1096921434019635</td><td>19.61348207</td><td>0  </td><td>0  </td><td>0  </td></tr>
+	<tr><td>Weight (lb):</td><td>189.59770013580487</td><td>NA</td><td>BMI (Kg/m^2):       </td><td>25.127830533235937</td><td>NA</td><td>BTPS insp:               </td><td>1.1064019328669148 </td><td>NA</td><td>00:00:10</td><td>⋯</td><td>89</td><td>0      </td><td>0.19953530737132827  </td><td>0 </td><td>4 </td><td>1.3005094485724247</td><td>19.61348207</td><td>0  </td><td>0  </td><td>0  </td></tr>
+	<tr><td>Notes:      </td><td>NA                </td><td>NA</td><td>HR max (bpm):       </td><td>194               </td><td>NA</td><td>BTPS exp:                </td><td>1.020071694069618  </td><td>NA</td><td>00:00:13</td><td>⋯</td><td>94</td><td>0      </td><td>0.30782596785206284  </td><td>0 </td><td>5 </td><td>1.0372555691167176</td><td>19.61348207</td><td>0  </td><td>0  </td><td>0  </td></tr>
+	<tr><td>NA          </td><td>NA                </td><td>NA</td><td>NA                  </td><td>NA                </td><td>NA</td><td>UN (g/day):              </td><td>0                  </td><td>NA</td><td>00:00:16</td><td>⋯</td><td>92</td><td>0      </td><td>0.39379038172615549  </td><td>0 </td><td>6 </td><td>1.1733399850131647</td><td>19.61348207</td><td>0  </td><td>0  </td><td>0  </td></tr>
+	<tr><td>NA          </td><td>NA                </td><td>NA</td><td>NA                  </td><td>NA                </td><td>NA</td><td>AMR (Kcal/day)           </td><td>0                  </td><td>NA</td><td>00:00:19</td><td>⋯</td><td>93</td><td>0      </td><td>0.49469636919836296  </td><td>0 </td><td>7 </td><td>1.1192548759946526</td><td>19.61348207</td><td>0  </td><td>0  </td><td>0  </td></tr>
+	<tr><td>NA          </td><td>NA                </td><td>NA</td><td>NA                  </td><td>NA                </td><td>NA</td><td>VD (ml):                 </td><td>0                  </td><td>NA</td><td>00:00:22</td><td>⋯</td><td>93</td><td>0      </td><td>0.58025559244054836  </td><td>0 </td><td>8 </td><td>1.0569659537444793</td><td>19.61348207</td><td>0  </td><td>0  </td><td>0  </td></tr>
+	<tr><td>NA          </td><td>NA                </td><td>NA</td><td>NA                  </td><td>NA                </td><td>NA</td><td>LT:                      </td><td>--:--:--           </td><td>NA</td><td>00:00:25</td><td>⋯</td><td>92</td><td>0      </td><td>0.66880241362471382  </td><td>0 </td><td>9 </td><td>1.1216881852131033</td><td>19.61348207</td><td>0  </td><td>0  </td><td>0  </td></tr>
+	<tr><td>NA          </td><td>NA                </td><td>NA</td><td>NA                  </td><td>NA                </td><td>NA</td><td>RC:                      </td><td>--:--:--           </td><td>NA</td><td>00:00:28</td><td>⋯</td><td>92</td><td>0      </td><td>0.77362701578720128  </td><td>0 </td><td>10</td><td>1.1678257402442869</td><td>19.61348207</td><td>0  </td><td>0  </td><td>0  </td></tr>
+	<tr><td>NA          </td><td>NA                </td><td>NA</td><td>NA                  </td><td>NA                </td><td>NA</td><td>FEV1 (l):                </td><td>0                  </td><td>NA</td><td>00:00:31</td><td>⋯</td><td>91</td><td>0      </td><td>0.88660850852647799  </td><td>0 </td><td>11</td><td>1.1915256636221625</td><td>19.61348207</td><td>0  </td><td>0  </td><td>0  </td></tr>
+	<tr><td>NA          </td><td>NA                </td><td>NA</td><td>NA                  </td><td>NA                </td><td>NA</td><td>FEV1 (l):                </td><td>0                  </td><td>NA</td><td>00:00:34</td><td>⋯</td><td>91</td><td>0      </td><td>1.0061262774419331   </td><td>0 </td><td>12</td><td>1.2161304198188418</td><td>19.61348207</td><td>0  </td><td>0  </td><td>0  </td></tr>
+	<tr><td>NA          </td><td>NA                </td><td>NA</td><td>NA                  </td><td>NA                </td><td>NA</td><td>FVC (l):                 </td><td>0                  </td><td>NA</td><td>00:00:38</td><td>⋯</td><td>93</td><td>0      </td><td>1.1406432987535355   </td><td>0 </td><td>13</td><td>1.0898882547940005</td><td>19.61348207</td><td>0  </td><td>0  </td><td>0  </td></tr>
+	<tr><td>NA          </td><td>NA                </td><td>NA</td><td>NA                  </td><td>NA                </td><td>NA</td><td>FVC (l):                 </td><td>0                  </td><td>NA</td><td>00:00:41</td><td>⋯</td><td>93</td><td>0      </td><td>1.2186118559228314   </td><td>0 </td><td>14</td><td>1.0885209949320152</td><td>19.61348207</td><td>0  </td><td>0  </td><td>0  </td></tr>
+	<tr><td>NA          </td><td>NA                </td><td>NA</td><td>NA                  </td><td>NA                </td><td>NA</td><td>MVV (l/min):             </td><td>0                  </td><td>NA</td><td>00:00:44</td><td>⋯</td><td>93</td><td>0      </td><td>1.3038274410567823   </td><td>0 </td><td>15</td><td>1.1190696362896035</td><td>19.61348207</td><td>0  </td><td>0  </td><td>0  </td></tr>
+	<tr><td>NA          </td><td>NA                </td><td>NA</td><td>NA                  </td><td>NA                </td><td>NA</td><td>MVV (l/min):             </td><td>0                  </td><td>NA</td><td>00:00:48</td><td>⋯</td><td>93</td><td>0      </td><td>1.4211587333453108   </td><td>0 </td><td>16</td><td>1.0944888585595152</td><td>19.61348207</td><td>0  </td><td>0  </td><td>0  </td></tr>
+	<tr><td>NA          </td><td>NA                </td><td>NA</td><td>NA                  </td><td>NA                </td><td>NA</td><td>IC (l):                  </td><td>0                  </td><td>NA</td><td>00:00:51</td><td>⋯</td><td>94</td><td>0      </td><td>1.4987311055189767   </td><td>0 </td><td>17</td><td>1.0531565819025277</td><td>19.61348207</td><td>0  </td><td>0  </td><td>0  </td></tr>
+	<tr><td>NA          </td><td>NA                </td><td>NA</td><td>NA                  </td><td>NA                </td><td>NA</td><td>IC (l):                  </td><td>0                  </td><td>NA</td><td>00:00:54</td><td>⋯</td><td>92</td><td>0      </td><td>1.5802954746800155   </td><td>0 </td><td>18</td><td>1.1295781073005897</td><td>19.61348207</td><td>0  </td><td>0  </td><td>0  </td></tr>
+</tbody>
+</table>
+</div><div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>55</li><li>129</li></ol>
+</div></div>
+</div>
+</section>
+<section id="so-as-you-see-above-the-data-are-quite-messy">
+<h2>So, as you see above, the data are quite messy<a class="headerlink" href="#so-as-you-see-above-the-data-are-quite-messy" title="Permalink to this heading">#</a></h2>
+<p>we will modify the code so we only import a certain range
+Let’s just do the first 5 rows where the data is in long format</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">temp</span><span class="o">=</span><span class="nf">suppressMessages</span><span class="p">(</span><span class="nf">read_excel</span><span class="p">(</span><span class="nf">here</span><span class="p">(</span><span class="n">subfolder_path</span><span class="p">,</span><span class="n">files.test</span><span class="p">[</span><span class="m">1</span><span class="p">]),</span><span class="n">range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">cell_cols</span><span class="p">(</span><span class="s">&quot;J:O&quot;</span><span class="p">)))</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span><span class="m">10</span><span class="p">)</span>
+<span class="c1"># the first two rows are header-like information so remove it</span>
+<span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">[</span><span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">),</span><span class="m">-2</span><span class="p">]</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+<span class="nf">dim</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A tibble: 10 × 6</caption>
+<thead>
+	<tr><th scope=col>t</th><th scope=col>...2</th><th scope=col>Rf</th><th scope=col>VT</th><th scope=col>VE</th><th scope=col>VO2</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>hh:mm:ss</td><td>NA</td><td>b/min             </td><td>l                  </td><td>l/min             </td><td>ml/min            </td></tr>
+	<tr><td>0       </td><td>NA</td><td>NA                </td><td>NA                 </td><td>NA                </td><td>NA                </td></tr>
+	<tr><td>00:00:02</td><td> 2</td><td>18.518518518518519</td><td>0.75485305361151733</td><td>13.978760252065134</td><td>408.69870453821915</td></tr>
+	<tr><td>00:00:05</td><td> 3</td><td>20.979020979020977</td><td>0.55389892987980249</td><td>11.620257270205645</td><td>304.78675142750882</td></tr>
+	<tr><td>00:00:08</td><td> 3</td><td>18.237082066869302</td><td>0.70588961229617564</td><td>12.873366789595908</td><td>347.70432172853816</td></tr>
+	<tr><td>00:00:10</td><td> 2</td><td>25.531914893617021</td><td>0.78239498935139695</td><td>19.97604228131226 </td><td>614.81345429694227</td></tr>
+	<tr><td>00:00:13</td><td> 3</td><td>21.978021978021978</td><td>0.49575484331783432</td><td>10.895710842150205</td><td>253.64309077205149</td></tr>
+	<tr><td>00:00:16</td><td> 3</td><td>18.927444794952681</td><td>0.78749534782174502</td><td>14.90527472217814 </td><td>437.09666048562843</td></tr>
+	<tr><td>00:00:19</td><td> 3</td><td>20.477815699658706</td><td>0.64264516726385934</td><td>13.159969295505654</td><td>375.73412825883128</td></tr>
+	<tr><td>00:00:22</td><td> 3</td><td>20.066889632107021</td><td>0.56817993359677721</td><td>11.401604018664425</td><td>315.18966648161648</td></tr>
+</tbody>
+</table>
+</div><div class="output text_html"><table class="dataframe">
+<caption>A tibble: 6 × 5</caption>
+<thead>
+	<tr><th scope=col>t</th><th scope=col>Rf</th><th scope=col>VT</th><th scope=col>VE</th><th scope=col>VO2</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>00:00:02</td><td>18.518518518518519</td><td>0.75485305361151733</td><td>13.978760252065134</td><td>408.69870453821915</td></tr>
+	<tr><td>00:00:05</td><td>20.979020979020977</td><td>0.55389892987980249</td><td>11.620257270205645</td><td>304.78675142750882</td></tr>
+	<tr><td>00:00:08</td><td>18.237082066869302</td><td>0.70588961229617564</td><td>12.873366789595908</td><td>347.70432172853816</td></tr>
+	<tr><td>00:00:10</td><td>25.531914893617021</td><td>0.78239498935139695</td><td>19.97604228131226 </td><td>614.81345429694227</td></tr>
+	<tr><td>00:00:13</td><td>21.978021978021978</td><td>0.49575484331783432</td><td>10.895710842150205</td><td>253.64309077205149</td></tr>
+	<tr><td>00:00:16</td><td>18.927444794952681</td><td>0.78749534782174502</td><td>14.90527472217814 </td><td>437.09666048562843</td></tr>
+</tbody>
+</table>
+</div><div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>53</li><li>5</li></ol>
+</div></div>
+</div>
+</section>
+<section id="now-we-do-this-iteratively">
+<h2>Now we do this iteratively.<a class="headerlink" href="#now-we-do-this-iteratively" title="Permalink to this heading">#</a></h2>
+<p>We go to our root folder <code class="docutils literal notranslate"><span class="pre">Raw</span> <span class="pre">Data</span></code> then we loop through all the subjects’ folders within it to repeat the steps described above.</p>
+<section id="create-a-list-of-all-the-folder-names-within-the-root-folder">
+<h3>create a list of all the folder names within the root folder<a class="headerlink" href="#create-a-list-of-all-the-folder-names-within-the-root-folder" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dir.list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">dir</span><span class="p">(</span><span class="n">folder_path</span><span class="p">)</span>
+<span class="n">dir.list</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'Sub1'</li><li>'Sub10'</li><li>'Sub11'</li><li>'Sub12'</li><li>'Sub13'</li><li>'Sub2'</li><li>'Sub3'</li><li>'Sub4'</li><li>'Sub5'</li><li>'Sub6'</li><li>'Sub7'</li><li>'Sub8'</li><li>'Sub9'</li></ol>
+</div></div>
+</div>
+</section>
+<section id="create-an-empty-data-frame-that-can-accommodate-any-variable-type">
+<h3>create an empty data.frame that can accommodate any variable type<a class="headerlink" href="#create-an-empty-data-frame-that-can-accommodate-any-variable-type" title="Permalink to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">data.frame(list())</span></code>: Converts the empty list into a data frame. Lists can accommodate any data type, i.e., numeric, string, characters, booleans etc. <br>
+Since the list is empty, the resulting data frame will have no columns and no rows. In other words, this command initializes an empty data frame, which can later be filled with data, but starts with no content (i.e., no columns and no rows).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">data.all</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="nf">list</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="method-1-using-a-for-loop-to-compile-the-master-dataset">
+<h2>Method 1: using a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop to compile the master dataset<a class="headerlink" href="#method-1-using-a-for-loop-to-compile-the-master-dataset" title="Permalink to this heading">#</a></h2>
+<p>We use a for loop in R to iteratively “stack” individual participant data tables. For each participant, the steps are the samea as we did above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">for</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">dir.list</span><span class="p">)){</span>
+<span class="w">  </span><span class="n">files.import</span><span class="o">=</span><span class="nf">list.files</span><span class="p">(</span><span class="nf">here</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span><span class="n">dir.list</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+<span class="w">  </span><span class="nf">for</span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">files.import</span><span class="p">)){</span>
+<span class="w">    </span><span class="c1">#Give me only the columns I need</span>
+<span class="w">    </span><span class="n">temp</span><span class="o">=</span><span class="nf">suppressMessages</span><span class="p">(</span><span class="nf">read_excel</span><span class="p">(</span><span class="nf">here</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span><span class="n">dir.list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">files.import</span><span class="p">[</span><span class="n">j</span><span class="p">]),</span>
+<span class="w">                                     </span><span class="n">range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">cell_cols</span><span class="p">(</span><span class="s">&quot;J:O&quot;</span><span class="p">)))</span>
+<span class="w">    </span><span class="c1">#Remove the rows I don&#39;t need</span>
+<span class="w">    </span><span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">[</span><span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">),</span><span class="m">-2</span><span class="p">]</span>
+<span class="w">    </span><span class="c1">#Convert to numeric</span>
+<span class="w">    </span><span class="n">temp</span><span class="p">[,</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="o">:</span><span class="m">5</span><span class="p">)]</span><span class="o">=</span><span class="nf">apply</span><span class="p">(</span><span class="n">temp</span><span class="p">[,</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="o">:</span><span class="m">5</span><span class="p">)],</span><span class="m">2</span><span class="p">,</span><span class="n">as.numeric</span><span class="p">)</span>
+<span class="w">    </span><span class="c1"># Convert chron::times value (fraction of a day) to seconds:</span>
+<span class="w">    </span><span class="c1"># times(...) returns a numeric representing days; multiply by 24 hours/day and 3600 seconds/hour to get seconds.</span>
+<span class="w">    </span><span class="n">temp</span><span class="o">$</span><span class="n">t</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="nf">times</span><span class="p">(</span><span class="n">temp</span><span class="o">$</span><span class="n">t</span><span class="p">))</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">24</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">3600</span>
+<span class="w">    </span><span class="c1">#Assign Sub id</span>
+<span class="w">    </span><span class="n">temp</span><span class="o">$</span><span class="n">Sub</span><span class="o">=</span><span class="n">dir.list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="w">    </span><span class="c1">#Assign trial id</span>
+<span class="w">    </span><span class="nf">if</span><span class="p">(</span><span class="nf">nchar</span><span class="p">(</span><span class="n">files.import</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="o">&lt;</span><span class="m">16</span><span class="p">){</span>
+<span class="w">    </span><span class="n">temp</span><span class="o">$</span><span class="n">trial</span><span class="o">=</span><span class="s">&quot;rest&quot;</span>
+<span class="w">    </span><span class="p">}</span><span class="n">else</span><span class="p">{</span>
+<span class="w">      </span><span class="n">temp</span><span class="o">$</span><span class="n">trial</span><span class="o">=</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;trial&quot;</span><span class="p">,</span><span class="nf">as.numeric</span><span class="p">(</span><span class="nf">substr</span><span class="p">(</span><span class="n">files.import</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="nf">nchar</span><span class="p">(</span><span class="n">files.import</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="m">-5</span><span class="p">,</span><span class="nf">nchar</span><span class="p">(</span><span class="n">files.import</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="m">-5</span><span class="p">)))</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1"># this final step is where the &#39;stacking&#39; happens</span>
+<span class="w">    </span><span class="n">data.all</span><span class="o">=</span><span class="nf">rbind</span><span class="p">(</span><span class="n">data.all</span><span class="p">,</span><span class="n">temp</span><span class="p">)</span>
+<span class="w">    </span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="last-step-check-the-compiled-dataset-dimensions">
+<h3>Last step! Check the compiled dataset dimensions<a class="headerlink" href="#last-step-check-the-compiled-dataset-dimensions" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">tail</span><span class="p">(</span><span class="n">data.all</span><span class="p">,</span><span class="m">10</span><span class="p">)</span>
+<span class="nf">dim</span><span class="p">(</span><span class="n">data.all</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A tibble: 10 × 7</caption>
+<thead>
+	<tr><th scope=col>t</th><th scope=col>Rf</th><th scope=col>VT</th><th scope=col>VE</th><th scope=col>VO2</th><th scope=col>Sub</th><th scope=col>trial</th></tr>
+	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>416</td><td>24.89627</td><td>0.6294024</td><td>15.669769</td><td>532.97544</td><td>Sub9</td><td>trial 6</td></tr>
+	<tr><td>418</td><td>29.70297</td><td>0.7375331</td><td>21.906923</td><td>797.05276</td><td>Sub9</td><td>trial 6</td></tr>
+	<tr><td>420</td><td>26.90583</td><td>0.6038998</td><td>16.248426</td><td>548.15285</td><td>Sub9</td><td>trial 6</td></tr>
+	<tr><td>424</td><td>17.39130</td><td>0.8844276</td><td>15.381350</td><td>561.38412</td><td>Sub9</td><td>trial 6</td></tr>
+	<tr><td>426</td><td>22.55639</td><td>0.6416436</td><td>14.473163</td><td>509.72379</td><td>Sub9</td><td>trial 6</td></tr>
+	<tr><td>429</td><td>20.76125</td><td>0.5324928</td><td>11.055213</td><td>361.50629</td><td>Sub9</td><td>trial 6</td></tr>
+	<tr><td>431</td><td>26.78571</td><td>0.8946286</td><td>23.963267</td><td>873.85555</td><td>Sub9</td><td>trial 6</td></tr>
+	<tr><td>434</td><td>27.64977</td><td>0.5273923</td><td>14.582274</td><td>494.51991</td><td>Sub9</td><td>trial 6</td></tr>
+	<tr><td>435</td><td>34.09091</td><td>0.4304827</td><td>14.675545</td><td>394.51961</td><td>Sub9</td><td>trial 6</td></tr>
+	<tr><td>437</td><td>32.60870</td><td>0.1407739</td><td> 4.590455</td><td> 35.72638</td><td>Sub9</td><td>trial 6</td></tr>
+</tbody>
+</table>
+</div><div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>15062</li><li>7</li></ol>
+</div></div>
+</div>
+</section>
+</section>
+<section id="method-2-using-map-df-in-the-purrr-package">
+<h2>Method 2: using <code class="docutils literal notranslate"><span class="pre">map_df</span></code> in the <em>purrr</em> package<a class="headerlink" href="#method-2-using-map-df-in-the-purrr-package" title="Permalink to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">map_df</span></code> is used in two layers:<br></p>
+<ul class="simple">
+<li><p><strong>Outer Layer</strong>: Iterates over each directory in <em><strong>dir.list</strong></em>, listing files within each directory.</p></li>
+<li><p><strong>Inner Layer</strong>: Processes each file in the current directory by: 1) reading the Excel file, 2) cleaning the data, 3) converting time to seconds, and 4) assigning identifiers. <br></p></li>
+</ul>
+<p>This nesting efficiently combines results from all files into a single data frame, allowing for streamlined data aggregation from multiple directories.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">data.all</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">map_df</span><span class="p">(</span><span class="n">dir.list</span><span class="p">,</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">dir_name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1"># List all files in the current directory</span>
+<span class="w">  </span><span class="n">files.import</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list.files</span><span class="p">(</span><span class="nf">here</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span><span class="w"> </span><span class="n">dir_name</span><span class="p">))</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="nf">map_df</span><span class="p">(</span><span class="n">files.import</span><span class="p">,</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1"># Read the Excel file</span>
+<span class="w">    </span><span class="n">temp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read_excel</span><span class="p">(</span><span class="nf">here</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span><span class="w"> </span><span class="n">dir_name</span><span class="p">,</span><span class="w"> </span><span class="n">file_name</span><span class="p">),</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">cell_cols</span><span class="p">(</span><span class="s">&quot;J:O&quot;</span><span class="p">))</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1"># Clean the data</span>
+<span class="w">    </span><span class="n">temp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">temp</span><span class="p">[</span><span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">),</span><span class="w"> </span><span class="m">-2</span><span class="p">]</span>
+<span class="w">    </span><span class="n">temp</span><span class="p">[,</span><span class="w"> </span><span class="m">2</span><span class="o">:</span><span class="m">5</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span><span class="n">temp</span><span class="p">[,</span><span class="w"> </span><span class="m">2</span><span class="o">:</span><span class="m">5</span><span class="p">],</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">as.numeric</span><span class="p">)</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1"># Convert chron::times (fraction of a day) to seconds:</span>
+<span class="w">    </span><span class="c1"># gives days; multiply by 24*3600 to convert to seconds (24 hours/day * 3600 sec/hour).</span>
+<span class="w">    </span><span class="n">temp</span><span class="o">$</span><span class="n">t</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="nf">times</span><span class="p">(</span><span class="n">temp</span><span class="o">$</span><span class="n">t</span><span class="p">))</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">24</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">3600</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1"># Assign Sub id</span>
+<span class="w">    </span><span class="n">temp</span><span class="o">$</span><span class="n">Sub</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dir_name</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1"># Assign trial id</span>
+<span class="w">    </span><span class="n">temp</span><span class="o">$</span><span class="n">trial</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="nf">nchar</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">16</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rest&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;trial&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="nf">substr</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span><span class="w"> </span><span class="nf">nchar</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="nf">nchar</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">5</span><span class="p">))))</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="nf">return</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+<span class="w">  </span><span class="p">})</span>
+<span class="p">})</span>
+
+<span class="c1"># Now data.all contains all the processed data</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">data.all</span><span class="p">)</span>
+<span class="nf">dim</span><span class="p">(</span><span class="n">data.all</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...2`
+</pre></div>
+</div>
+<div class="output text_html"><table class="dataframe">
+<caption>A tibble: 6 × 7</caption>
+<thead>
+	<tr><th scope=col>t</th><th scope=col>Rf</th><th scope=col>VT</th><th scope=col>VE</th><th scope=col>VO2</th><th scope=col>Sub</th><th scope=col>trial</th></tr>
+	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td> 2</td><td>18.51852</td><td>0.7548531</td><td>13.97876</td><td>408.6987</td><td>Sub1</td><td>rest</td></tr>
+	<tr><td> 5</td><td>20.97902</td><td>0.5538989</td><td>11.62026</td><td>304.7868</td><td>Sub1</td><td>rest</td></tr>
+	<tr><td> 8</td><td>18.23708</td><td>0.7058896</td><td>12.87337</td><td>347.7043</td><td>Sub1</td><td>rest</td></tr>
+	<tr><td>10</td><td>25.53191</td><td>0.7823950</td><td>19.97604</td><td>614.8135</td><td>Sub1</td><td>rest</td></tr>
+	<tr><td>13</td><td>21.97802</td><td>0.4957548</td><td>10.89571</td><td>253.6431</td><td>Sub1</td><td>rest</td></tr>
+	<tr><td>16</td><td>18.92744</td><td>0.7874953</td><td>14.90527</td><td>437.0967</td><td>Sub1</td><td>rest</td></tr>
+</tbody>
+</table>
+</div><div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>15062</li><li>7</li></ol>
+</div></div>
+</div>
+</section>
+<section id="method-3-combined-power-of-r-libraries">
+<h2>Method 3: combined power of R libraries<a class="headerlink" href="#method-3-combined-power-of-r-libraries" title="Permalink to this heading">#</a></h2>
+<p>We now use <code class="docutils literal notranslate"><span class="pre">map_df</span></code> with 3 other packages: <code class="docutils literal notranslate"><span class="pre">lubridate</span></code>,<code class="docutils literal notranslate"><span class="pre">dplyr</span></code>, and <code class="docutils literal notranslate"><span class="pre">tidyr</span></code> to do all the same things as above, but less hard-coded (more modular). <br></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">lubridate</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">tidyr</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Attaching package: ‘lubridate’
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following objects are masked from ‘package:chron’:
+
+    days, hours, minutes, seconds, years
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following objects are masked from ‘package:base’:
+
+    date, intersect, setdiff, union
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">data.all</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">map_df</span><span class="p">(</span><span class="n">dir.list</span><span class="p">,</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">dir_name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1"># List all files in the current directory</span>
+<span class="w">  </span><span class="n">files.import</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list.files</span><span class="p">(</span><span class="nf">here</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span><span class="w"> </span><span class="n">dir_name</span><span class="p">))</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="nf">map_df</span><span class="p">(</span><span class="n">files.import</span><span class="p">,</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span>
+<span class="w">    </span><span class="c1"># Read the Excel file</span>
+<span class="w">    </span><span class="n">temp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">suppressMessages</span><span class="p">(</span><span class="nf">read_excel</span><span class="p">(</span><span class="nf">here</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span><span class="w"> </span><span class="n">dir_name</span><span class="p">,</span><span class="w"> </span><span class="n">file_name</span><span class="p">),</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">cell_cols</span><span class="p">(</span><span class="s">&quot;J:O&quot;</span><span class="p">)))</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">      </span>
+<span class="w">      </span><span class="c1"># Clean and transform the data</span>
+<span class="w">      </span><span class="nf">slice</span><span class="p">(</span><span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">                   </span><span class="c1"># Remove the first two rows</span>
+<span class="w">      </span><span class="nf">select</span><span class="p">(</span><span class="m">-2</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">                        </span><span class="c1"># Remove the second column</span>
+<span class="w">      </span><span class="nf">mutate</span><span class="p">(</span><span class="nf">across</span><span class="p">(</span><span class="m">2</span><span class="o">:</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">as.numeric</span><span class="p">),</span><span class="w">       </span><span class="c1"># Convert columns 2 to 5 to numeric</span>
+<span class="w">             </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="nf">hms</span><span class="p">(</span><span class="n">t</span><span class="p">)),</span><span class="w">        </span><span class="c1"># Convert time to seconds</span>
+<span class="w">             </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">file_name</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">            </span><span class="c1"># Assign file name as identifier</span>
+<span class="w">      </span><span class="nf">separate</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="n">into</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Sub&quot;</span><span class="p">,</span><span class="s">&quot;trial&quot;</span><span class="p">,</span><span class="s">&quot;extn&quot;</span><span class="p">),</span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;[_\\.]&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">  </span><span class="c1"># Now separate the identifier into sub &amp; trial</span>
+<span class="w">      </span><span class="nf">select</span><span class="p">(</span><span class="o">!</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;extn&quot;</span><span class="p">))</span><span class="w">                    </span><span class="c1"># Don&#39;t need file extensions in the table!</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="nf">return</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+<span class="w">  </span><span class="p">})</span>
+<span class="p">})</span>
+
+<span class="c1"># Now data.all contains all the processed data</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">data.all</span><span class="p">)</span>
+<span class="nf">dim</span><span class="p">(</span><span class="n">data.all</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A tibble: 6 × 7</caption>
+<thead>
+	<tr><th scope=col>t</th><th scope=col>Rf</th><th scope=col>VT</th><th scope=col>VE</th><th scope=col>VO2</th><th scope=col>Sub</th><th scope=col>trial</th></tr>
+	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td> 2</td><td>18.51852</td><td>0.7548531</td><td>13.97876</td><td>408.6987</td><td>Sub1</td><td>rest</td></tr>
+	<tr><td> 5</td><td>20.97902</td><td>0.5538989</td><td>11.62026</td><td>304.7868</td><td>Sub1</td><td>rest</td></tr>
+	<tr><td> 8</td><td>18.23708</td><td>0.7058896</td><td>12.87337</td><td>347.7043</td><td>Sub1</td><td>rest</td></tr>
+	<tr><td>10</td><td>25.53191</td><td>0.7823950</td><td>19.97604</td><td>614.8135</td><td>Sub1</td><td>rest</td></tr>
+	<tr><td>13</td><td>21.97802</td><td>0.4957548</td><td>10.89571</td><td>253.6431</td><td>Sub1</td><td>rest</td></tr>
+	<tr><td>16</td><td>18.92744</td><td>0.7874953</td><td>14.90527</td><td>437.0967</td><td>Sub1</td><td>rest</td></tr>
+</tbody>
+</table>
+</div><div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>15062</li><li>7</li></ol>
+</div></div>
+</div>
+</section>
+<section id="visualization">
+<h2>Visualization<a class="headerlink" href="#visualization" title="Permalink to this heading">#</a></h2>
+<p>Now that we have our compiled dataset, let’s visualize it at different levels</p>
+<section id="each-timepoint-for-each-trial-for-per-participant">
+<h3>Each timepoint for each trial for per participant<a class="headerlink" href="#each-timepoint-for-each-trial-for-per-participant" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">options</span><span class="p">(</span><span class="n">repr.plot.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="n">repr.plot.height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">)</span>
+
+<span class="c1">#Visualize raw data by subject</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">data.all</span><span class="p">,</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">VO2</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="n">trial</span><span class="p">))</span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">()</span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_line</span><span class="p">()</span><span class="o">+</span>
+<span class="w">  </span><span class="nf">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="n">Sub</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">theme_wsj</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">thm</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ae0eee37a1f3e8fc2864fd10740d9896b5f953b94700c2358ebf0f7cc078f186.png" src="../../_images/ae0eee37a1f3e8fc2864fd10740d9896b5f953b94700c2358ebf0f7cc078f186.png" />
+</div>
+</div>
+</section>
+<section id="smoothed-traces-across-time-for-each-trial-per-participant">
+<h3>Smoothed traces across time for each trial per participant<a class="headerlink" href="#smoothed-traces-across-time-for-each-trial-per-participant" title="Permalink to this heading">#</a></h3>
+<p>In smoothing, we use a ‘loess’ procedure. This function is in-built within the geom_smooth function of ggplot. The ‘loess’ or ‘lowess’ procedure follows a kind of windowed smoothing procedure. It assigns weights to each point within the window, with closer points given higher weights, to calculate the smoothed value for each data point.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#Visualize data using loess by subject</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">data.all</span><span class="p">,</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">VO2</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="n">trial</span><span class="p">))</span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_smooth</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;loess&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">formula</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;y~x&#39;</span><span class="p">)</span><span class="o">+</span>
+<span class="w">  </span><span class="nf">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="n">Sub</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">theme_wsj</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">thm</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/b5bd7e6006adb7dc89727c80c3fc9c033af5595130b0d8031e4156f6f5c3808e.png" src="../../_images/b5bd7e6006adb7dc89727c80c3fc9c033af5595130b0d8031e4156f6f5c3808e.png" />
+</div>
+</div>
+</section>
+<section id="each-trial-averaged-across-particpants">
+<h3>Each trial averaged across particpants<a class="headerlink" href="#each-trial-averaged-across-particpants" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">options</span><span class="p">(</span><span class="n">repr.plot.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="n">repr.plot.height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">)</span>
+<span class="c1">#create a color gradient</span>
+<span class="n">colfunc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colorRampPalette</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;orange&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;purple&quot;</span><span class="p">))</span>
+<span class="c1">#Visualize each trial across all participants</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">data.all</span><span class="p">,</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">VO2</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="n">trial</span><span class="p">))</span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_smooth</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;loess&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">formula</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;y~x&#39;</span><span class="p">)</span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_colour_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="nf">colfunc</span><span class="p">(</span><span class="m">7</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">theme_wsj</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">thm</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/b79a635cc2464cf90da80f49060d0356577d6860d2a10ac21eac7cdc358a1bb5.png" src="../../_images/b79a635cc2464cf90da80f49060d0356577d6860d2a10ac21eac7cdc358a1bb5.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="the-end">
+<h2>The End<a class="headerlink" href="#the-end" title="Permalink to this heading">#</a></h2>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./Materials/Week 2"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../Week%201/Week%201%20-%20Codebook.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Week 1: Getting started with R</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../Week%203/Week%203%20-%20Codebook.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Week 3: Clean and Merge Data</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clear-the-entire-workspace">Clear the entire workspace</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-required-libraries">Load required libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#theme-defaults">Theme defaults</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieve-the-folder-path-to-the-data-files-a-k-a-the-root-folder">Retrieve the folder path to the data files, a.k.a, the <em>Root Folder</em></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-subfolders-and-files-are-within-the-root-folder-let-s-check">What subfolders and files are within the root folder? Let’s check.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#so-as-you-see-above-the-data-are-quite-messy">So, as you see above, the data are quite messy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#now-we-do-this-iteratively">Now we do this iteratively.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-list-of-all-the-folder-names-within-the-root-folder">create a list of all the folder names within the root folder</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-an-empty-data-frame-that-can-accommodate-any-variable-type">create an empty data.frame that can accommodate any variable type</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-1-using-a-for-loop-to-compile-the-master-dataset">Method 1: using a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop to compile the master dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#last-step-check-the-compiled-dataset-dimensions">Last step! Check the compiled dataset dimensions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-2-using-map-df-in-the-purrr-package">Method 2: using <code class="docutils literal notranslate"><span class="pre">map_df</span></code> in the <em>purrr</em> package</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-3-combined-power-of-r-libraries">Method 3: combined power of R libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization">Visualization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#each-timepoint-for-each-trial-for-per-participant">Each timepoint for each trial for per participant</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#smoothed-traces-across-time-for-each-trial-per-participant">Smoothed traces across time for each trial per participant</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#each-trial-averaged-across-particpants">Each trial averaged across particpants</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-end">The End</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Pod 3 Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

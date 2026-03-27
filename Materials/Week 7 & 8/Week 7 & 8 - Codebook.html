@@ -1,0 +1,1424 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Week 7 &amp; 8: Putting it all together! &#8212; ReproRehab Pod 3 Codebooks</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Materials/Week 7 & 8/Week 7 & 8 - Codebook';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Week 6: Codebooks &amp; Cloud Computing" href="../Week%206/Week%206%20-%20Codebook.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">ReproRehab Pod 3 Codebooks</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    ReproRehab Pod 3 - Weekly Codebooks
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Week%201/Week%201%20-%20Codebook.html">Week 1: Getting started with R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Week%202/Week%202%20-%20Codebook.html">Week 2: Importing Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Week%203/Week%203%20-%20Codebook.html">Week 3: Clean and Merge Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Week%204/Week%204%20-%20Codebook.html">Week 4: Visualizing Data</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Week%205/Week%205%20-%20Codebook.html">Week 5: Statistics</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Week%206/Week%206%20-%20Codebook.html"><strong>Week 6</strong>: Codebooks &amp; Cloud Computing</a></li>
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 7 &amp; 8: Putting it all together!</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/rinivarg/ReproRehab-Pod3/blob/main/./Materials/Week 7 & 8/Week 7 & 8 - Codebook.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/rinivarg/ReproRehab-Pod3" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/rinivarg/ReproRehab-Pod3/issues/new?title=Issue%20on%20page%20%2FMaterials/Week 7 & 8/Week 7 & 8 - Codebook.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/Materials/Week 7 & 8/Week 7 & 8 - Codebook.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Week 7 & 8: Putting it all together!</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Week 7 &amp; 8: Putting it all together!</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clear-the-entire-workspace">Clear the entire workspace</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-libraries">Load libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#check-and-set-data-directory">Check and set data directory</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-data">Import data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-lines-of-code-do-we-need-per-file">What lines of code do we need per file?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-an-empty-dataframe">create an empty dataframe</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursively-read-in-files-from-the-data-directory">recursively read in files from the data directory</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-wrangling">Data wrangling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-identifiers">add identifiers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manipulate-the-data">manipulate the data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-data">Visualize data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-theme-in-advance-so-you-can-use-it-next">set theme in advance so you can use it next</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-all-variables-at-once-from-the-long-format-data">plot all variables at once from the long format data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-data-wrangling">Advanced data wrangling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-conditional-sets">define conditional sets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-conditional-sets-to-define-new-variables-side-segment-and-coordinate">use conditional sets to define new variables side, segment, and coordinate</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-again">visualize again</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#right-body-segments">right body segments</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#left-body-segments">left body segments</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-did-you-find-from-visual-analysis-of-the-data">What did you find from visual analysis of the data?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistics">Statistics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summarize-long-form-data">Summarize long-form data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#define-segments-that-seemed-most-problematic-during-visual-analysis">define segments that seemed most problematic during visual analysis</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-linear-model">Simple linear model</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#for-right-body-segments">for right body segments</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#for-left-body-segments">for left body segments</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p><a href="https://github.com/rinivarg/ReproRehab-Pod3/blob/main/Materials/Week%207%20%26%208/Week%207%20%26%208%20-%20Codebook.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
+<section class="tex2jax_ignore mathjax_ignore" id="week-7-8-putting-it-all-together">
+<h1>Week 7 &amp; 8: Putting it all together!<a class="headerlink" href="#week-7-8-putting-it-all-together" title="Permalink to this heading">#</a></h1>
+<section id="clear-the-entire-workspace">
+<h2>Clear the entire workspace<a class="headerlink" href="#clear-the-entire-workspace" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="o">=</span><span class="nf">ls</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="load-libraries">
+<h2>Load libraries<a class="headerlink" href="#load-libraries" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">ReqdLibs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;here&quot;</span><span class="p">,</span><span class="s">&quot;ggplot2&quot;</span><span class="p">,</span><span class="s">&quot;dplyr&quot;</span><span class="p">,</span><span class="s">&quot;tidyr&quot;</span><span class="p">,</span><span class="s">&quot;stringr&quot;</span><span class="p">,</span><span class="s">&quot;janitor&quot;</span><span class="p">,</span><span class="s">&quot;broom&quot;</span><span class="p">,</span><span class="s">&quot;emmeans&quot;</span><span class="p">,</span><span class="s">&quot;ggthemes&quot;</span><span class="p">)</span>
+<span class="nf">invisible</span><span class="p">(</span><span class="nf">lapply</span><span class="p">(</span><span class="n">ReqdLibs</span><span class="p">,</span><span class="w"> </span><span class="n">library</span><span class="p">,</span><span class="w"> </span><span class="n">character.only</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>here() starts at /Users/rinivarghese/Documents/My Documents/JHU-KKI/Lab/Professional-Dev/ReproRehab/02_Bootcamp/ReproRehab_Bootcamp
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Attaching package: ‘dplyr’
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following objects are masked from ‘package:stats’:
+
+    filter, lag
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Attaching package: ‘janitor’
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following objects are masked from ‘package:stats’:
+
+    chisq.test, fisher.test
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
+“package ‘emmeans’ was built under R version 4.5.2”
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Welcome to emmeans.
+Caution: You lose important information if you filter this package&#39;s results.
+See &#39;? untidy&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="check-and-set-data-directory">
+<h2>Check and set data directory<a class="headerlink" href="#check-and-set-data-directory" title="Permalink to this heading">#</a></h2>
+<p><font color = 'orange'> <em><strong>Recap Week 1</strong></em> learning </font> <br>
+We want to know where we are and where we need to get the data from.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># let&#39;s look at our current directory</span>
+<span class="n">folder_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">getwd</span><span class="p">()</span>
+
+<span class="c1"># we need to navigate into one more layer to read the data files</span>
+<span class="n">subfolder_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span><span class="s">&#39;/data/&#39;</span><span class="p">)</span>
+
+<span class="c1"># list all the files within the &#39;data&#39; folder</span>
+<span class="n">file_list</span><span class="w"> </span><span class="o">=</span><span class="nf">list.files</span><span class="p">(</span><span class="n">subfolder_path</span><span class="p">)</span>
+
+<span class="c1"># take a look to make sure the files you&#39;re expecting in the data folder are present</span>
+<span class="n">file_list</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'QA1_T1_Barefoot1.txt'</li><li>'QA1_T1_Barefoot2.txt'</li><li>'QA1_T1_Barefoot3.txt'</li><li>'QA1_T1_Barefoot4.txt'</li><li>'QA1_T2_Barefoot1.txt'</li><li>'QA1_T2_Barefoot2.txt'</li><li>'QA1_T2_Barefoot3.txt'</li><li>'QA1_T2_Barefoot5.txt'</li><li>'QA1_T3_Barefoot4.txt'</li><li>'QA1_T3_Barefoot5.txt'</li><li>'QA1_T3_Barefoot6.txt'</li></ol>
+</div></div>
+</div>
+</section>
+<section id="import-data">
+<h2>Import data<a class="headerlink" href="#import-data" title="Permalink to this heading">#</a></h2>
+<p><font color = 'orange'> <em><strong>Recap Week 2</strong></em> learning </font> <br>
+Let’s start by importing one file in to see what lines of code we need.
+Then, we will do this recursively using <code class="docutils literal notranslate"><span class="pre">for-loops</span></code>.</p>
+<section id="what-lines-of-code-do-we-need-per-file">
+<h3>What lines of code do we need per file?<a class="headerlink" href="#what-lines-of-code-do-we-need-per-file" title="Permalink to this heading">#</a></h3>
+<p>Run everything for the first file to get a sense for all the steps</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># paste strings to create a file_path for the first item in the file_list</span>
+<span class="n">file_path0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="n">subfolder_path</span><span class="p">,</span><span class="n">file_list</span><span class="p">[</span><span class="m">1</span><span class="p">])</span>
+
+<span class="c1"># read in that first file using the read.delim function</span>
+<span class="n">temp0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">read.delim</span><span class="p">(</span><span class="n">file_path0</span><span class="p">)</span>
+
+<span class="c1"># pasting strings from the first and fourth row in the </span>
+<span class="c1"># for use as new column names next</span>
+<span class="n">new_names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="n">temp0</span><span class="p">[</span><span class="m">1</span><span class="p">,],</span><span class="n">temp0</span><span class="p">[</span><span class="m">4</span><span class="p">,])</span>
+
+<span class="c1"># change column names to these new names</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">temp0</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new_names</span>
+
+<span class="c1"># remove those initial 4 rows because they are no longer useful</span>
+<span class="n">temp1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temp0</span><span class="p">[</span><span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">),]</span>
+
+<span class="c1"># at this time, also clean up these names so there are no spaces. </span>
+<span class="c1"># we will use the clean_names function from the janitor package</span>
+<span class="n">temp1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">clean_names</span><span class="p">(</span><span class="n">temp1</span><span class="p">)</span>
+
+<span class="c1"># rename first column to %gait</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">temp1</span><span class="p">)[</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;perc_gait&quot;</span>
+
+<span class="c1"># convert to numeric</span>
+<span class="n">temp1</span><span class="p">[,</span><span class="m">-1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span><span class="n">temp1</span><span class="p">[,</span><span class="m">-1</span><span class="p">],</span><span class="m">2</span><span class="p">,</span><span class="n">as.double</span><span class="p">)</span>
+
+<span class="c1"># change data table into tibble (it&#39;s currently in vectors format)</span>
+<span class="n">temp1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as_tibble</span><span class="p">(</span><span class="n">temp1</span><span class="p">)</span>
+<span class="w">      </span>
+<span class="c1"># write a temporary variable that can help you assign identifiers (trial, session etc.)</span>
+<span class="n">temp1</span><span class="o">$</span><span class="n">fileName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">substr</span><span class="p">(</span><span class="n">file_list</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="m">1</span><span class="p">,</span><span class="nf">nchar</span><span class="p">(</span><span class="n">file_list</span><span class="p">[</span><span class="m">1</span><span class="p">])</span><span class="m">-4</span><span class="p">)</span>
+
+<span class="c1"># have a look at your data</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">temp1</span><span class="p">,</span><span class="m">5</span><span class="p">)</span>
+
+<span class="c1"># NOTE!!! This is one single file that you have read in so far. </span>
+<span class="c1"># Next, we will read in all files recursively.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A tibble: 5 × 80</caption>
+<thead>
+	<tr><th scope=col>perc_gait</th><th scope=col>left_ankle_angular_position_x</th><th scope=col>left_ankle_angular_position_y</th><th scope=col>left_ankle_angular_position_z</th><th scope=col>left_foot_progression_x</th><th scope=col>left_foot_progression_y</th><th scope=col>left_foot_progression_z</th><th scope=col>left_hip_angular_position_x</th><th scope=col>left_hip_angular_position_y</th><th scope=col>left_hip_angular_position_z</th><th scope=col>⋯</th><th scope=col>right_grf_x</th><th scope=col>right_grf_y</th><th scope=col>right_grf_z</th><th scope=col>trunk_left_position_x</th><th scope=col>trunk_left_position_y</th><th scope=col>trunk_left_position_z</th><th scope=col>trunk_right_position_x</th><th scope=col>trunk_right_position_y</th><th scope=col>trunk_right_position_z</th><th scope=col>fileName</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>⋯</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>1</td><td>4.026378</td><td> 1.210450</td><td>-6.210010</td><td>4.727023</td><td>1.860281</td><td>-2.955018</td><td>47.63491</td><td>3.890734</td><td>7.032426</td><td>⋯</td><td> 26.189180</td><td>0.565135</td><td> 59.54464</td><td> 1.272320</td><td>1.364384</td><td>0.386036</td><td>-2.598243</td><td>2.931554</td><td>1.601948</td><td>QA1_T1_Barefoot1</td></tr>
+	<tr><td>2</td><td>4.381411</td><td> 0.430334</td><td>-6.378968</td><td>4.227979</td><td>2.801618</td><td>-2.175241</td><td>47.24509</td><td>4.596641</td><td>7.072709</td><td>⋯</td><td> 10.642538</td><td>1.570850</td><td>177.54526</td><td> 0.727941</td><td>1.031140</td><td>0.456037</td><td>-3.139704</td><td>2.363694</td><td>2.143385</td><td>QA1_T1_Barefoot1</td></tr>
+	<tr><td>3</td><td>4.942418</td><td>-0.132680</td><td>-6.622121</td><td>3.788620</td><td>3.584090</td><td>-1.563634</td><td>46.92090</td><td>5.407558</td><td>7.239258</td><td>⋯</td><td>-11.634778</td><td>3.745199</td><td>169.48271</td><td> 0.133742</td><td>0.701048</td><td>0.470578</td><td>-3.733501</td><td>1.811826</td><td>2.553019</td><td>QA1_T1_Barefoot1</td></tr>
+	<tr><td>4</td><td>5.649685</td><td>-0.382537</td><td>-6.946462</td><td>3.398390</td><td>4.084312</td><td>-1.106544</td><td>46.69550</td><td>6.308265</td><td>7.664567</td><td>⋯</td><td>  0.493447</td><td>4.391907</td><td>176.76891</td><td>-0.494060</td><td>0.370650</td><td>0.425918</td><td>-4.355091</td><td>1.284306</td><td>2.809837</td><td>QA1_T1_Barefoot1</td></tr>
+	<tr><td>5</td><td>6.428778</td><td>-0.339809</td><td>-7.384519</td><td>3.041794</td><td>4.272545</td><td>-0.767969</td><td>46.57108</td><td>7.276013</td><td>8.439258</td><td>⋯</td><td> 20.227514</td><td>3.592591</td><td>198.42075</td><td>-1.143465</td><td>0.035333</td><td>0.317609</td><td>-4.981491</td><td>0.785983</td><td>2.899375</td><td>QA1_T1_Barefoot1</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p><font color = 'red'> <strong>NOTE!!!</strong>  This is one single file that you have read in so far. </font> <br>
+But now we have all the lines of code you will need next when we will read in all files recursively.</p>
+</section>
+<section id="create-an-empty-dataframe">
+<h3>create an empty dataframe<a class="headerlink" href="#create-an-empty-dataframe" title="Permalink to this heading">#</a></h3>
+<p>We will need some place to put the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># preallocate an empty data frame which you will recursively fill in with data</span>
+<span class="n">data.raw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="nf">list</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="recursively-read-in-files-from-the-data-directory">
+<h3>recursively read in files from the data directory<a class="headerlink" href="#recursively-read-in-files-from-the-data-directory" title="Permalink to this heading">#</a></h3>
+<p>Use a <code class="docutils literal notranslate"><span class="pre">for-loop</span></code>to do this. What’s another way?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nf">for</span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">file_list</span><span class="p">)){</span>
+<span class="w">      </span>
+<span class="w">    </span><span class="c1"># paste strings to create a file_path from where we will read data</span>
+<span class="w">    </span><span class="n">file_path</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="nf">paste0</span><span class="p">(</span><span class="n">subfolder_path</span><span class="p">,</span><span class="n">file_list</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+<span class="w">      </span>
+<span class="w">    </span><span class="c1"># read each file in file_list</span>
+<span class="w">    </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">read.delim</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+<span class="w">      </span>
+<span class="w">    </span><span class="c1"># change column names </span>
+<span class="w">    </span><span class="nf">colnames</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="n">temp</span><span class="p">[</span><span class="m">1</span><span class="p">,],</span><span class="n">temp</span><span class="p">[</span><span class="m">4</span><span class="p">,])</span>
+
+<span class="w">    </span><span class="c1"># remove first few (now) unnecessary rows</span>
+<span class="w">    </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temp</span><span class="p">[</span><span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">),]</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1"># clean names</span>
+<span class="w">    </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">clean_names</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span><span class="w">  </span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1"># rename first column to %gait</span>
+<span class="w">    </span><span class="nf">colnames</span><span class="p">(</span><span class="n">temp</span><span class="p">)[</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;perc_gait&quot;</span>
+<span class="w">      </span>
+<span class="w">    </span><span class="c1"># convert to numeric</span>
+<span class="w">    </span><span class="n">temp</span><span class="p">[,</span><span class="m">-1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span><span class="n">temp</span><span class="p">[,</span><span class="m">-1</span><span class="p">],</span><span class="m">2</span><span class="p">,</span><span class="n">as.double</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1"># change data table into tibble (it&#39;s currently in vectors format)</span>
+<span class="w">    </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as_tibble</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+<span class="w">      </span>
+<span class="w">    </span><span class="c1"># write a temporary variable out of the file names which will help </span>
+<span class="w">    </span><span class="c1"># you assign identifiers (trial, session etc.)</span>
+<span class="w">    </span><span class="c1"># without this variable, we can&#39;t discern the different trials or sessions</span>
+<span class="w">    </span><span class="n">temp</span><span class="o">$</span><span class="n">fileName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">substr</span><span class="p">(</span><span class="n">file_list</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="m">1</span><span class="p">,</span><span class="nf">nchar</span><span class="p">(</span><span class="n">file_list</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="m">-4</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1"># combine data imported from different files into a single dataframe</span>
+<span class="w">    </span><span class="n">data.raw</span><span class="w"> </span><span class="o">=</span><span class="nf">rbind</span><span class="p">(</span><span class="n">data.raw</span><span class="p">,</span><span class="n">temp</span><span class="p">)</span>
+<span class="w">    </span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="c1"># have a look at your data.raw dataframe</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">data.raw</span><span class="p">,</span><span class="m">7</span><span class="p">)</span>
+
+<span class="c1"># that&#39;s it! you have your rawest form of data. Next, clean it!</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A tibble: 7 × 80</caption>
+<thead>
+	<tr><th scope=col>perc_gait</th><th scope=col>left_ankle_angular_position_x</th><th scope=col>left_ankle_angular_position_y</th><th scope=col>left_ankle_angular_position_z</th><th scope=col>left_foot_progression_x</th><th scope=col>left_foot_progression_y</th><th scope=col>left_foot_progression_z</th><th scope=col>left_hip_angular_position_x</th><th scope=col>left_hip_angular_position_y</th><th scope=col>left_hip_angular_position_z</th><th scope=col>⋯</th><th scope=col>right_grf_x</th><th scope=col>right_grf_y</th><th scope=col>right_grf_z</th><th scope=col>trunk_left_position_x</th><th scope=col>trunk_left_position_y</th><th scope=col>trunk_left_position_z</th><th scope=col>trunk_right_position_x</th><th scope=col>trunk_right_position_y</th><th scope=col>trunk_right_position_z</th><th scope=col>fileName</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>⋯</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>1</td><td>4.026378</td><td> 1.210450</td><td>-6.210010</td><td>4.727023</td><td>1.860281</td><td>-2.955018</td><td>47.63491</td><td>3.890734</td><td> 7.032426</td><td>⋯</td><td> 26.189180</td><td>0.565135</td><td> 59.54464</td><td> 1.272320</td><td> 1.364384</td><td> 0.386036</td><td>-2.598243</td><td> 2.931554</td><td>1.601948</td><td>QA1_T1_Barefoot1</td></tr>
+	<tr><td>2</td><td>4.381411</td><td> 0.430334</td><td>-6.378968</td><td>4.227979</td><td>2.801618</td><td>-2.175241</td><td>47.24509</td><td>4.596641</td><td> 7.072709</td><td>⋯</td><td> 10.642538</td><td>1.570850</td><td>177.54526</td><td> 0.727941</td><td> 1.031140</td><td> 0.456037</td><td>-3.139704</td><td> 2.363694</td><td>2.143385</td><td>QA1_T1_Barefoot1</td></tr>
+	<tr><td>3</td><td>4.942418</td><td>-0.132680</td><td>-6.622121</td><td>3.788620</td><td>3.584090</td><td>-1.563634</td><td>46.92090</td><td>5.407558</td><td> 7.239258</td><td>⋯</td><td>-11.634778</td><td>3.745199</td><td>169.48271</td><td> 0.133742</td><td> 0.701048</td><td> 0.470578</td><td>-3.733501</td><td> 1.811826</td><td>2.553019</td><td>QA1_T1_Barefoot1</td></tr>
+	<tr><td>4</td><td>5.649685</td><td>-0.382537</td><td>-6.946462</td><td>3.398390</td><td>4.084312</td><td>-1.106544</td><td>46.69550</td><td>6.308265</td><td> 7.664567</td><td>⋯</td><td>  0.493447</td><td>4.391907</td><td>176.76891</td><td>-0.494060</td><td> 0.370650</td><td> 0.425918</td><td>-4.355091</td><td> 1.284306</td><td>2.809837</td><td>QA1_T1_Barefoot1</td></tr>
+	<tr><td>5</td><td>6.428778</td><td>-0.339809</td><td>-7.384519</td><td>3.041794</td><td>4.272545</td><td>-0.767969</td><td>46.57108</td><td>7.276013</td><td> 8.439258</td><td>⋯</td><td> 20.227514</td><td>3.592591</td><td>198.42075</td><td>-1.143465</td><td> 0.035333</td><td> 0.317609</td><td>-4.981491</td><td> 0.785983</td><td>2.899375</td><td>QA1_T1_Barefoot1</td></tr>
+	<tr><td>6</td><td>7.232831</td><td>-0.097753</td><td>-7.975707</td><td>2.709668</td><td>4.181955</td><td>-0.518801</td><td>46.51028</td><td>8.283491</td><td> 9.538996</td><td>⋯</td><td> 39.334137</td><td>2.676411</td><td>216.38422</td><td>-1.807093</td><td>-0.310191</td><td> 0.142298</td><td>-5.592752</td><td> 0.316713</td><td>2.816404</td><td>QA1_T1_Barefoot1</td></tr>
+	<tr><td>7</td><td>8.045587</td><td> 0.243836</td><td>-8.707746</td><td>2.399153</td><td>3.866962</td><td>-0.336698</td><td>46.44544</td><td>9.300517</td><td>10.804104</td><td>⋯</td><td> 53.552158</td><td>2.296539</td><td>251.16263</td><td>-2.480773</td><td>-0.671749</td><td>-0.099552</td><td>-6.173125</td><td>-0.129672</td><td>2.566994</td><td>QA1_T1_Barefoot1</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+</section>
+<section id="data-wrangling">
+<h2>Data wrangling<a class="headerlink" href="#data-wrangling" title="Permalink to this heading">#</a></h2>
+<p><font color = 'orange'> <em><strong>Recap Week 3</strong></em> learning </font> <br>
+We need some identifiers for plotting. We also don’t want to plot all the variables one by one.</p>
+<section id="add-identifiers">
+<h3>add identifiers<a class="headerlink" href="#add-identifiers" title="Permalink to this heading">#</a></h3>
+<p>the main line of code below is the <code class="docutils literal notranslate"><span class="pre">separate</span></code> function that will separate the fileName “QA1_T1_Barefoot1” by the underscore into “QA”, “T1” &amp; “Barefoot1”.
+We will define these three parts into new variables:</p>
+<ol class="arabic simple">
+<li><p>the initial “QA” part will be the variable “prefix.” We will remove this variable later because it’s not that useful to us.</p></li>
+<li><p>the “T1” part will be variable session. This is important because we care about comparing between sessions.</p></li>
+<li><p>the “Barefoot1” part will be the variable “trial”</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># let&#39;s create some new variables using the fileName variable in data.raw</span>
+<span class="n">data.raw</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="c1"># below `separate` func will separate &quot;QA_T1_Barefoot1&quot; by the &quot;_&quot; separator</span>
+<span class="nf">separate</span><span class="p">(</span><span class="n">fileName</span><span class="p">,</span><span class="n">into</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;prefix&quot;</span><span class="p">,</span><span class="s">&quot;session&quot;</span><span class="p">,</span><span class="s">&quot;trial&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;_&quot;</span><span class="p">,</span><span class="n">fill</span><span class="o">=</span><span class="s">&quot;right&quot;</span><span class="p">,</span><span class="n">remove</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="c1"># Now, we can remove the &quot;QA&quot; prefix variable </span>
+<span class="nf">select</span><span class="p">(</span><span class="o">!</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;prefix&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="p">{</span><span class="n">.</span><span class="o">-&gt;&gt;</span><span class="n">data.clean</span><span class="p">}</span>
+
+<span class="nf">head</span><span class="p">(</span><span class="n">data.clean</span><span class="p">)</span>
+
+<span class="c1"># now we have a clean version of our code and we can use this to </span>
+<span class="c1"># plot the variables one by one.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A tibble: 6 × 81</caption>
+<thead>
+	<tr><th scope=col>perc_gait</th><th scope=col>left_ankle_angular_position_x</th><th scope=col>left_ankle_angular_position_y</th><th scope=col>left_ankle_angular_position_z</th><th scope=col>left_foot_progression_x</th><th scope=col>left_foot_progression_y</th><th scope=col>left_foot_progression_z</th><th scope=col>left_hip_angular_position_x</th><th scope=col>left_hip_angular_position_y</th><th scope=col>left_hip_angular_position_z</th><th scope=col>⋯</th><th scope=col>right_grf_y</th><th scope=col>right_grf_z</th><th scope=col>trunk_left_position_x</th><th scope=col>trunk_left_position_y</th><th scope=col>trunk_left_position_z</th><th scope=col>trunk_right_position_x</th><th scope=col>trunk_right_position_y</th><th scope=col>trunk_right_position_z</th><th scope=col>session</th><th scope=col>trial</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>⋯</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>1</td><td>4.026378</td><td> 1.210450</td><td>-6.210010</td><td>4.727023</td><td>1.860281</td><td>-2.955018</td><td>47.63491</td><td>3.890734</td><td>7.032426</td><td>⋯</td><td>0.565135</td><td> 59.54464</td><td> 1.272320</td><td> 1.364384</td><td>0.386036</td><td>-2.598243</td><td>2.931554</td><td>1.601948</td><td>T1</td><td>Barefoot1</td></tr>
+	<tr><td>2</td><td>4.381411</td><td> 0.430334</td><td>-6.378968</td><td>4.227979</td><td>2.801618</td><td>-2.175241</td><td>47.24509</td><td>4.596641</td><td>7.072709</td><td>⋯</td><td>1.570850</td><td>177.54526</td><td> 0.727941</td><td> 1.031140</td><td>0.456037</td><td>-3.139704</td><td>2.363694</td><td>2.143385</td><td>T1</td><td>Barefoot1</td></tr>
+	<tr><td>3</td><td>4.942418</td><td>-0.132680</td><td>-6.622121</td><td>3.788620</td><td>3.584090</td><td>-1.563634</td><td>46.92090</td><td>5.407558</td><td>7.239258</td><td>⋯</td><td>3.745199</td><td>169.48271</td><td> 0.133742</td><td> 0.701048</td><td>0.470578</td><td>-3.733501</td><td>1.811826</td><td>2.553019</td><td>T1</td><td>Barefoot1</td></tr>
+	<tr><td>4</td><td>5.649685</td><td>-0.382537</td><td>-6.946462</td><td>3.398390</td><td>4.084312</td><td>-1.106544</td><td>46.69550</td><td>6.308265</td><td>7.664567</td><td>⋯</td><td>4.391907</td><td>176.76891</td><td>-0.494060</td><td> 0.370650</td><td>0.425918</td><td>-4.355091</td><td>1.284306</td><td>2.809837</td><td>T1</td><td>Barefoot1</td></tr>
+	<tr><td>5</td><td>6.428778</td><td>-0.339809</td><td>-7.384519</td><td>3.041794</td><td>4.272545</td><td>-0.767969</td><td>46.57108</td><td>7.276013</td><td>8.439258</td><td>⋯</td><td>3.592591</td><td>198.42075</td><td>-1.143465</td><td> 0.035333</td><td>0.317609</td><td>-4.981491</td><td>0.785983</td><td>2.899375</td><td>T1</td><td>Barefoot1</td></tr>
+	<tr><td>6</td><td>7.232831</td><td>-0.097753</td><td>-7.975707</td><td>2.709668</td><td>4.181955</td><td>-0.518801</td><td>46.51028</td><td>8.283491</td><td>9.538996</td><td>⋯</td><td>2.676411</td><td>216.38422</td><td>-1.807093</td><td>-0.310191</td><td>0.142298</td><td>-5.592752</td><td>0.316713</td><td>2.816404</td><td>T1</td><td>Barefoot1</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="manipulate-the-data">
+<h3>manipulate the data<a class="headerlink" href="#manipulate-the-data" title="Permalink to this heading">#</a></h3>
+<p>Convert it to long format so you can next plot all variables at once</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># let&#39;s </span>
+<span class="n">data.clean</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="c1"># I removed the &quot;normalized torque&quot; variables here because they didn&#39;t indicate </span>
+<span class="nf">select</span><span class="p">(</span><span class="o">!</span><span class="nf">starts_with</span><span class="p">(</span><span class="n">match</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;norm_&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="nf">pivot_longer</span><span class="p">(</span><span class="n">cols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">where</span><span class="p">(</span><span class="n">is.numeric</span><span class="p">),</span><span class="w"> </span><span class="n">names_to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;measure&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">values_to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;value&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="p">{</span><span class="n">.</span><span class="o">-&gt;&gt;</span><span class="w"> </span><span class="n">data.clean.longPlot</span><span class="p">}</span>
+
+<span class="n">data.clean.longPlot</span><span class="o">$</span><span class="n">perc_gait</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">data.clean.longPlot</span><span class="o">$</span><span class="n">perc_gait</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">data.clean.longPlot</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A tibble: 6 × 5</caption>
+<thead>
+	<tr><th scope=col>perc_gait</th><th scope=col>session</th><th scope=col>trial</th><th scope=col>measure</th><th scope=col>value</th></tr>
+	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>1</td><td>T1</td><td>Barefoot1</td><td>left_ankle_angular_position_x</td><td> 4.026378</td></tr>
+	<tr><td>1</td><td>T1</td><td>Barefoot1</td><td>left_ankle_angular_position_y</td><td> 1.210450</td></tr>
+	<tr><td>1</td><td>T1</td><td>Barefoot1</td><td>left_ankle_angular_position_z</td><td>-6.210010</td></tr>
+	<tr><td>1</td><td>T1</td><td>Barefoot1</td><td>left_foot_progression_x      </td><td> 4.727023</td></tr>
+	<tr><td>1</td><td>T1</td><td>Barefoot1</td><td>left_foot_progression_y      </td><td> 1.860281</td></tr>
+	<tr><td>1</td><td>T1</td><td>Barefoot1</td><td>left_foot_progression_z      </td><td>-2.955018</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+</section>
+<section id="visualize-data">
+<h2>Visualize data<a class="headerlink" href="#visualize-data" title="Permalink to this heading">#</a></h2>
+<p><font color = 'orange'> <em><strong>Recap Week 4</strong></em> learning </font> <br>
+We need an initial version of a plot where we can see all our data as means and standard errors. We want its appearance to be large and clear enough to be visible to the (relatively old) human eye.</p>
+<section id="set-theme-in-advance-so-you-can-use-it-next">
+<h3>set theme in advance so you can use it next<a class="headerlink" href="#set-theme-in-advance-so-you-can-use-it-next" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">thm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">40</span><span class="p">),</span>
+<span class="w">          </span><span class="n">legend.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">25</span><span class="p">),</span>
+<span class="w">          </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;top&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="n">legend.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">),</span>
+<span class="w">          </span><span class="n">strip.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">35</span><span class="p">),</span>
+<span class="w">          </span><span class="n">axis.ticks.length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">unit</span><span class="p">(</span><span class="m">0.3</span><span class="p">,</span><span class="s">&quot;cm&quot;</span><span class="p">),</span>
+<span class="w">          </span><span class="n">axis.line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_line</span><span class="p">(</span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span>
+<span class="w">          </span><span class="n">axis.ticks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_line</span><span class="p">(</span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span>
+<span class="w">          </span><span class="n">axis.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">40</span><span class="p">),</span>
+<span class="w">          </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">lineheight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.1</span><span class="p">,</span><span class="w"> </span><span class="n">margin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">margin</span><span class="p">(</span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">)),</span>
+<span class="w">          </span><span class="n">axis.title.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">40</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;grey35&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;plain&quot;</span><span class="p">,</span>
+<span class="w">                                     </span><span class="n">lineheight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.1</span><span class="p">,</span><span class="w"> </span><span class="n">margin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">margin</span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">)),</span>
+<span class="w">          </span><span class="n">axis.title.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">40</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;grey35&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;plain&quot;</span><span class="p">,</span>
+<span class="w">                                     </span><span class="n">lineheight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.1</span><span class="p">,</span><span class="w"> </span><span class="n">margin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">margin</span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">)))</span>
+
+<span class="n">custom_colors</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;#e41a1c&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;#13388e&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;#03ac13&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="plot-all-variables-at-once-from-the-long-format-data">
+<h3>plot all variables at once from the long format data<a class="headerlink" href="#plot-all-variables-at-once-from-the-long-format-data" title="Permalink to this heading">#</a></h3>
+<p>What’s one problem with this plot?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">options</span><span class="p">(</span><span class="n">repr.plot.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">40</span><span class="p">,</span><span class="w"> </span><span class="n">repr.plot.height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">40</span><span class="p">)</span>
+<span class="n">all_vars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">data.clean.longPlot</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">perc_gait</span><span class="p">,</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="nf">stat_summary</span><span class="p">(</span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;line&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="nf">stat_summary</span><span class="p">(</span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ribbon&quot;</span><span class="p">,</span><span class="n">fun.data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean_se</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="m">0.3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">scale_color_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">custom_colors</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">custom_colors</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="nf">xlab</span><span class="p">(</span><span class="s">&quot;% gait cycle&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">ylab</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="nf">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="n">measure</span><span class="p">,</span><span class="w"> </span><span class="n">scales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;free&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="nf">theme_clean</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">thm</span>
+<span class="n">all_vars</span>
+
+<span class="c1"># ggsave(file=&#39;all_vars.svg&#39;, plot=all_vars, width=35, height=35)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
+“The `size` argument of `element_line()` is deprecated as of ggplot2 3.4.0.
+<span class=" -Color -Color-Cyan">ℹ</span> Please use the `linewidth` argument instead.
+<span class=" -Color -Color-Cyan">ℹ</span> The deprecated feature was likely used in the <span class=" -Color -Color-Blue">ggthemes</span> package.
+  Please report the issue at <span class=" -Color -Color-Blue">&lt;https://github.com/jrnold/ggthemes/issues&gt;</span>.”
+</pre></div>
+</div>
+<img alt="../../_images/71e848cb660d6b8b94d2859945f53f2b37967dfd8d496f0a319f454d9d62a90b.png" src="../../_images/71e848cb660d6b8b94d2859945f53f2b37967dfd8d496f0a319f454d9d62a90b.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="advanced-data-wrangling">
+<h2>Advanced data wrangling<a class="headerlink" href="#advanced-data-wrangling" title="Permalink to this heading">#</a></h2>
+<p><font color = 'orange'> <em><strong>Recap Week 4</strong></em> learning </font> <br>
+More data manipulation using conditional sets to define new identifiers for the variable <code class="docutils literal notranslate"><span class="pre">variable</span></code></p>
+<section id="define-conditional-sets">
+<h3>define conditional sets<a class="headerlink" href="#define-conditional-sets" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># side of measure</span>
+<span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;left&quot;</span><span class="p">,</span><span class="s">&quot;right&quot;</span><span class="p">)</span>
+<span class="c1"># segment measured</span>
+<span class="n">sg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;foot&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ankle&quot;</span><span class="p">,</span><span class="s">&quot;knee&quot;</span><span class="p">,</span><span class="s">&quot;hip&quot;</span><span class="p">,</span><span class="s">&quot;pelvis&quot;</span><span class="p">,</span><span class="s">&quot;trunk&quot;</span><span class="p">,</span><span class="s">&quot;grf&quot;</span><span class="p">)</span>
+<span class="c1"># coordinate</span>
+<span class="n">cd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">,</span><span class="s">&quot;y&quot;</span><span class="p">,</span><span class="s">&quot;z&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="use-conditional-sets-to-define-new-variables-side-segment-and-coordinate">
+<h3>use conditional sets to define new variables side, segment, and coordinate<a class="headerlink" href="#use-conditional-sets-to-define-new-variables-side-segment-and-coordinate" title="Permalink to this heading">#</a></h3>
+<p>Let’s take the long format of the data and <code class="docutils literal notranslate"><span class="pre">separate</span></code> the “measure” variable
+into bits that are useful - e.g., the side, the segment, and the coordinate</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">data.clean.longPlot</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+
+<span class="w">  </span><span class="c1"># an important note: i needed to know in advance how many  </span>
+<span class="w">  </span><span class="nf">separate</span><span class="p">(</span><span class="n">measure</span><span class="p">,</span><span class="w"> </span>
+<span class="w">           </span><span class="n">into</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;part1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;part2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;part3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;part4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;part5&quot;</span><span class="p">),</span><span class="w"> </span>
+<span class="w">           </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;_&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">extra</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;merge&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;right&quot;</span><span class="p">,</span><span class="n">remove</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="n">side</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">case_when</span><span class="p">(</span><span class="n">part1</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">part1</span><span class="p">,</span><span class="w"> </span><span class="n">part2</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">part2</span><span class="p">,</span>
+<span class="w">                          </span><span class="n">part3</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">part3</span><span class="p">,</span><span class="w"> </span><span class="kc">TRUE</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="kc">NA_character_</span><span class="p">),</span>
+<span class="w">         </span>
+<span class="w">            </span><span class="c1"># once moved, replace orig cells with NA</span>
+<span class="w">            </span><span class="n">part1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">if_else</span><span class="p">(</span><span class="n">part1</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">sd</span><span class="p">,</span><span class="w"> </span><span class="kc">NA_character_</span><span class="p">,</span><span class="w"> </span><span class="n">part1</span><span class="p">),</span>
+<span class="w">            </span><span class="n">part2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">if_else</span><span class="p">(</span><span class="n">part2</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">sd</span><span class="p">,</span><span class="w"> </span><span class="kc">NA_character_</span><span class="p">,</span><span class="w"> </span><span class="n">part2</span><span class="p">),</span>
+<span class="w">            </span><span class="n">part3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">if_else</span><span class="p">(</span><span class="n">part3</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">sd</span><span class="p">,</span><span class="w"> </span><span class="kc">NA_character_</span><span class="p">,</span><span class="w"> </span><span class="n">part3</span><span class="p">),</span>
+<span class="w">         </span>
+<span class="w">         </span>
+<span class="w">        </span><span class="n">segment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">case_when</span><span class="p">(</span><span class="n">part1</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">sg</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">part1</span><span class="p">,</span><span class="w"> </span><span class="n">part2</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">sg</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">part2</span><span class="p">,</span>
+<span class="w">                            </span><span class="n">part3</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">sg</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">part3</span><span class="p">,</span><span class="w"> </span><span class="kc">TRUE</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="kc">NA_character_</span><span class="p">),</span>
+<span class="w">         </span>
+<span class="w">            </span><span class="c1"># once moved, replace orig cells with NA</span>
+<span class="w">            </span><span class="n">part1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">if_else</span><span class="p">(</span><span class="n">part1</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">sg</span><span class="p">,</span><span class="w"> </span><span class="kc">NA_character_</span><span class="p">,</span><span class="w"> </span><span class="n">part1</span><span class="p">),</span>
+<span class="w">            </span><span class="n">part2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">if_else</span><span class="p">(</span><span class="n">part2</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">sg</span><span class="p">,</span><span class="w"> </span><span class="kc">NA_character_</span><span class="p">,</span><span class="w"> </span><span class="n">part2</span><span class="p">),</span>
+<span class="w">            </span><span class="n">part3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">if_else</span><span class="p">(</span><span class="n">part3</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">sg</span><span class="p">,</span><span class="w"> </span><span class="kc">NA_character_</span><span class="p">,</span><span class="w"> </span><span class="n">part3</span><span class="p">),</span><span class="w"> </span>
+
+<span class="w">        </span><span class="n">coord</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">case_when</span><span class="p">(</span><span class="n">part3</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">cd</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">part3</span><span class="p">,</span><span class="w"> </span><span class="n">part4</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">cd</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">part4</span><span class="p">,</span>
+<span class="w">                           </span><span class="n">part5</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">cd</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">part5</span><span class="p">,</span><span class="w"> </span><span class="kc">TRUE</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="kc">NA_character_</span><span class="p">),</span>
+<span class="w">         </span>
+<span class="w">            </span><span class="c1"># once moved, replace orig cells with NA</span>
+<span class="w">            </span><span class="n">part3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">if_else</span><span class="p">(</span><span class="n">part3</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">cd</span><span class="p">,</span><span class="w"> </span><span class="kc">NA_character_</span><span class="p">,</span><span class="w"> </span><span class="n">part3</span><span class="p">),</span>
+<span class="w">            </span><span class="n">part4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">if_else</span><span class="p">(</span><span class="n">part4</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">cd</span><span class="p">,</span><span class="w"> </span><span class="kc">NA_character_</span><span class="p">,</span><span class="w"> </span><span class="n">part4</span><span class="p">),</span>
+<span class="w">            </span><span class="n">part5</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">if_else</span><span class="p">(</span><span class="n">part5</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">cd</span><span class="p">,</span><span class="w"> </span><span class="kc">NA_character_</span><span class="p">,</span><span class="w"> </span><span class="n">part5</span><span class="p">),</span>
+<span class="w">         </span>
+<span class="w">        </span><span class="n">measure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">if_else</span><span class="p">(</span><span class="nf">is.na</span><span class="p">(</span><span class="n">part3</span><span class="p">),</span><span class="s">&#39;force&#39;</span><span class="p">,</span><span class="n">part3</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+
+<span class="nf">select</span><span class="p">(</span><span class="o">!</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;part1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;part2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;part3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;part4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;part5&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+
+<span class="p">{</span><span class="n">.</span><span class="o">-&gt;&gt;</span><span class="n">data.sorted.long</span><span class="p">}</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">data.sorted.long</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A tibble: 6 × 8</caption>
+<thead>
+	<tr><th scope=col>perc_gait</th><th scope=col>session</th><th scope=col>trial</th><th scope=col>measure</th><th scope=col>value</th><th scope=col>side</th><th scope=col>segment</th><th scope=col>coord</th></tr>
+	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>1</td><td>T1</td><td>Barefoot1</td><td>angular    </td><td> 4.026378</td><td>left</td><td>ankle</td><td>x</td></tr>
+	<tr><td>1</td><td>T1</td><td>Barefoot1</td><td>angular    </td><td> 1.210450</td><td>left</td><td>ankle</td><td>y</td></tr>
+	<tr><td>1</td><td>T1</td><td>Barefoot1</td><td>angular    </td><td>-6.210010</td><td>left</td><td>ankle</td><td>z</td></tr>
+	<tr><td>1</td><td>T1</td><td>Barefoot1</td><td>progression</td><td> 4.727023</td><td>left</td><td>foot </td><td>x</td></tr>
+	<tr><td>1</td><td>T1</td><td>Barefoot1</td><td>progression</td><td> 1.860281</td><td>left</td><td>foot </td><td>y</td></tr>
+	<tr><td>1</td><td>T1</td><td>Barefoot1</td><td>progression</td><td>-2.955018</td><td>left</td><td>foot </td><td>z</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="visualize-again">
+<h3>visualize again<a class="headerlink" href="#visualize-again" title="Permalink to this heading">#</a></h3>
+<section id="right-body-segments">
+<h4>right body segments<a class="headerlink" href="#right-body-segments" title="Permalink to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">right_allVars</span><span class="w"> </span><span class="o">=</span>
+
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">data.sorted.long</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">filter</span><span class="p">(</span><span class="n">side</span><span class="o">==</span><span class="s">&quot;right&quot;</span><span class="p">),</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">perc_gait</span><span class="p">,</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="nf">stat_summary</span><span class="p">(</span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;line&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="nf">stat_summary</span><span class="p">(</span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ribbon&quot;</span><span class="p">,</span><span class="n">fun.data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean_se</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="m">0.3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">scale_color_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">custom_colors</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">custom_colors</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="nf">xlab</span><span class="p">(</span><span class="s">&quot;% gait cycle&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">ylab</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">ggtitle</span><span class="p">(</span><span class="s">&quot;RIGHT BODY SEGMENTS&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="nf">facet_wrap</span><span class="p">(</span><span class="n">segment</span><span class="o">~</span><span class="n">coord</span><span class="p">,</span><span class="w"> </span><span class="n">scales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;free&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="nf">theme_clean</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">thm</span>
+
+<span class="n">right_allVars</span>
+
+<span class="c1"># ggsave(file=&#39;right_allVars.svg&#39;, plot=right_allVars, width=35, height=35)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/cd2da0f9303b47b4c4d30e0e9d1d484a6cd75dc359ddf4befe8faeb8c026a5b9.png" src="../../_images/cd2da0f9303b47b4c4d30e0e9d1d484a6cd75dc359ddf4befe8faeb8c026a5b9.png" />
+</div>
+</div>
+</section>
+<section id="left-body-segments">
+<h4>left body segments<a class="headerlink" href="#left-body-segments" title="Permalink to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">left_allVars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">data.sorted.long</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">filter</span><span class="p">(</span><span class="n">side</span><span class="o">==</span><span class="s">&quot;left&quot;</span><span class="p">),</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">perc_gait</span><span class="p">,</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="nf">stat_summary</span><span class="p">(</span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;line&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="nf">stat_summary</span><span class="p">(</span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ribbon&quot;</span><span class="p">,</span><span class="n">fun.data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean_se</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="m">0.3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">scale_color_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">custom_colors</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">custom_colors</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="nf">xlab</span><span class="p">(</span><span class="s">&quot;% gait cycle&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">ylab</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">ggtitle</span><span class="p">(</span><span class="s">&quot;LEFT BODY SEGMENTS&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="nf">facet_wrap</span><span class="p">(</span><span class="n">segment</span><span class="o">~</span><span class="n">coord</span><span class="p">,</span><span class="w"> </span><span class="n">scales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;free&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="nf">theme_clean</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">thm</span>
+
+<span class="n">left_allVars</span>
+
+<span class="c1"># ggsave(file=&#39;left_allVars.svg&#39;, plot=left_allVars, width=35, height=35)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/6357e2b9786c8fe34af5ce9708f9b0d251ad5125bd6543efa80313132a08c32a.png" src="../../_images/6357e2b9786c8fe34af5ce9708f9b0d251ad5125bd6543efa80313132a08c32a.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="what-did-you-find-from-visual-analysis-of-the-data">
+<h2>What did you find from visual analysis of the data?<a class="headerlink" href="#what-did-you-find-from-visual-analysis-of-the-data" title="Permalink to this heading">#</a></h2>
+<p>One observation is that across sessions T1, T2, and T3, the hip, pelvis, and trunk traces seem to be more ‘apart’ from one another compared to other more distal markers. Specifically:</p>
+<ul class="simple">
+<li><p>On the <code class="docutils literal notranslate"><span class="pre">RIGHT</span></code> side segments:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">hip</span> <span class="pre">x,</span> <span class="pre">y</span> <span class="pre">&amp;</span> <span class="pre">z</span></code> coord</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pelvis</span> <span class="pre">x,</span> <span class="pre">y</span> <span class="pre">&amp;</span> <span class="pre">z</span></code> coord</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">trunk</span> <span class="pre">x</span></code> coord</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ankle</span> <span class="pre">y</span> <span class="pre">&amp;</span> <span class="pre">z</span></code> coord <br>
+<br></p></li>
+</ul>
+</li>
+<li><p>On the <code class="docutils literal notranslate"><span class="pre">LEFT</span></code> side segments:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">hip</span> <span class="pre">x,</span> <span class="pre">y</span> <span class="pre">&amp;</span> <span class="pre">z</span></code> coord</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pelvis</span> <span class="pre">x</span></code> coord</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">trunk</span> <span class="pre">x</span></code> coord</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="statistics">
+<h2>Statistics<a class="headerlink" href="#statistics" title="Permalink to this heading">#</a></h2>
+<p><font color = 'orange'> <em><strong>Recap Week 5</strong></em> learning </font></p>
+<p>At this point, you have to be very specific about what measures you are interested in comparing. For example, there maybe some markers and coordinates you don’t care about or some others that you absolutely do care about. Decide that because it is time to compare those measures across the 3 sessions.</p>
+<section id="summarize-long-form-data">
+<h3>Summarize long-form data<a class="headerlink" href="#summarize-long-form-data" title="Permalink to this heading">#</a></h3>
+<p>For use in simple linear models next</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">data.sorted.long</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="nf">group_by</span><span class="p">(</span><span class="n">perc_gait</span><span class="p">,</span><span class="n">session</span><span class="p">,</span><span class="w"> </span><span class="n">side</span><span class="p">,</span><span class="w"> </span><span class="n">segment</span><span class="p">,</span><span class="w"> </span><span class="n">coord</span><span class="p">,</span><span class="w"> </span><span class="n">measure</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="c1"># summarize_if(is.double,list(mean = mean, se = parameters::standard_error), </span>
+<span class="c1">#            .names = &quot;{.col}_{.fn}&quot;) %&gt;% </span>
+<span class="nf">summarize_if</span><span class="p">(</span><span class="n">is.double</span><span class="p">,</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span><span class="w">  </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="p">{</span><span class="n">.</span><span class="o">-&gt;&gt;</span><span class="n">data.summ.long</span><span class="p">}</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">data.summ.long</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A grouped_df: 6 × 7</caption>
+<thead>
+	<tr><th scope=col>perc_gait</th><th scope=col>session</th><th scope=col>side</th><th scope=col>segment</th><th scope=col>coord</th><th scope=col>measure</th><th scope=col>value</th></tr>
+	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>1</td><td>T1</td><td>left</td><td>ankle</td><td>x</td><td>angular    </td><td> 2.9717613</td></tr>
+	<tr><td>1</td><td>T1</td><td>left</td><td>ankle</td><td>y</td><td>angular    </td><td> 0.5934137</td></tr>
+	<tr><td>1</td><td>T1</td><td>left</td><td>ankle</td><td>z</td><td>angular    </td><td>-5.7480278</td></tr>
+	<tr><td>1</td><td>T1</td><td>left</td><td>foot </td><td>x</td><td>progression</td><td> 4.0666320</td></tr>
+	<tr><td>1</td><td>T1</td><td>left</td><td>foot </td><td>y</td><td>progression</td><td> 0.5521340</td></tr>
+	<tr><td>1</td><td>T1</td><td>left</td><td>foot </td><td>z</td><td>progression</td><td>-2.2964845</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<section id="define-segments-that-seemed-most-problematic-during-visual-analysis">
+<h4>define segments that seemed most problematic during visual analysis<a class="headerlink" href="#define-segments-that-seemed-most-problematic-during-visual-analysis" title="Permalink to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># problem segments for both left and right side</span>
+<span class="n">prob_segs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;ankle&quot;</span><span class="p">,</span><span class="s">&quot;foot&quot;</span><span class="p">,</span><span class="s">&quot;trunk&quot;</span><span class="p">,</span><span class="s">&quot;pelvis&quot;</span><span class="p">,</span><span class="s">&quot;hip&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="simple-linear-model">
+<h3>Simple linear model<a class="headerlink" href="#simple-linear-model" title="Permalink to this heading">#</a></h3>
+<section id="for-right-body-segments">
+<h4>for right body segments<a class="headerlink" href="#for-right-body-segments" title="Permalink to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mod.right.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data.summ.long</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">filter</span><span class="p">(</span><span class="n">segment</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">prob_segs</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">side</span><span class="o">==</span><span class="s">&quot;right&quot;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">coord</span><span class="o">==</span><span class="s">&quot;x&quot;</span><span class="p">),</span><span class="w"> </span>
+<span class="w">           </span><span class="n">value</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">session</span><span class="o">*</span><span class="n">segment</span><span class="p">)</span>
+<span class="n">mod.right.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data.summ.long</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">filter</span><span class="p">(</span><span class="n">segment</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">prob_segs</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">side</span><span class="o">==</span><span class="s">&quot;right&quot;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">coord</span><span class="o">==</span><span class="s">&quot;y&quot;</span><span class="p">),</span><span class="w"> </span>
+<span class="w">           </span><span class="n">value</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">session</span><span class="o">*</span><span class="n">segment</span><span class="p">)</span>
+<span class="n">mod.right.z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data.summ.long</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">filter</span><span class="p">(</span><span class="n">segment</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">prob_segs</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">side</span><span class="o">==</span><span class="s">&quot;right&quot;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">coord</span><span class="o">==</span><span class="s">&quot;z&quot;</span><span class="p">),</span><span class="w"> </span>
+<span class="w">           </span><span class="n">value</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">session</span><span class="o">*</span><span class="n">segment</span><span class="p">)</span>
+
+<span class="c1"># tidy(mod.right.x)</span>
+<span class="c1"># glance(mod.right.x)</span>
+<span class="c1"># glance(mod.right.y)</span>
+<span class="c1"># glance(mod.right.z)</span>
+
+<span class="n">emm_interR.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">emmeans</span><span class="p">(</span><span class="n">mod.right.x</span><span class="p">,</span><span class="w"> </span><span class="o">~</span><span class="n">session</span><span class="o">|</span><span class="n">segment</span><span class="p">)</span>
+<span class="n">emm_interR.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">emmeans</span><span class="p">(</span><span class="n">mod.right.y</span><span class="p">,</span><span class="w"> </span><span class="o">~</span><span class="n">session</span><span class="o">|</span><span class="n">segment</span><span class="p">)</span>
+<span class="n">emm_interR.z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">emmeans</span><span class="p">(</span><span class="n">mod.right.z</span><span class="p">,</span><span class="w"> </span><span class="o">~</span><span class="n">session</span><span class="o">|</span><span class="n">segment</span><span class="p">)</span>
+
+<span class="nf">pairs</span><span class="p">(</span><span class="n">emm_interR.x</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;segment&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">tidy</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">filter</span><span class="p">(</span><span class="n">adj.p.value</span><span class="o">&lt;</span><span class="m">0.05</span><span class="p">)</span>
+<span class="nf">pairs</span><span class="p">(</span><span class="n">emm_interR.y</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;segment&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">tidy</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">filter</span><span class="p">(</span><span class="n">adj.p.value</span><span class="o">&lt;</span><span class="m">0.05</span><span class="p">)</span>
+<span class="nf">pairs</span><span class="p">(</span><span class="n">emm_interR.z</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;segment&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">tidy</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">filter</span><span class="p">(</span><span class="n">adj.p.value</span><span class="o">&lt;</span><span class="m">0.05</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A tibble: 6 × 9</caption>
+<thead>
+	<tr><th scope=col>segment</th><th scope=col>term</th><th scope=col>contrast</th><th scope=col>null.value</th><th scope=col>estimate</th><th scope=col>std.error</th><th scope=col>df</th><th scope=col>statistic</th><th scope=col>adj.p.value</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>hip   </td><td>session</td><td>T1 - T3</td><td>0</td><td> 5.530643</td><td>1.562371</td><td>1500</td><td> 3.539903</td><td>1.199383e-03</td></tr>
+	<tr><td>hip   </td><td>session</td><td>T2 - T3</td><td>0</td><td> 6.759247</td><td>1.562371</td><td>1500</td><td> 4.326274</td><td>4.803105e-05</td></tr>
+	<tr><td>pelvis</td><td>session</td><td>T1 - T3</td><td>0</td><td> 3.854094</td><td>1.562371</td><td>1500</td><td> 2.466823</td><td>3.658956e-02</td></tr>
+	<tr><td>pelvis</td><td>session</td><td>T2 - T3</td><td>0</td><td> 6.052885</td><td>1.562371</td><td>1500</td><td> 3.874166</td><td>3.283478e-04</td></tr>
+	<tr><td>trunk </td><td>session</td><td>T1 - T2</td><td>0</td><td>-5.135281</td><td>1.562371</td><td>1500</td><td>-3.286851</td><td>2.975860e-03</td></tr>
+	<tr><td>trunk </td><td>session</td><td>T1 - T3</td><td>0</td><td>-7.497862</td><td>1.562371</td><td>1500</td><td>-4.799027</td><td>5.236343e-06</td></tr>
+</tbody>
+</table>
+</div><div class="output text_html"><table class="dataframe">
+<caption>A tibble: 9 × 9</caption>
+<thead>
+	<tr><th scope=col>segment</th><th scope=col>term</th><th scope=col>contrast</th><th scope=col>null.value</th><th scope=col>estimate</th><th scope=col>std.error</th><th scope=col>df</th><th scope=col>statistic</th><th scope=col>adj.p.value</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>ankle </td><td>session</td><td>T1 - T2</td><td>0</td><td> 2.901917</td><td>0.6791903</td><td>1500</td><td> 4.272613</td><td>6.095513e-05</td></tr>
+	<tr><td>ankle </td><td>session</td><td>T1 - T3</td><td>0</td><td> 1.774887</td><td>0.6791903</td><td>1500</td><td> 2.613239</td><td>2.456416e-02</td></tr>
+	<tr><td>foot  </td><td>session</td><td>T1 - T2</td><td>0</td><td> 2.373330</td><td>0.6791903</td><td>1500</td><td> 3.494353</td><td>1.419049e-03</td></tr>
+	<tr><td>foot  </td><td>session</td><td>T1 - T3</td><td>0</td><td> 3.450094</td><td>0.6791903</td><td>1500</td><td> 5.079716</td><td>1.272679e-06</td></tr>
+	<tr><td>hip   </td><td>session</td><td>T1 - T2</td><td>0</td><td>-3.401831</td><td>0.6791903</td><td>1500</td><td>-5.008656</td><td>1.833322e-06</td></tr>
+	<tr><td>hip   </td><td>session</td><td>T1 - T3</td><td>0</td><td>-6.762726</td><td>0.6791903</td><td>1500</td><td>-9.957042</td><td>0.000000e+00</td></tr>
+	<tr><td>hip   </td><td>session</td><td>T2 - T3</td><td>0</td><td>-3.360895</td><td>0.6791903</td><td>1500</td><td>-4.948385</td><td>2.489426e-06</td></tr>
+	<tr><td>pelvis</td><td>session</td><td>T1 - T3</td><td>0</td><td>-4.977612</td><td>0.6791903</td><td>1500</td><td>-7.328744</td><td>0.000000e+00</td></tr>
+	<tr><td>pelvis</td><td>session</td><td>T2 - T3</td><td>0</td><td>-4.332307</td><td>0.6791903</td><td>1500</td><td>-6.378634</td><td>7.097655e-10</td></tr>
+</tbody>
+</table>
+</div><div class="output text_html"><table class="dataframe">
+<caption>A tibble: 9 × 9</caption>
+<thead>
+	<tr><th scope=col>segment</th><th scope=col>term</th><th scope=col>contrast</th><th scope=col>null.value</th><th scope=col>estimate</th><th scope=col>std.error</th><th scope=col>df</th><th scope=col>statistic</th><th scope=col>adj.p.value</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>ankle </td><td>session</td><td>T1 - T2</td><td>0</td><td>-2.006862</td><td>0.7866891</td><td>1500</td><td>-2.551023</td><td>2.917394e-02</td></tr>
+	<tr><td>foot  </td><td>session</td><td>T1 - T2</td><td>0</td><td> 3.055746</td><td>0.7866891</td><td>1500</td><td> 3.884312</td><td>3.151568e-04</td></tr>
+	<tr><td>foot  </td><td>session</td><td>T2 - T3</td><td>0</td><td>-4.024860</td><td>0.7866891</td><td>1500</td><td>-5.116201</td><td>1.053264e-06</td></tr>
+	<tr><td>hip   </td><td>session</td><td>T1 - T2</td><td>0</td><td> 4.644390</td><td>0.7866891</td><td>1500</td><td> 5.903717</td><td>1.315328e-08</td></tr>
+	<tr><td>hip   </td><td>session</td><td>T2 - T3</td><td>0</td><td>-4.580486</td><td>0.7866891</td><td>1500</td><td>-5.822486</td><td>2.122266e-08</td></tr>
+	<tr><td>pelvis</td><td>session</td><td>T1 - T2</td><td>0</td><td> 4.937491</td><td>0.7866891</td><td>1500</td><td> 6.276293</td><td>1.355879e-09</td></tr>
+	<tr><td>pelvis</td><td>session</td><td>T1 - T3</td><td>0</td><td> 4.297279</td><td>0.7866891</td><td>1500</td><td> 5.462487</td><td>1.644349e-07</td></tr>
+	<tr><td>trunk </td><td>session</td><td>T1 - T2</td><td>0</td><td> 4.117699</td><td>0.7866891</td><td>1500</td><td> 5.234214</td><td>5.663221e-07</td></tr>
+	<tr><td>trunk </td><td>session</td><td>T2 - T3</td><td>0</td><td>-2.468369</td><td>0.7866891</td><td>1500</td><td>-3.137667</td><td>4.937565e-03</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="for-left-body-segments">
+<h4>for left body segments<a class="headerlink" href="#for-left-body-segments" title="Permalink to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mod.left.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data.summ.long</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">filter</span><span class="p">(</span><span class="n">segment</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">prob_segs</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">side</span><span class="o">==</span><span class="s">&quot;left&quot;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">coord</span><span class="o">==</span><span class="s">&quot;x&quot;</span><span class="p">),</span><span class="w"> </span>
+<span class="w">           </span><span class="n">value</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">session</span><span class="o">*</span><span class="n">segment</span><span class="p">)</span>
+<span class="n">mod.left.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data.summ.long</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">filter</span><span class="p">(</span><span class="n">segment</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">prob_segs</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">side</span><span class="o">==</span><span class="s">&quot;left&quot;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">coord</span><span class="o">==</span><span class="s">&quot;y&quot;</span><span class="p">),</span><span class="w"> </span>
+<span class="w">           </span><span class="n">value</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">session</span><span class="o">*</span><span class="n">segment</span><span class="p">)</span>
+<span class="n">mod.left.z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data.summ.long</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">filter</span><span class="p">(</span><span class="n">segment</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">prob_segs</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">side</span><span class="o">==</span><span class="s">&quot;left&quot;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">coord</span><span class="o">==</span><span class="s">&quot;z&quot;</span><span class="p">),</span><span class="w"> </span>
+<span class="w">           </span><span class="n">value</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">session</span><span class="o">*</span><span class="n">segment</span><span class="p">)</span>
+
+<span class="c1"># tidy(mod.left.x)</span>
+<span class="c1"># glance(mod.left.x)</span>
+<span class="c1"># glance(mod.left.y)</span>
+<span class="c1"># glance(mod.left.z)</span>
+
+<span class="n">emm_interL.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">emmeans</span><span class="p">(</span><span class="n">mod.left.x</span><span class="p">,</span><span class="w"> </span><span class="o">~</span><span class="n">session</span><span class="o">|</span><span class="n">segment</span><span class="p">)</span>
+<span class="n">emm_interL.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">emmeans</span><span class="p">(</span><span class="n">mod.left.y</span><span class="p">,</span><span class="w"> </span><span class="o">~</span><span class="n">session</span><span class="o">|</span><span class="n">segment</span><span class="p">)</span>
+<span class="n">emm_interL.z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">emmeans</span><span class="p">(</span><span class="n">mod.left.z</span><span class="p">,</span><span class="w"> </span><span class="o">~</span><span class="n">session</span><span class="o">|</span><span class="n">segment</span><span class="p">)</span>
+
+<span class="nf">pairs</span><span class="p">(</span><span class="n">emm_interL.x</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;segment&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">tidy</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">filter</span><span class="p">(</span><span class="n">adj.p.value</span><span class="o">&lt;</span><span class="m">0.05</span><span class="p">)</span>
+<span class="nf">pairs</span><span class="p">(</span><span class="n">emm_interL.y</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;segment&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">tidy</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">filter</span><span class="p">(</span><span class="n">adj.p.value</span><span class="o">&lt;</span><span class="m">0.05</span><span class="p">)</span>
+<span class="nf">pairs</span><span class="p">(</span><span class="n">emm_interL.z</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;segment&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">tidy</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">filter</span><span class="p">(</span><span class="n">adj.p.value</span><span class="o">&lt;</span><span class="m">0.05</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A tibble: 5 × 9</caption>
+<thead>
+	<tr><th scope=col>segment</th><th scope=col>term</th><th scope=col>contrast</th><th scope=col>null.value</th><th scope=col>estimate</th><th scope=col>std.error</th><th scope=col>df</th><th scope=col>statistic</th><th scope=col>adj.p.value</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>hip   </td><td>session</td><td>T2 - T3</td><td>0</td><td> 7.129811</td><td>1.580936</td><td>1500</td><td> 4.509868</td><td>2.082310e-05</td></tr>
+	<tr><td>pelvis</td><td>session</td><td>T1 - T3</td><td>0</td><td> 3.790593</td><td>1.580936</td><td>1500</td><td> 2.397690</td><td>4.382977e-02</td></tr>
+	<tr><td>pelvis</td><td>session</td><td>T2 - T3</td><td>0</td><td> 6.266447</td><td>1.580936</td><td>1500</td><td> 3.963759</td><td>2.278311e-04</td></tr>
+	<tr><td>trunk </td><td>session</td><td>T1 - T2</td><td>0</td><td>-5.392391</td><td>1.580936</td><td>1500</td><td>-3.410885</td><td>1.921148e-03</td></tr>
+	<tr><td>trunk </td><td>session</td><td>T1 - T3</td><td>0</td><td>-7.981923</td><td>1.580936</td><td>1500</td><td>-5.048860</td><td>1.492111e-06</td></tr>
+</tbody>
+</table>
+</div><div class="output text_html"><table class="dataframe">
+<caption>A tibble: 9 × 9</caption>
+<thead>
+	<tr><th scope=col>segment</th><th scope=col>term</th><th scope=col>contrast</th><th scope=col>null.value</th><th scope=col>estimate</th><th scope=col>std.error</th><th scope=col>df</th><th scope=col>statistic</th><th scope=col>adj.p.value</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>foot  </td><td>session</td><td>T1 - T2</td><td>0</td><td>-2.556528</td><td>0.6706452</td><td>1500</td><td>-3.812043</td><td>4.211433e-04</td></tr>
+	<tr><td>foot  </td><td>session</td><td>T2 - T3</td><td>0</td><td> 1.639877</td><td>0.6706452</td><td>1500</td><td> 2.445223</td><td>3.873331e-02</td></tr>
+	<tr><td>hip   </td><td>session</td><td>T1 - T2</td><td>0</td><td> 4.820791</td><td>0.6706452</td><td>1500</td><td> 7.188289</td><td>7.567280e-13</td></tr>
+	<tr><td>hip   </td><td>session</td><td>T1 - T3</td><td>0</td><td> 6.860683</td><td>0.6706452</td><td>1500</td><td>10.229974</td><td>0.000000e+00</td></tr>
+	<tr><td>hip   </td><td>session</td><td>T2 - T3</td><td>0</td><td> 2.039892</td><td>0.6706452</td><td>1500</td><td> 3.041686</td><td>6.760041e-03</td></tr>
+	<tr><td>pelvis</td><td>session</td><td>T1 - T3</td><td>0</td><td> 4.421047</td><td>0.6706452</td><td>1500</td><td> 6.592229</td><td>1.771719e-10</td></tr>
+	<tr><td>pelvis</td><td>session</td><td>T2 - T3</td><td>0</td><td> 3.174159</td><td>0.6706452</td><td>1500</td><td> 4.732993</td><td>7.226464e-06</td></tr>
+	<tr><td>trunk </td><td>session</td><td>T1 - T3</td><td>0</td><td> 1.618898</td><td>0.6706452</td><td>1500</td><td> 2.413942</td><td>4.202688e-02</td></tr>
+	<tr><td>trunk </td><td>session</td><td>T2 - T3</td><td>0</td><td> 2.286487</td><td>0.6706452</td><td>1500</td><td> 3.409384</td><td>1.931527e-03</td></tr>
+</tbody>
+</table>
+</div><div class="output text_html"><table class="dataframe">
+<caption>A tibble: 8 × 9</caption>
+<thead>
+	<tr><th scope=col>segment</th><th scope=col>term</th><th scope=col>contrast</th><th scope=col>null.value</th><th scope=col>estimate</th><th scope=col>std.error</th><th scope=col>df</th><th scope=col>statistic</th><th scope=col>adj.p.value</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>ankle </td><td>session</td><td>T1 - T3</td><td>0</td><td> 3.686549</td><td>0.8468783</td><td>1500</td><td> 4.353104</td><td>4.259297e-05</td></tr>
+	<tr><td>ankle </td><td>session</td><td>T2 - T3</td><td>0</td><td> 3.064235</td><td>0.8468783</td><td>1500</td><td> 3.618271</td><td>8.938253e-04</td></tr>
+	<tr><td>hip   </td><td>session</td><td>T1 - T2</td><td>0</td><td> 3.639635</td><td>0.8468783</td><td>1500</td><td> 4.297707</td><td>5.454591e-05</td></tr>
+	<tr><td>hip   </td><td>session</td><td>T1 - T3</td><td>0</td><td> 2.391315</td><td>0.8468783</td><td>1500</td><td> 2.823682</td><td>1.333707e-02</td></tr>
+	<tr><td>pelvis</td><td>session</td><td>T1 - T2</td><td>0</td><td>-3.421410</td><td>0.8468783</td><td>1500</td><td>-4.040025</td><td>1.659122e-04</td></tr>
+	<tr><td>pelvis</td><td>session</td><td>T1 - T3</td><td>0</td><td>-5.239276</td><td>0.8468783</td><td>1500</td><td>-6.186574</td><td>2.371379e-09</td></tr>
+	<tr><td>trunk </td><td>session</td><td>T1 - T2</td><td>0</td><td>-3.137010</td><td>0.8468783</td><td>1500</td><td>-3.704204</td><td>6.430639e-04</td></tr>
+	<tr><td>trunk </td><td>session</td><td>T1 - T3</td><td>0</td><td>-3.900635</td><td>0.8468783</td><td>1500</td><td>-4.605898</td><td>1.328036e-05</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="conclusion">
+<h1>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h1>
+<p><strong>What did you find?</strong><br><br>
+I found that across sessions:</p>
+<ul class="simple">
+<li><p>Horizontal (side-to-side,<code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">coord</span></code>) placement of:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">PELVIS</span></code> markers varied by 3.5-6.5 cms</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TRUNK</span></code> markers varied by 5-8 cms</p></li>
+</ul>
+</li>
+<li><p>Vertical placement (up-down, <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">coord</span></code>) of:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">HIP</span></code> markers varied by 2-7 cms,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PELVIS</span></code> markers varied by 3-4.5 cms</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TRUNK</span></code> markers varied by 1.6-2.3 cms, and</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FOOT</span></code> markers varied by 1.6-2.5 cms</p></li>
+</ul>
+</li>
+<li><p>Transverse placement (<code class="docutils literal notranslate"><span class="pre">z</span> <span class="pre">coord</span></code>) of:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">ANKLE</span></code>, <code class="docutils literal notranslate"><span class="pre">HIP</span></code>, and <code class="docutils literal notranslate"><span class="pre">TRUNK</span></code> markers varied by 2-3 cms, and</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PELVIS</span></code> marker varied by 3-5 cms</p></li>
+</ul>
+</li>
+</ul>
+<p><font color = 'green'> <em><strong>Recommendation</strong></em> <br>
+Lab staff should receive training on marker placement especially for trunk, pelvis and hip. Additional measures could be taken to ensure the markers are not moving due to loose clothing, or arm/elbow knocking over markers. </font></p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./Materials/Week 7 & 8"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../Week%206/Week%206%20-%20Codebook.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><strong>Week 6</strong>: Codebooks &amp; Cloud Computing</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Week 7 &amp; 8: Putting it all together!</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clear-the-entire-workspace">Clear the entire workspace</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-libraries">Load libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#check-and-set-data-directory">Check and set data directory</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-data">Import data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-lines-of-code-do-we-need-per-file">What lines of code do we need per file?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-an-empty-dataframe">create an empty dataframe</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursively-read-in-files-from-the-data-directory">recursively read in files from the data directory</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-wrangling">Data wrangling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-identifiers">add identifiers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manipulate-the-data">manipulate the data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-data">Visualize data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-theme-in-advance-so-you-can-use-it-next">set theme in advance so you can use it next</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-all-variables-at-once-from-the-long-format-data">plot all variables at once from the long format data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-data-wrangling">Advanced data wrangling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-conditional-sets">define conditional sets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-conditional-sets-to-define-new-variables-side-segment-and-coordinate">use conditional sets to define new variables side, segment, and coordinate</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-again">visualize again</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#right-body-segments">right body segments</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#left-body-segments">left body segments</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-did-you-find-from-visual-analysis-of-the-data">What did you find from visual analysis of the data?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistics">Statistics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summarize-long-form-data">Summarize long-form data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#define-segments-that-seemed-most-problematic-during-visual-analysis">define segments that seemed most problematic during visual analysis</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-linear-model">Simple linear model</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#for-right-body-segments">for right body segments</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#for-left-body-segments">for left body segments</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Pod 3 Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

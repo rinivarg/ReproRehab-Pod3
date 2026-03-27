@@ -1,0 +1,860 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Week 6: Codebooks &amp; Cloud Computing &#8212; ReproRehab Pod 3 Codebooks</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Materials/Week 6/Week 6 - Codebook';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Week 7 &amp; 8: Putting it all together!" href="../Week%207%20%26%208/Week%207%20%26%208%20-%20Codebook.html" />
+    <link rel="prev" title="Week 5: Statistics" href="../Week%205/Week%205%20-%20Codebook.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">ReproRehab Pod 3 Codebooks</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    ReproRehab Pod 3 - Weekly Codebooks
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Week%201/Week%201%20-%20Codebook.html">Week 1: Getting started with R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Week%202/Week%202%20-%20Codebook.html">Week 2: Importing Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Week%203/Week%203%20-%20Codebook.html">Week 3: Clean and Merge Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Week%204/Week%204%20-%20Codebook.html">Week 4: Visualizing Data</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Week%205/Week%205%20-%20Codebook.html">Week 5: Statistics</a></li>
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Week 6</strong>: Codebooks &amp; Cloud Computing</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Week%207%20%26%208/Week%207%20%26%208%20-%20Codebook.html">Week 7 &amp; 8: Putting it all together!</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/rinivarg/ReproRehab-Pod3/blob/main/./Materials/Week 6/Week 6 - Codebook.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/rinivarg/ReproRehab-Pod3" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/rinivarg/ReproRehab-Pod3/issues/new?title=Issue%20on%20page%20%2FMaterials/Week 6/Week 6 - Codebook.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/Materials/Week 6/Week 6 - Codebook.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Week 6: Codebooks & Cloud Computing</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>Week 6</strong>: Codebooks &amp; Cloud Computing</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clear-the-workspace-load-libraries">Clear the Workspace &amp; Load Libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-theme-for-a-figure">Set theme for a figure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-load-a-built-in-r-dataset">Let’s load a built-in R dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-dplyr-functions-to-manipulate-your-data-as-needed">Use DPLYR functions to manipulate your data as needed</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-in-built-data">Plot the in-built data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-load-your-own-dataset">How to load your own dataset?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-your-own-data">Plot your own data!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-some-statistics">Run some statistics</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-end">The End</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p><a href="https://colab.research.google.com/github/rinivarg/ReproRehab-Pod3/blob/main/Materials/Week%206/Week%206%20-%20Codebook.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
+<section class="tex2jax_ignore mathjax_ignore" id="week-6-codebooks-cloud-computing">
+<h1><strong>Week 6</strong>: Codebooks &amp; Cloud Computing<a class="headerlink" href="#week-6-codebooks-cloud-computing" title="Permalink to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Imagine this: you are traveling ✈ all you have is your data on Dropbox, Google Drive or your flashdrive. And you have the 🏨 hotel’s business center. What do you do? Hmmm…</p></li>
+<li><p>Sometimes, you need extra flexibility of running your code from any computer, even those that don’t have all your software (R studio) on it. <br></p></li>
+<li><p>This codebook is a Jupyter Notebook and you are using Google’s cloud services to run R code in it. Note: some advanced usage instances require Google’s subscription services. You can similarly run Python code if you went into the ‘Runtime’ option above and select ‘Change Runtime.’ <br></p></li>
+<li><p>This also makes it easy to share code that is interactable and executable by anybody.</p></li>
+<li><p>The main drawbacks of using Google Colab are access to local data files, stable internet connection, and computing costs.</p></li>
+</ul>
+<section id="clear-the-workspace-load-libraries">
+<h2>Clear the Workspace &amp; Load Libraries<a class="headerlink" href="#clear-the-workspace-load-libraries" title="Permalink to this heading">#</a></h2>
+<p>Note that not all packages are available on the cloud, so you might need to install some packages within an instance. Any data or package you call will only be available in that session. Once you close out the session you will lose these packages or data. So you will need to re-load them each time.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">suppressMessages</span><span class="p">(</span><span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;emmeans&quot;</span><span class="p">))</span>
+<span class="nf">suppressMessages</span><span class="p">(</span><span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;broom&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The downloaded binary packages are in
+	/var/folders/8r/81lw69sx1nbc9v0f67vqhvfw0000gn/T//RtmpguhRpo/downloaded_packages
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The downloaded binary packages are in
+	/var/folders/8r/81lw69sx1nbc9v0f67vqhvfw0000gn/T//RtmpguhRpo/downloaded_packages
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ls</span><span class="p">())</span>
+
+<span class="n">ReqdLibs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;ggplot2&quot;</span><span class="p">,</span><span class="s">&quot;dplyr&quot;</span><span class="p">,</span><span class="s">&quot;emmeans&quot;</span><span class="p">,</span><span class="s">&quot;broom&quot;</span><span class="p">)</span>
+<span class="nf">invisible</span><span class="p">(</span><span class="nf">suppressMessages</span><span class="p">(</span><span class="nf">lapply</span><span class="p">(</span><span class="n">ReqdLibs</span><span class="p">,</span><span class="w"> </span><span class="n">library</span><span class="p">,</span><span class="w"> </span><span class="n">character.only</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
+“package ‘emmeans’ was built under R version 4.5.2”
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="set-theme-for-a-figure">
+<h2>Set theme for a figure<a class="headerlink" href="#set-theme-for-a-figure" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">thm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">theme</span><span class="p">(</span>
+<span class="w">          </span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">35</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bold&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span>
+<span class="w">          </span><span class="n">legend.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">18</span><span class="p">),</span>
+<span class="w">          </span><span class="n">legend.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">),</span>
+<span class="w">          </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;top&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="n">axis.ticks.length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">unit</span><span class="p">(</span><span class="m">0.3</span><span class="p">,</span><span class="s">&quot;cm&quot;</span><span class="p">),</span>
+<span class="w">          </span><span class="n">axis.line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_line</span><span class="p">(</span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.75</span><span class="p">),</span>
+<span class="w">          </span><span class="n">axis.ticks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_line</span><span class="p">(</span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.75</span><span class="p">),</span>
+<span class="w">          </span><span class="n">axis.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">15</span><span class="p">),</span>
+<span class="w">          </span><span class="n">strip.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">18</span><span class="p">),</span>
+<span class="w">          </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">lineheight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.1</span><span class="p">,</span><span class="w"> </span><span class="n">margin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">margin</span><span class="p">(</span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">)),</span>
+<span class="w">          </span><span class="n">axis.title.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;grey35&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;plain&quot;</span><span class="p">,</span>
+<span class="w">                                     </span><span class="n">lineheight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.4</span><span class="p">,</span><span class="w"> </span><span class="n">margin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">margin</span><span class="p">(</span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">)),</span>
+<span class="w">          </span><span class="n">axis.title.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;grey35&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;plain&quot;</span><span class="p">,</span>
+<span class="w">                                     </span><span class="n">lineheight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.4</span><span class="p">,</span><span class="w"> </span><span class="n">margin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">margin</span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="let-s-load-a-built-in-r-dataset">
+<h2>Let’s load a built-in R dataset<a class="headerlink" href="#let-s-load-a-built-in-r-dataset" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">head</span><span class="p">(</span><span class="n">diamonds</span><span class="p">,</span><span class="m">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A tibble: 10 × 10</caption>
+<thead>
+	<tr><th scope=col>carat</th><th scope=col>cut</th><th scope=col>color</th><th scope=col>clarity</th><th scope=col>depth</th><th scope=col>table</th><th scope=col>price</th><th scope=col>x</th><th scope=col>y</th><th scope=col>z</th></tr>
+	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;ord&gt;</th><th scope=col>&lt;ord&gt;</th><th scope=col>&lt;ord&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>0.23</td><td>Ideal    </td><td>E</td><td>SI2 </td><td>61.5</td><td>55</td><td>326</td><td>3.95</td><td>3.98</td><td>2.43</td></tr>
+	<tr><td>0.21</td><td>Premium  </td><td>E</td><td>SI1 </td><td>59.8</td><td>61</td><td>326</td><td>3.89</td><td>3.84</td><td>2.31</td></tr>
+	<tr><td>0.23</td><td>Good     </td><td>E</td><td>VS1 </td><td>56.9</td><td>65</td><td>327</td><td>4.05</td><td>4.07</td><td>2.31</td></tr>
+	<tr><td>0.29</td><td>Premium  </td><td>I</td><td>VS2 </td><td>62.4</td><td>58</td><td>334</td><td>4.20</td><td>4.23</td><td>2.63</td></tr>
+	<tr><td>0.31</td><td>Good     </td><td>J</td><td>SI2 </td><td>63.3</td><td>58</td><td>335</td><td>4.34</td><td>4.35</td><td>2.75</td></tr>
+	<tr><td>0.24</td><td>Very Good</td><td>J</td><td>VVS2</td><td>62.8</td><td>57</td><td>336</td><td>3.94</td><td>3.96</td><td>2.48</td></tr>
+	<tr><td>0.24</td><td>Very Good</td><td>I</td><td>VVS1</td><td>62.3</td><td>57</td><td>336</td><td>3.95</td><td>3.98</td><td>2.47</td></tr>
+	<tr><td>0.26</td><td>Very Good</td><td>H</td><td>SI1 </td><td>61.9</td><td>55</td><td>337</td><td>4.07</td><td>4.11</td><td>2.53</td></tr>
+	<tr><td>0.22</td><td>Fair     </td><td>E</td><td>VS2 </td><td>65.1</td><td>61</td><td>337</td><td>3.87</td><td>3.78</td><td>2.49</td></tr>
+	<tr><td>0.23</td><td>Very Good</td><td>H</td><td>VS1 </td><td>59.4</td><td>61</td><td>338</td><td>4.00</td><td>4.05</td><td>2.39</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="use-dplyr-functions-to-manipulate-your-data-as-needed">
+<h2>Use DPLYR functions to manipulate your data as needed<a class="headerlink" href="#use-dplyr-functions-to-manipulate-your-data-as-needed" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">diamonds</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="c1"># filter(cut!=&quot;Fair&quot;) %&gt;%</span>
+<span class="w">  </span><span class="nf">select</span><span class="p">(</span><span class="n">clarity</span><span class="p">,</span><span class="n">cut</span><span class="p">,</span><span class="w"> </span><span class="n">depth</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="p">{</span><span class="n">.</span><span class="o">-&gt;&gt;</span><span class="n">diamonds.ideal</span><span class="p">}</span>
+
+<span class="nf">head</span><span class="p">(</span><span class="n">diamonds.ideal</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A tibble: 6 × 3</caption>
+<thead>
+	<tr><th scope=col>clarity</th><th scope=col>cut</th><th scope=col>depth</th></tr>
+	<tr><th scope=col>&lt;ord&gt;</th><th scope=col>&lt;ord&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>SI2 </td><td>Ideal    </td><td>61.5</td></tr>
+	<tr><td>SI1 </td><td>Premium  </td><td>59.8</td></tr>
+	<tr><td>VS1 </td><td>Good     </td><td>56.9</td></tr>
+	<tr><td>VS2 </td><td>Premium  </td><td>62.4</td></tr>
+	<tr><td>SI2 </td><td>Good     </td><td>63.3</td></tr>
+	<tr><td>VVS2</td><td>Very Good</td><td>62.8</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="plot-the-in-built-data">
+<h2>Plot the in-built data<a class="headerlink" href="#plot-the-in-built-data" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">options</span><span class="p">(</span><span class="n">repr.plot.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">11</span><span class="p">,</span><span class="w"> </span><span class="n">repr.plot.height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">)</span>
+
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">diamonds.ideal</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">depth</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">after_stat</span><span class="p">(</span><span class="n">density</span><span class="p">),</span>
+<span class="w">                                     </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cut</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cut</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cut</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_histogram</span><span class="p">(</span><span class="n">bins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="c1"># geom_density(alpha = 0.5) +</span>
+<span class="w">  </span><span class="nf">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="n">clarity</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">coord_cartesian</span><span class="p">(</span><span class="n">xlim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">50</span><span class="p">,</span><span class="m">75</span><span class="p">),</span><span class="w"> </span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1.3</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">theme_minimal</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">thm</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/b75c3df4308d134b27a9758c910b69cd92e5ab56361adca8173a16436de6b248.png" src="../../_images/b75c3df4308d134b27a9758c910b69cd92e5ab56361adca8173a16436de6b248.png" />
+</div>
+</div>
+</section>
+<section id="how-to-load-your-own-dataset">
+<h2>How to load your own dataset?<a class="headerlink" href="#how-to-load-your-own-dataset" title="Permalink to this heading">#</a></h2>
+<p>Use the options bar on the left to upload data file in the temporary session.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uncomment below to read by uploading a private source of data locally to Google Colab</span>
+<span class="n">dat.calc2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;calcData.csv&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="c1"># Uncomment below to read directly from an online public repository of data</span>
+<span class="c1"># dat.calc2 = read.csv(&quot;https://raw.githubusercontent.com/rinivarg/ReproRehab-Pod3/refs/heads/main/Materials/Week%206/calcData.csv&quot;)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">dat.calc2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 × 20</caption>
+<thead>
+	<tr><th></th><th scope=col>Sub</th><th scope=col>cond</th><th scope=col>incline</th><th scope=col>speed</th><th scope=col>R</th><th scope=col>VT</th><th scope=col>VE</th><th scope=col>VO2</th><th scope=col>age</th><th scope=col>reported_weight_kg</th><th scope=col>reported_length_cm</th><th scope=col>gender</th><th scope=col>level_slow</th><th scope=col>level_walk</th><th scope=col>weight_from_force_plates_kg</th><th scope=col>adjVO2</th><th scope=col>W</th><th scope=col>W_rest</th><th scope=col>W_adj</th><th scope=col>C_meas</th></tr>
+	<tr><th></th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td>Sub1</td><td>walk</td><td>downhill</td><td>0.8</td><td>0.9019424</td><td>0.7859465</td><td>20.33910</td><td> 728.5032</td><td>26</td><td>86</td><td>185</td><td>M</td><td>885.5529</td><td>891.5307</td><td>90.57511</td><td> 8.470967</td><td> 2.920638</td><td>1.362433</td><td>1.558204</td><td>1.947756</td></tr>
+	<tr><th scope=row>2</th><td>Sub1</td><td>walk</td><td>downhill</td><td>1.3</td><td>0.8661119</td><td>0.8409442</td><td>25.83893</td><td>1005.2468</td><td>26</td><td>86</td><td>185</td><td>M</td><td>885.5529</td><td>891.5307</td><td>90.57511</td><td>11.688916</td><td> 3.998645</td><td>1.362433</td><td>2.636212</td><td>2.027855</td></tr>
+	<tr><th scope=row>3</th><td>Sub1</td><td>walk</td><td>level   </td><td>1.3</td><td>0.8340541</td><td>1.0104406</td><td>32.61279</td><td>1368.0726</td><td>26</td><td>86</td><td>185</td><td>M</td><td>885.5529</td><td>891.5307</td><td>90.57511</td><td>15.907821</td><td> 5.403549</td><td>1.362433</td><td>4.041116</td><td>3.108550</td></tr>
+	<tr><th scope=row>4</th><td>Sub1</td><td>walk</td><td>uphill  </td><td>0.8</td><td>0.8661413</td><td>1.2505480</td><td>40.73454</td><td>1687.3811</td><td>26</td><td>86</td><td>185</td><td>M</td><td>885.5529</td><td>891.5307</td><td>90.57511</td><td>19.620710</td><td> 6.712065</td><td>1.362433</td><td>5.349632</td><td>6.687040</td></tr>
+	<tr><th scope=row>5</th><td>Sub1</td><td>walk</td><td>uphill  </td><td>1.3</td><td>0.8315770</td><td>1.4630620</td><td>58.84244</td><td>2540.5691</td><td>26</td><td>86</td><td>185</td><td>M</td><td>885.5529</td><td>891.5307</td><td>90.57511</td><td>29.541501</td><td>10.029119</td><td>1.362433</td><td>8.666686</td><td>6.666682</td></tr>
+	<tr><th scope=row>6</th><td>Sub1</td><td>walk</td><td>level   </td><td>0.8</td><td>0.8727268</td><td>1.0036957</td><td>26.00091</td><td> 992.9288</td><td>26</td><td>86</td><td>185</td><td>M</td><td>885.5529</td><td>891.5307</td><td>90.57511</td><td>11.545684</td><td> 3.955388</td><td>1.362433</td><td>2.592955</td><td>3.241194</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="plot-your-own-data">
+<h2>Plot your own data!<a class="headerlink" href="#plot-your-own-data" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">options</span><span class="p">(</span><span class="n">repr.plot.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="n">repr.plot.height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">)</span>
+
+<span class="n">repro.fig</span><span class="w"> </span><span class="o">=</span>
+<span class="c1"># FUNCTION CALL</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">dat.calc2</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">incline</span><span class="p">,</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">C_meas</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">speed</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">speed</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+
+<span class="c1"># LAYERS THAT SUMMARIZE WHILE PLOTTING! - this is one of the most powerful features of ggplot</span>
+<span class="nf">stat_summary</span><span class="p">(</span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bar&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.7</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span>
+<span class="w">             </span><span class="n">position</span><span class="o">=</span><span class="nf">position_dodge</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.82</span><span class="p">,</span><span class="w"> </span><span class="n">preserve</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;single&#39;</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="nf">stat_summary</span><span class="p">(</span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;errorbar&quot;</span><span class="p">,</span><span class="n">fun.data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean_se</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.15</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="o">=</span><span class="m">2.5</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="s">&quot;darkgray&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span>
+<span class="w">            </span><span class="n">position</span><span class="o">=</span><span class="nf">position_dodge</span><span class="p">(</span><span class="m">0.82</span><span class="p">,</span><span class="w"> </span><span class="n">preserve</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;single&#39;</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="nf">stat_summary</span><span class="p">(</span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">position_dodge</span><span class="p">(</span><span class="m">0.82</span><span class="p">,</span><span class="w"> </span><span class="n">preserve</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;total&#39;</span><span class="p">),</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span>
+<span class="w">             </span><span class="n">vjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-1.25</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+
+<span class="c1"># AXIS LIMITS</span>
+<span class="nf">coord_cartesian</span><span class="p">(</span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.31</span><span class="p">,</span><span class="m">6.75</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+
+<span class="c1"># LABELS</span>
+<span class="nf">scale_x_discrete</span><span class="p">(</span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Downhill&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Level&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Uphill&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">  </span><span class="c1"># capitalize label initials :/</span>
+<span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Pulmonary Gas Exchange&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Measured Metabolic\nCost [J/kg/m]&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="nf">theme_classic</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">thm</span>
+
+<span class="n">repro.fig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/f05a701be24fa45837ba871f0b048bfc83bc89691be0ca22efcd838f012506a9.png" src="../../_images/f05a701be24fa45837ba871f0b048bfc83bc89691be0ca22efcd838f012506a9.png" />
+</div>
+</div>
+</section>
+<section id="run-some-statistics">
+<h2>Run some statistics<a class="headerlink" href="#run-some-statistics" title="Permalink to this heading">#</a></h2>
+<p>In this case, we’ll compare:<br></p>
+<ol class="arabic simple">
+<li><p>across the 3 inclines for each level of speed</p></li>
+<li><p>between the 2 speeds for each level of incline</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mod.inter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dat.calc2</span><span class="p">,</span><span class="w"> </span><span class="n">W_adj</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">incline</span><span class="o">*</span><span class="n">speed</span><span class="p">)</span>
+<span class="c1"># summary(mod.inter)</span>
+
+<span class="c1"># below functions tidy and glance from the broom package allow you to view</span>
+<span class="c1"># model outputs as tibbles, although they are not publication ready</span>
+<span class="nf">tidy</span><span class="p">(</span><span class="n">mod.inter</span><span class="p">)</span>
+<span class="nf">glance</span><span class="p">(</span><span class="n">mod.inter</span><span class="p">)</span>
+<span class="n">emm_inter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">emmeans</span><span class="p">(</span><span class="n">mod.inter</span><span class="p">,</span><span class="w"> </span><span class="o">~</span><span class="n">incline</span><span class="o">|</span><span class="n">speed</span><span class="p">)</span>
+<span class="nf">pairs</span><span class="p">(</span><span class="n">emm_inter</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;incline&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">tidy</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A tibble: 6 × 5</caption>
+<thead>
+	<tr><th scope=col>term</th><th scope=col>estimate</th><th scope=col>std.error</th><th scope=col>statistic</th><th scope=col>p.value</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>(Intercept)        </td><td> 0.20006678</td><td>0.4675560</td><td> 0.42789907</td><td>6.701390e-01</td></tr>
+	<tr><td>inclinelevel       </td><td> 0.06448867</td><td>0.6571845</td><td> 0.09812873</td><td>9.221321e-01</td></tr>
+	<tr><td>inclineuphill      </td><td>-0.25379433</td><td>0.6571845</td><td>-0.38618431</td><td>7.006214e-01</td></tr>
+	<tr><td>speed              </td><td> 1.95654666</td><td>0.4374894</td><td> 4.47221515</td><td>3.179998e-05</td></tr>
+	<tr><td>inclinelevel:speed </td><td> 1.18061479</td><td>0.6119414</td><td> 1.92929375</td><td>5.806193e-02</td></tr>
+	<tr><td>inclineuphill:speed</td><td> 4.30761814</td><td>0.6119414</td><td> 7.03926535</td><td>1.478566e-09</td></tr>
+</tbody>
+</table>
+</div><div class="output text_html"><table class="dataframe">
+<caption>A tibble: 1 × 12</caption>
+<thead>
+	<tr><th scope=col>r.squared</th><th scope=col>adj.r.squared</th><th scope=col>sigma</th><th scope=col>statistic</th><th scope=col>p.value</th><th scope=col>df</th><th scope=col>logLik</th><th scope=col>AIC</th><th scope=col>BIC</th><th scope=col>deviance</th><th scope=col>df.residual</th><th scope=col>nobs</th></tr>
+	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>0.945088</td><td>0.940864</td><td>0.5240353</td><td>223.7425</td><td>1.486843e-39</td><td>5</td><td>-51.73032</td><td>117.4606</td><td>133.2994</td><td>17.84985</td><td>65</td><td>71</td></tr>
+</tbody>
+</table>
+</div><div class="output text_html"><table class="dataframe">
+<caption>A tibble: 3 × 9</caption>
+<thead>
+	<tr><th scope=col>incline</th><th scope=col>term</th><th scope=col>contrast</th><th scope=col>null.value</th><th scope=col>estimate</th><th scope=col>std.error</th><th scope=col>df</th><th scope=col>statistic</th><th scope=col>p.value</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>downhill</td><td>speed</td><td>speed0.8 - speed1.3</td><td>0</td><td>-0.9782733</td><td>0.2187447</td><td>65</td><td> -4.472215</td><td>3.179998e-05</td></tr>
+	<tr><td>level   </td><td>speed</td><td>speed0.8 - speed1.3</td><td>0</td><td>-1.5685807</td><td>0.2139365</td><td>65</td><td> -7.331991</td><td>4.482607e-10</td></tr>
+	<tr><td>uphill  </td><td>speed</td><td>speed0.8 - speed1.3</td><td>0</td><td>-3.1320824</td><td>0.2139365</td><td>65</td><td>-14.640241</td><td>2.950599e-22</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>That’s all! Happy coding and sharing your code with the world! ☘</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="the-end">
+<h1>The End<a class="headerlink" href="#the-end" title="Permalink to this heading">#</a></h1>
+<hr class="docutils" />
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./Materials/Week 6"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../Week%205/Week%205%20-%20Codebook.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Week 5: Statistics</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../Week%207%20%26%208/Week%207%20%26%208%20-%20Codebook.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Week 7 &amp; 8: Putting it all together!</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>Week 6</strong>: Codebooks &amp; Cloud Computing</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clear-the-workspace-load-libraries">Clear the Workspace &amp; Load Libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-theme-for-a-figure">Set theme for a figure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-load-a-built-in-r-dataset">Let’s load a built-in R dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-dplyr-functions-to-manipulate-your-data-as-needed">Use DPLYR functions to manipulate your data as needed</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-in-built-data">Plot the in-built data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-load-your-own-dataset">How to load your own dataset?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-your-own-data">Plot your own data!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-some-statistics">Run some statistics</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-end">The End</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Pod 3 Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

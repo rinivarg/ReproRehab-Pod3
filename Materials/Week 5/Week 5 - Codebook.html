@@ -1,0 +1,1579 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Week 5: Statistics &#8212; ReproRehab Pod 3 Codebooks</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Materials/Week 5/Week 5 - Codebook';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Week 6: Codebooks &amp; Cloud Computing" href="../Week%206/Week%206%20-%20Codebook.html" />
+    <link rel="prev" title="Week 4: Visualizing Data" href="../Week%204/Week%204%20-%20Codebook.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">ReproRehab Pod 3 Codebooks</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    ReproRehab Pod 3 - Weekly Codebooks
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Week%201/Week%201%20-%20Codebook.html">Week 1: Getting started with R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Week%202/Week%202%20-%20Codebook.html">Week 2: Importing Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Week%203/Week%203%20-%20Codebook.html">Week 3: Clean and Merge Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Week%204/Week%204%20-%20Codebook.html">Week 4: Visualizing Data</a></li>
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 5: Statistics</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Week%206/Week%206%20-%20Codebook.html"><strong>Week 6</strong>: Codebooks &amp; Cloud Computing</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Week%207%20%26%208/Week%207%20%26%208%20-%20Codebook.html">Week 7 &amp; 8: Putting it all together!</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/rinivarg/ReproRehab-Pod3/blob/main/./Materials/Week 5/Week 5 - Codebook.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/rinivarg/ReproRehab-Pod3" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/rinivarg/ReproRehab-Pod3/issues/new?title=Issue%20on%20page%20%2FMaterials/Week 5/Week 5 - Codebook.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/Materials/Week 5/Week 5 - Codebook.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Week 5: Statistics</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Week 5: Statistics</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clean-the-entire-workspace">Clean the entire workspace</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-required-libraries">Load required libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#theme-defaults">Theme defaults</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summarize-our-sample-in-tables-and-figures">1. Summarize our sample in tables and figures</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-data">Read data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clean-up-variable-names-in-the-demo-table">Clean up variable names in the demo table</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-try-and-reproduce-what-the-authors-told-us-about-the-sample">Let’s try and reproduce what the authors told us about the sample</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-look-at-histrograms-for-level-slow-and-level-walk">Let’s look at histrograms for level-slow and level-walk</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-basic-statistical-tests">2. Run basic statistical tests</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paired-t-tests">Paired T-Tests</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anova">ANOVA</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-anova">Simple ANOVA</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#repeated-measures-anova">Repeated Measures ANOVA</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlations">Correlations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fit-linear-models">3. Fit linear models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-diagnostics">Model Diagnostics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#publication-ready-regression-tables">Publication-ready regression tables</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#post-hoc-pairwise-comparisons-with-marginal-means">4. Post-hoc pairwise comparisons with marginal means</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimate-marginal-means">Estimate marginal means</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-pairwise-comparisons-among-the-various-inclines">Run pairwise comparisons among the various inclines</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-only-for-hypothesized-effects">Testing only for hypothesized effects</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-end">The End</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p><a href="https://colab.research.google.com/github/rinivarg/ReproRehab2024-Pod3/blob/main/Materials/Week%205/Week%205%20-%20Codebook.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
+<section class="tex2jax_ignore mathjax_ignore" id="week-5-statistics">
+<h1>Week 5: Statistics<a class="headerlink" href="#week-5-statistics" title="Permalink to this heading">#</a></h1>
+<p>In Week 4, we used visualization to ‘analyze’ our data. While visualizing data is often the first step in analysis, it only allows us to eyeball patterns and relationships. This week, we move beyond visual inspection to statistical analysis. Statistics allow us to perform two main types of analysis: <br></p>
+<ol class="arabic">
+<li><p><strong><em>Describe</em></strong> what we observed in our data, and</p></li>
+<li><p><strong><em>Infer</em></strong> what our data tells us about the broader population<br><br></p>
+ <div style="float: center; margin-center: 5px;">
+     <img src="./imgs/descriptive-inferential-statistics.png" alt="Descriptive vs Inferential Statistics - Courtesy of Numiko" width="525" height="275">
+     <br>
+     <div style="text-align: right;"><small>Adapted from <a href="https://numiqo.com/tutorial/descriptive-inferential-statistics" target="_blank">Numiko</a></small></div>
+ </div>
+</li>
+</ol>
+<p>Today we’ll learn to conduct these statistical analyses in R. This lesson will cover:</p>
+<ol class="arabic simple">
+<li><p>Build summary tables and figures for our dataset using <code class="docutils literal notranslate"><span class="pre">dplyr</span></code>,<code class="docutils literal notranslate"><span class="pre">tidyr</span></code>, and <code class="docutils literal notranslate"><span class="pre">ggplot2</span></code></p></li>
+<li><p>Run basic statistical tests (t-tests, ANOVA, correlations) and interpret output</p></li>
+<li><p>Fit linear models with <code class="docutils literal notranslate"><span class="pre">lm()</span></code> and interpret coefficients</p></li>
+<li><p>Estimate marginal means using <code class="docutils literal notranslate"><span class="pre">emmeans</span></code> and run pairwise comparisons</p></li>
+</ol>
+<section id="clean-the-entire-workspace">
+<h2>Clean the entire workspace<a class="headerlink" href="#clean-the-entire-workspace" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="o">=</span><span class="nf">ls</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="load-required-libraries">
+<h2>Load required libraries<a class="headerlink" href="#load-required-libraries" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">ReqdLibs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;readxl&quot;</span><span class="p">,</span><span class="s">&quot;dplyr&quot;</span><span class="p">,</span><span class="s">&quot;tidyr&quot;</span><span class="p">,</span><span class="s">&quot;gt&quot;</span><span class="p">,</span><span class="s">&quot;sjPlot&quot;</span><span class="p">,</span>
+<span class="w">             </span><span class="s">&quot;ggplot2&quot;</span><span class="p">,</span><span class="s">&quot;ggthemes&quot;</span><span class="p">,</span><span class="s">&quot;ggpubr&quot;</span><span class="p">,</span><span class="s">&quot;ggExtra&quot;</span><span class="p">,</span>
+<span class="w">             </span><span class="s">&quot;lme4&quot;</span><span class="p">,</span><span class="s">&quot;emmeans&quot;</span><span class="p">,</span><span class="s">&quot;janitor&quot;</span><span class="p">,</span><span class="s">&quot;broom&quot;</span><span class="p">,</span><span class="s">&quot;car&quot;</span><span class="p">,</span><span class="s">&quot;IRdisplay&quot;</span><span class="p">)</span>
+<span class="nf">invisible</span><span class="p">(</span><span class="nf">lapply</span><span class="p">(</span><span class="n">ReqdLibs</span><span class="p">,</span><span class="w"> </span><span class="n">library</span><span class="p">,</span><span class="w"> </span><span class="n">character.only</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Attaching package: ‘dplyr’
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following objects are masked from ‘package:stats’:
+
+    filter, lag
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Attaching package: ‘ggplot2’
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following object is masked from ‘package:sjPlot’:
+
+    set_theme
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading required package: Matrix
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Attaching package: ‘Matrix’
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following objects are masked from ‘package:tidyr’:
+
+    expand, pack, unpack
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
+“package ‘emmeans’ was built under R version 4.5.2”
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Welcome to emmeans.
+Caution: You lose important information if you filter this package&#39;s results.
+See &#39;? untidy&#39;
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Attaching package: ‘janitor’
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following objects are masked from ‘package:stats’:
+
+    chisq.test, fisher.test
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading required package: carData
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Attaching package: ‘car’
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following object is masked from ‘package:dplyr’:
+
+    recode
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="theme-defaults">
+<h2>Theme defaults<a class="headerlink" href="#theme-defaults" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">thm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">theme</span><span class="p">(</span>
+<span class="w">          </span><span class="n">strip.text.x</span><span class="o">=</span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">20</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s">&quot;bold&quot;</span><span class="p">),</span>
+<span class="w">          </span><span class="n">strip.text.y</span><span class="o">=</span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">20</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s">&quot;bold&quot;</span><span class="p">),</span>
+<span class="w">          </span><span class="n">legend.text</span><span class="o">=</span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">16</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s">&quot;bold&quot;</span><span class="p">),</span>
+<span class="w">          </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;top&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="n">legend.title</span><span class="o">=</span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">16</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s">&quot;bold&quot;</span><span class="p">),</span>
+<span class="w">          </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">14</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="o">=</span><span class="s">&#39;bold&#39;</span><span class="p">),</span>
+<span class="w">          </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="m">18</span><span class="p">),</span><span class="w"> </span>
+<span class="w">          </span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">22</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bold&quot;</span><span class="p">),</span>
+<span class="w">          </span><span class="n">axis.ticks.length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">unit</span><span class="p">(</span><span class="m">0.3</span><span class="p">,</span><span class="s">&quot;cm&quot;</span><span class="p">),</span>
+<span class="w">          </span><span class="n">axis.line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_line</span><span class="p">(</span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="m">0.85</span><span class="p">),</span>
+<span class="w">          </span><span class="n">axis.ticks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_line</span><span class="p">(</span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="m">0.85</span><span class="p">),</span>
+<span class="w">          </span><span class="n">axis.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="m">24</span><span class="p">),</span>
+<span class="w">          </span><span class="n">axis.title</span><span class="o">=</span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">25</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="summarize-our-sample-in-tables-and-figures">
+<h2>1. Summarize our sample in tables and figures<a class="headerlink" href="#summarize-our-sample-in-tables-and-figures" title="Permalink to this heading">#</a></h2>
+<section id="read-data">
+<h3>Read data<a class="headerlink" href="#read-data" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read in demographics data</span>
+<span class="n">demo</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read_excel</span><span class="p">(</span><span class="s">&quot;SubjectInfo.xlsx&quot;</span><span class="p">)</span>
+
+<span class="c1"># Display structure of demo data</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">demo</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A tibble: 6 × 8</caption>
+<thead>
+	<tr><th scope=col>Subject No</th><th scope=col>Age</th><th scope=col>Reported Weight (kg)</th><th scope=col>Reported Length (cm)</th><th scope=col>Gender</th><th scope=col>Level Slow</th><th scope=col>Level Walk</th><th scope=col>Weight from force plates(kg)</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>Sub1</td><td>26</td><td>86</td><td>185</td><td>M</td><td>885.5529</td><td>891.5307</td><td>90.57511</td></tr>
+	<tr><td>Sub2</td><td>28</td><td>77</td><td>178</td><td>F</td><td>767.7686</td><td>760.2377</td><td>77.88004</td></tr>
+	<tr><td>Sub3</td><td>21</td><td>52</td><td>170</td><td>M</td><td>530.6408</td><td>558.2018</td><td>55.49656</td></tr>
+	<tr><td>Sub4</td><td>25</td><td>73</td><td>168</td><td>M</td><td>      NA</td><td>      NA</td><td>      NA</td></tr>
+	<tr><td>Sub5</td><td>34</td><td>86</td><td>173</td><td>M</td><td>878.6303</td><td>898.5188</td><td>90.57845</td></tr>
+	<tr><td>Sub6</td><td>19</td><td>54</td><td>160</td><td>F</td><td>553.4936</td><td>558.2845</td><td>56.66555</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="clean-up-variable-names-in-the-demo-table">
+<h3>Clean up variable names in the demo table<a class="headerlink" href="#clean-up-variable-names-in-the-demo-table" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">demo_clean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">clean_names</span><span class="p">(</span><span class="n">demo</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">filter</span><span class="p">(</span><span class="n">subject_no</span><span class="o">!=</span><span class="s">&quot;Sub4&quot;</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">demo_clean</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A tibble: 6 × 8</caption>
+<thead>
+	<tr><th scope=col>subject_no</th><th scope=col>age</th><th scope=col>reported_weight_kg</th><th scope=col>reported_length_cm</th><th scope=col>gender</th><th scope=col>level_slow</th><th scope=col>level_walk</th><th scope=col>weight_from_force_plates_kg</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>Sub1</td><td>26</td><td>86</td><td>185</td><td>M</td><td>885.5529</td><td>891.5307</td><td>90.57511</td></tr>
+	<tr><td>Sub2</td><td>28</td><td>77</td><td>178</td><td>F</td><td>767.7686</td><td>760.2377</td><td>77.88004</td></tr>
+	<tr><td>Sub3</td><td>21</td><td>52</td><td>170</td><td>M</td><td>530.6408</td><td>558.2018</td><td>55.49656</td></tr>
+	<tr><td>Sub5</td><td>34</td><td>86</td><td>173</td><td>M</td><td>878.6303</td><td>898.5188</td><td>90.57845</td></tr>
+	<tr><td>Sub6</td><td>19</td><td>54</td><td>160</td><td>F</td><td>553.4936</td><td>558.2845</td><td>56.66555</td></tr>
+	<tr><td>Sub7</td><td>21</td><td>59</td><td>163</td><td>F</td><td>605.0228</td><td>605.9027</td><td>61.71893</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="let-s-try-and-reproduce-what-the-authors-told-us-about-the-sample">
+<h3>Let’s try and reproduce what the authors told us about the sample<a class="headerlink" href="#let-s-try-and-reproduce-what-the-authors-told-us-about-the-sample" title="Permalink to this heading">#</a></h3>
+<div style="float: center; margin-center: 5px;">
+        <img src="./imgs/demo-summ2.png" alt="demo from paper" width="600" height="150">
+        <br>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create summary statistics</span>
+<span class="n">demo_summary</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">demo_clean</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">summarise</span><span class="p">(</span>
+<span class="w">    </span><span class="n">sex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="n">gender</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;M&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;M, &quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                 </span><span class="nf">sum</span><span class="p">(</span><span class="n">gender</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;F&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;F&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w">    </span><span class="nf">paste0</span><span class="p">(</span><span class="nf">round</span><span class="p">(</span><span class="nf">mean</span><span class="p">(</span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="s">&quot; ± &quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nf">round</span><span class="p">(</span><span class="nf">sd</span><span class="p">(</span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span><span class="m">0</span><span class="p">)),</span>
+
+<span class="w">    </span><span class="c1"># weight = paste0(round(mean(reported_weight_kg, na.rm = TRUE),0), &quot; ± &quot;,</span>
+<span class="w">    </span><span class="c1">#                 round(sd(reported_weight_kg, na.rm = TRUE),0)),</span>
+
+<span class="w">    </span><span class="n">weight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="nf">round</span><span class="p">(</span><span class="nf">mean</span><span class="p">(</span><span class="n">weight_from_force_plates_kg</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="s">&quot; ± &quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nf">round</span><span class="p">(</span><span class="nf">sd</span><span class="p">(</span><span class="n">weight_from_force_plates_kg</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span><span class="m">0</span><span class="p">)),</span>
+<span class="w">                    </span>
+<span class="w">    </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="nf">round</span><span class="p">(</span><span class="nf">mean</span><span class="p">(</span><span class="n">reported_length_cm</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="s">&quot; ± &quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nf">round</span><span class="p">(</span><span class="nf">sd</span><span class="p">(</span><span class="n">reported_length_cm</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span><span class="m">0</span><span class="p">)),</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="c1"># can view it just as it is!</span>
+<span class="n">demo_summary</span>
+
+<span class="c1"># or create a well-formatted gt table</span>
+<span class="n">tb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">demo_summary</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">gt</span><span class="p">()</span>
+
+<span class="c1"># and display this gt table inline</span>
+<span class="n">tb</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">as_raw_html</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">display_html</span><span class="p">()</span>
+
+<span class="nf">display_markdown</span><span class="p">(</span><span class="s">&quot;#### We were able to reproduce means and SD! We also found out that the weight summary was actually from force plate data.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A tibble: 1 × 4</caption>
+<thead>
+	<tr><th scope=col>sex</th><th scope=col>age</th><th scope=col>weight</th><th scope=col>height</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>6M, 6F</td><td>24 ± 5</td><td>70 ± 12</td><td>173 ± 8</td></tr>
+</tbody>
+</table>
+</div><div class="output text_html"><div id="njiodkicxh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+  
+  <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
+  <thead style="border-style: none;">
+    <tr class="gt_col_headings" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="sex" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: left;" bgcolor="#FFFFFF" valign="bottom" align="left">sex</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="age" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: left;" bgcolor="#FFFFFF" valign="bottom" align="left">age</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="weight" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: left;" bgcolor="#FFFFFF" valign="bottom" align="left">weight</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="height" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: left;" bgcolor="#FFFFFF" valign="bottom" align="left">height</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3;">
+    <tr style="border-style: none;"><td headers="sex" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">6M, 6F</td>
+<td headers="age" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">24 ± 5</td>
+<td headers="weight" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">70 ± 12</td>
+<td headers="height" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">173 ± 8</td></tr>
+  </tbody>
+  
+</table>
+</div></div><p class="rubric">We were able to reproduce means and SD! We also found out that the weight summary was actually from force plate data.</p>
+</div>
+</div>
+</section>
+<section id="let-s-look-at-histrograms-for-level-slow-and-level-walk">
+<h3>Let’s look at histrograms for level-slow and level-walk<a class="headerlink" href="#let-s-look-at-histrograms-for-level-slow-and-level-walk" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">options</span><span class="p">(</span><span class="n">repr.plot.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">9</span><span class="p">,</span><span class="w"> </span><span class="n">repr.plot.height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4.5</span><span class="p">)</span>
+
+<span class="c1"># just for plotting, let&#39;s pivot the level_slow and level_walk to look at their distributions together</span>
+<span class="n">demo_hist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">demo_clean</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">pivot_longer</span><span class="p">(</span><span class="n">cols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">level_slow</span><span class="p">,</span><span class="w"> </span><span class="n">level_walk</span><span class="p">),</span><span class="w"> </span><span class="n">names_to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;MetCost_cond&quot;</span><span class="p">,</span><span class="n">values_to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;MetCost_val&quot;</span><span class="p">)</span>
+
+<span class="c1"># visualize distributions using geom_histogram</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">demo_hist</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MetCost_val</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">after_stat</span><span class="p">(</span><span class="n">count</span><span class="p">),</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MetCost_cond</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w"> </span><span class="nf">geom_histogram</span><span class="p">(</span><span class="n">bins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">,</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.4</span><span class="p">,</span><span class="w"> </span><span class="n">show.legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w"> </span><span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;metabolic cost distribution&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;met cost (units)&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w"> </span><span class="nf">facet_grid</span><span class="p">(</span><span class="o">~</span><span class="n">MetCost_cond</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w"> </span><span class="nf">theme_cleveland</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">thm</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/929980103e50a78997681a61e39325992c7a672522804af03f248d68879c1e9d.png" src="../../_images/929980103e50a78997681a61e39325992c7a672522804af03f248d68879c1e9d.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="run-basic-statistical-tests">
+<h2>2. Run basic statistical tests<a class="headerlink" href="#run-basic-statistical-tests" title="Permalink to this heading">#</a></h2>
+<p>So you recall the figure we reproduced in Week 4. Let’s try to run some basic comparisons using these data.</p>
+<div style="float: center; margin-center: 5px;">
+        <img src="./imgs/reproduced_figure.svg" alt="demo from paper" width="800" height="200">
+        <br>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read in calculated dataset</span>
+<span class="n">data_calc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;calcData.csv&quot;</span><span class="p">)</span>
+<span class="c1"># data_calc = data_calc %&gt;% filter(Sub!=&quot;Sub4&quot;)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">data_calc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 × 20</caption>
+<thead>
+	<tr><th></th><th scope=col>Sub</th><th scope=col>cond</th><th scope=col>incline</th><th scope=col>speed</th><th scope=col>R</th><th scope=col>VT</th><th scope=col>VE</th><th scope=col>VO2</th><th scope=col>age</th><th scope=col>reported_weight_kg</th><th scope=col>reported_length_cm</th><th scope=col>gender</th><th scope=col>level_slow</th><th scope=col>level_walk</th><th scope=col>weight_from_force_plates_kg</th><th scope=col>adjVO2</th><th scope=col>W</th><th scope=col>W_rest</th><th scope=col>W_adj</th><th scope=col>C_meas</th></tr>
+	<tr><th></th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td>Sub1</td><td>walk</td><td>downhill</td><td>0.8</td><td>0.9019424</td><td>0.7859465</td><td>20.33910</td><td> 728.5032</td><td>26</td><td>86</td><td>185</td><td>M</td><td>885.5529</td><td>891.5307</td><td>90.57511</td><td> 8.470967</td><td> 2.920638</td><td>1.362433</td><td>1.558204</td><td>1.947756</td></tr>
+	<tr><th scope=row>2</th><td>Sub1</td><td>walk</td><td>downhill</td><td>1.3</td><td>0.8661119</td><td>0.8409442</td><td>25.83893</td><td>1005.2468</td><td>26</td><td>86</td><td>185</td><td>M</td><td>885.5529</td><td>891.5307</td><td>90.57511</td><td>11.688916</td><td> 3.998645</td><td>1.362433</td><td>2.636212</td><td>2.027855</td></tr>
+	<tr><th scope=row>3</th><td>Sub1</td><td>walk</td><td>level   </td><td>1.3</td><td>0.8340541</td><td>1.0104406</td><td>32.61279</td><td>1368.0726</td><td>26</td><td>86</td><td>185</td><td>M</td><td>885.5529</td><td>891.5307</td><td>90.57511</td><td>15.907821</td><td> 5.403549</td><td>1.362433</td><td>4.041116</td><td>3.108550</td></tr>
+	<tr><th scope=row>4</th><td>Sub1</td><td>walk</td><td>uphill  </td><td>0.8</td><td>0.8661413</td><td>1.2505480</td><td>40.73454</td><td>1687.3811</td><td>26</td><td>86</td><td>185</td><td>M</td><td>885.5529</td><td>891.5307</td><td>90.57511</td><td>19.620710</td><td> 6.712065</td><td>1.362433</td><td>5.349632</td><td>6.687040</td></tr>
+	<tr><th scope=row>5</th><td>Sub1</td><td>walk</td><td>uphill  </td><td>1.3</td><td>0.8315770</td><td>1.4630620</td><td>58.84244</td><td>2540.5691</td><td>26</td><td>86</td><td>185</td><td>M</td><td>885.5529</td><td>891.5307</td><td>90.57511</td><td>29.541501</td><td>10.029119</td><td>1.362433</td><td>8.666686</td><td>6.666682</td></tr>
+	<tr><th scope=row>6</th><td>Sub1</td><td>walk</td><td>level   </td><td>0.8</td><td>0.8727268</td><td>1.0036957</td><td>26.00091</td><td> 992.9288</td><td>26</td><td>86</td><td>185</td><td>M</td><td>885.5529</td><td>891.5307</td><td>90.57511</td><td>11.545684</td><td> 3.955388</td><td>1.362433</td><td>2.592955</td><td>3.241194</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<section id="paired-t-tests">
+<h3>Paired T-Tests<a class="headerlink" href="#paired-t-tests" title="Permalink to this heading">#</a></h3>
+<p>Now, you can see that this really is a 3x2 repeated measures design (3 inclines and 2 speeds) but let’s begin by running a simple paired t-test to compare the measured metabolic cost between the fast and slow speeds. And then interpret the output.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># first make sure there in fact are complete paired observations</span>
+<span class="nf">table</span><span class="p">(</span><span class="n">data_calc</span><span class="o">$</span><span class="n">speed</span><span class="p">)</span>
+
+<span class="c1"># See the data structure</span>
+<span class="n">data_calc</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">count</span><span class="p">(</span><span class="n">Sub</span><span class="p">,</span><span class="w"> </span><span class="n">speed</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8 1.3 
+ 36  35 
+</pre></div>
+</div>
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 24 × 3</caption>
+<thead>
+	<tr><th scope=col>Sub</th><th scope=col>speed</th><th scope=col>n</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>Sub1 </td><td>0.8</td><td>3</td></tr>
+	<tr><td>Sub1 </td><td>1.3</td><td>3</td></tr>
+	<tr><td>Sub10</td><td>0.8</td><td>3</td></tr>
+	<tr><td>Sub10</td><td>1.3</td><td>3</td></tr>
+	<tr><td>Sub11</td><td>0.8</td><td>3</td></tr>
+	<tr><td>Sub11</td><td>1.3</td><td>3</td></tr>
+	<tr><td>Sub12</td><td>0.8</td><td>3</td></tr>
+	<tr><td>Sub12</td><td>1.3</td><td>2</td></tr>
+	<tr><td>Sub13</td><td>0.8</td><td>3</td></tr>
+	<tr><td>Sub13</td><td>1.3</td><td>3</td></tr>
+	<tr><td>Sub2 </td><td>0.8</td><td>3</td></tr>
+	<tr><td>Sub2 </td><td>1.3</td><td>3</td></tr>
+	<tr><td>Sub3 </td><td>0.8</td><td>3</td></tr>
+	<tr><td>Sub3 </td><td>1.3</td><td>3</td></tr>
+	<tr><td>Sub4 </td><td>0.8</td><td>3</td></tr>
+	<tr><td>Sub4 </td><td>1.3</td><td>3</td></tr>
+	<tr><td>Sub6 </td><td>0.8</td><td>3</td></tr>
+	<tr><td>Sub6 </td><td>1.3</td><td>3</td></tr>
+	<tr><td>Sub7 </td><td>0.8</td><td>3</td></tr>
+	<tr><td>Sub7 </td><td>1.3</td><td>3</td></tr>
+	<tr><td>Sub8 </td><td>0.8</td><td>3</td></tr>
+	<tr><td>Sub8 </td><td>1.3</td><td>3</td></tr>
+	<tr><td>Sub9 </td><td>0.8</td><td>3</td></tr>
+	<tr><td>Sub9 </td><td>1.3</td><td>3</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># remove non-complete cases</span>
+<span class="n">data_calc2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data_calc</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">filter</span><span class="p">(</span><span class="n">Sub</span><span class="o">!=</span><span class="s">&quot;Sub12&quot;</span><span class="p">)</span>
+
+<span class="c1"># Compare C_meas between speeds 0.8 and 1.3</span>
+<span class="n">slow_speed</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data_calc2</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">filter</span><span class="p">(</span><span class="n">speed</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0.8</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">pull</span><span class="p">(</span><span class="n">C_meas</span><span class="p">)</span>
+<span class="n">fast_speed</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data_calc2</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">filter</span><span class="p">(</span><span class="n">speed</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1.3</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">pull</span><span class="p">(</span><span class="n">C_meas</span><span class="p">)</span>
+
+<span class="c1"># uncomment below to view the two sets of numbers</span>
+<span class="c1"># slow_speed</span>
+<span class="c1"># fast_speed</span>
+
+<span class="c1"># Paired t-test</span>
+<span class="n">result</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">t.test</span><span class="p">(</span><span class="n">slow_speed</span><span class="p">,</span><span class="w"> </span><span class="n">fast_speed</span><span class="p">,</span><span class="w"> </span><span class="n">paired</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">result</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Paired t-test
+
+data:  slow_speed and fast_speed
+t = 0.20974, df = 32, p-value = 0.8352
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+ -0.5181596  0.6371173
+sample estimates:
+mean difference 
+     0.05947885 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="anova">
+<h3>ANOVA<a class="headerlink" href="#anova" title="Permalink to this heading">#</a></h3>
+<section id="simple-anova">
+<h4>Simple ANOVA<a class="headerlink" href="#simple-anova" title="Permalink to this heading">#</a></h4>
+<p>Here’s a simple one-way ANOVA that treats all observations as <em>independent</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">simple_anova_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">aov</span><span class="p">(</span><span class="n">C_meas</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">incline</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data_calc2</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">simple_anova_model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            Df Sum Sq Mean Sq F value Pr(&gt;F)    
+incline      2 186.33   93.17   293.2 &lt;2e-16 ***
+Residuals   63  20.02    0.32                   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="repeated-measures-anova">
+<h4>Repeated Measures ANOVA<a class="headerlink" href="#repeated-measures-anova" title="Permalink to this heading">#</a></h4>
+<p>But you and I know that these observations are <em>NOT independent</em>. <br>This violates a key assumption of the ANOVA.
+So to account for the repeated measures structure, we change the simple ANOVA by adding an <code class="docutils literal notranslate"><span class="pre">Error()</span></code> term specified as <code class="docutils literal notranslate"><span class="pre">Error(Sub/incline)</span></code> which tells R that incline measurements are nested within subjects and hence not independent.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">rm_anova_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">aov</span><span class="p">(</span><span class="n">C_meas</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">incline</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">Error</span><span class="p">(</span><span class="n">Sub</span><span class="o">/</span><span class="n">incline</span><span class="p">),</span><span class="w"> </span>
+<span class="w">                   </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data_calc2</span><span class="p">)</span>
+
+<span class="nf">summary</span><span class="p">(</span><span class="n">rm_anova_model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error: Sub
+          Df Sum Sq Mean Sq F value Pr(&gt;F)
+Residuals 10  9.073  0.9073               
+
+Error: Sub:incline
+          Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+incline    2 186.33   93.17   329.7 4.89e-16 ***
+Residuals 20   5.65    0.28                     
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Error: Within
+          Df Sum Sq Mean Sq F value Pr(&gt;F)
+Residuals 33  5.296  0.1605               
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="correlations">
+<h3>Correlations<a class="headerlink" href="#correlations" title="Permalink to this heading">#</a></h3>
+<p>We can also examine relationships between continuous variables. Here we test the correlation between adjusted VO2 and metabolic cost using Pearson correlation and visualize it with a scatterplot.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">data_calc2</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w"> </span><span class="nf">with</span><span class="p">(</span><span class="nf">cor.test</span><span class="p">(</span><span class="n">C_meas</span><span class="p">,</span><span class="w"> </span><span class="n">adjVO2</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;spearman&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Spearman&#39;s rank correlation rho
+
+data:  C_meas and adjVO2
+S = 7708, p-value &lt; 2.2e-16
+alternative hypothesis: true rho is not equal to 0
+sample estimates:
+      rho 
+0.8390982 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">options</span><span class="p">(</span><span class="n">repr.plot.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span><span class="p">,</span><span class="w"> </span><span class="n">repr.plot.height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span><span class="p">)</span>
+
+<span class="n">cor_plot</span><span class="w"> </span><span class="o">&lt;-</span>
+
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data_calc2</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">adjVO2</span><span class="p">,</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">C_meas</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w"> </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">geom_smooth</span><span class="p">(</span><span class="n">formula</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;y~x&#39;</span><span class="p">,</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;lm&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w"> </span><span class="c1"># the stat_cor function from ggpubr is a neat way to add correlation values on the plot itself</span>
+<span class="w"> </span><span class="nf">stat_cor</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;spearman&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;blue&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w"> </span><span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;VO2 and metabolic cost are correlated&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Metabolic Cost&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;adj. VO2&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w"> </span><span class="nf">theme_classic2</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">thm</span>
+
+<span class="c1"># cor_plot</span>
+<span class="nf">ggMarginal</span><span class="p">(</span><span class="n">cor_plot</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;histogram&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/5b2a47c1f498ca8db7707ba35d1adb4354833dd694e3c076b8b201b94bd06758.png" src="../../_images/5b2a47c1f498ca8db7707ba35d1adb4354833dd694e3c076b8b201b94bd06758.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="fit-linear-models">
+<h2>3. Fit linear models<a class="headerlink" href="#fit-linear-models" title="Permalink to this heading">#</a></h2>
+<p>In this case, because we intend to establish mean differences, fitting a linear model actually is much like running a t-test or ANOVA as we did above. Except it allows us to set interaction terms and do so with missing observations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lm_fit</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">C_meas</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">incline</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">as.factor</span><span class="p">(</span><span class="n">speed</span><span class="p">),</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data_calc</span><span class="p">)</span>
+
+<span class="nf">summary</span><span class="p">(</span><span class="n">lm_fit</span><span class="p">)</span>
+<span class="nf">confint</span><span class="p">(</span><span class="n">lm_fit</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call:
+lm(formula = C_meas ~ incline * as.factor(speed), data = data_calc)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.54476 -0.24414 -0.05276  0.25556  1.45122 
+
+Coefficients:
+                                  Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)                        2.20663    0.16112  13.696  &lt; 2e-16 ***
+inclinelevel                       1.26123    0.22786   5.535 5.99e-07 ***
+inclineuphill                      3.99038    0.22786  17.513  &lt; 2e-16 ***
+as.factor(speed)1.3               -0.09619    0.23298  -0.413    0.681    
+inclinelevel:as.factor(speed)1.3  -0.03100    0.32588  -0.095    0.924    
+inclineuphill:as.factor(speed)1.3  0.12202    0.32588   0.374    0.709    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.5581 on 65 degrees of freedom
+Multiple R-squared:  0.9095,	Adjusted R-squared:  0.9026 
+F-statistic: 130.7 on 5 and 65 DF,  p-value: &lt; 2.2e-16
+</pre></div>
+</div>
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 6 × 2 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>2.5 %</th><th scope=col>97.5 %</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>(Intercept)</th><td> 1.8848516</td><td>2.5284087</td></tr>
+	<tr><th scope=row>inclinelevel</th><td> 0.8061620</td><td>1.7162893</td></tr>
+	<tr><th scope=row>inclineuphill</th><td> 3.5353116</td><td>4.4454388</td></tr>
+	<tr><th scope=row>as.factor(speed)1.3</th><td>-0.5614770</td><td>0.3691051</td></tr>
+	<tr><th scope=row>inclinelevel:as.factor(speed)1.3</th><td>-0.6818334</td><td>0.6198250</td></tr>
+	<tr><th scope=row>inclineuphill:as.factor(speed)1.3</th><td>-0.5288127</td><td>0.7728457</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#ooh, btw, check this out:</span>
+<span class="nf">display_markdown</span><span class="p">(</span><span class="s">&quot;#### BTW, if you ran an ANOVA of this linear model, it would give you the exact same estimates as your original ANOVA!&quot;</span><span class="p">)</span>
+<span class="nf">anova</span><span class="p">(</span><span class="n">lm_fit</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<p class="rubric">BTW, if you ran an ANOVA of this linear model, it would give you the exact same estimates as your original ANOVA!</p>
+<div class="output text_html"><table class="dataframe">
+<caption>A anova: 4 × 5</caption>
+<thead>
+	<tr><th></th><th scope=col>Df</th><th scope=col>Sum Sq</th><th scope=col>Mean Sq</th><th scope=col>F value</th><th scope=col>Pr(&gt;F)</th></tr>
+	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>incline</th><td> 2</td><td>203.36432749</td><td>101.68216375</td><td>326.4114629</td><td>1.256380e-34</td></tr>
+	<tr><th scope=row>as.factor(speed)</th><td> 1</td><td>  0.07587859</td><td>  0.07587859</td><td>  0.2435790</td><td>6.232965e-01</td></tr>
+	<tr><th scope=row>incline:as.factor(speed)</th><td> 2</td><td>  0.07828560</td><td>  0.03914280</td><td>  0.1256529</td><td>8.821346e-01</td></tr>
+	<tr><th scope=row>Residuals</th><td>65</td><td> 20.24849430</td><td>  0.31151530</td><td>         NA</td><td>          NA</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<section id="model-diagnostics">
+<h3>Model Diagnostics<a class="headerlink" href="#model-diagnostics" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Residuals vs Fitted</strong>: Checks if relationship is linear and variance is constant.</p>
+<ul class="simple">
+<li><p><span style="color: #9416beff; font-style: italic">We want random scatter around horizontal line at 0.</span></p></li>
+</ul>
+</li>
+<li><p><strong>Q-Q Plot</strong>: Checks if residuals are normally distributed</p>
+<ul class="simple">
+<li><p><span style="color: #9416beff; font-style: italic">We want points to follow the diagonal line closely</span></p></li>
+</ul>
+</li>
+<li><p><strong>Scale-Location</strong>: Checks if variance is constant across fitted values (homoscedasticity)</p>
+<ul class="simple">
+<li><p><span style="color: #9416beff; font-style: italic">We want horizontal line with random scatter (no systematic shape)</span></p></li>
+</ul>
+</li>
+<li><p><strong>Residuals vs Leverage</strong>: Identifies influential points</p>
+<ul class="simple">
+<li><p><span style="color: #9416beff; font-style: italic">Ideally, we want all points to be within Cook’s distance lines</span></p></li>
+</ul>
+</li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">options</span><span class="p">(</span><span class="n">repr.plot.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="n">repr.plot.height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">)</span>
+
+<span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">))</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">lm_fit</span><span class="p">)</span>
+
+<span class="c1"># WE can also print out the exact values and indices of the influential observations</span>
+<span class="n">cooksd</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cooks.distance</span><span class="p">(</span><span class="n">lm_fit</span><span class="p">)</span>
+<span class="n">influential</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">which</span><span class="p">(</span><span class="n">cooksd</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">4</span><span class="o">/</span><span class="nf">nrow</span><span class="p">(</span><span class="n">data_calc</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Influential observation #&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">influential</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C Meas is&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cooksd</span><span class="p">[</span><span class="n">influential</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Influential observation # 13 C Meas is 0.111746052521325&quot; 
+[2] &quot;Influential observation # 14 C Meas is 0.0843345595874919&quot;
+[3] &quot;Influential observation # 16 C Meas is 0.0610988460034664&quot;
+[4] &quot;Influential observation # 70 C Meas is 0.343605624121243&quot; 
+</pre></div>
+</div>
+<img alt="../../_images/77f69566cf6e0ad240113b3bd013c79956936f96089d2af51816c6151bc919fa.png" src="../../_images/77f69566cf6e0ad240113b3bd013c79956936f96089d2af51816c6151bc919fa.png" />
+</div>
+</div>
+</section>
+<section id="publication-ready-regression-tables">
+<h3>Publication-ready regression tables<a class="headerlink" href="#publication-ready-regression-tables" title="Permalink to this heading">#</a></h3>
+<p>Here, I am usign the <code class="docutils literal notranslate"><span class="pre">sjPlot</span></code> package to show you an example of a publication-ready regression table. There are many ways/packages to acheive the same type of table, e.g., <code class="docutils literal notranslate"><span class="pre">gt</span></code> and <code class="docutils literal notranslate"><span class="pre">gtsummary</span></code> packages.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">regression_table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">tab_model</span><span class="p">(</span><span class="n">lm_fit</span><span class="p">,</span><span class="w"> </span><span class="n">show.stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span>
+<span class="w">                            </span><span class="n">dv.labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Measured Metabolic Cost&quot;</span><span class="p">)</span>
+
+<span class="nf">display_html</span><span class="p">(</span><span class="n">regression_table</span><span class="o">$</span><span class="n">page.complete</span><span class="p">)</span>
+
+<span class="c1"># save as HTML (my preferred method! and from there copy and paste into your Word Doc)</span>
+<span class="nf">writeLines</span><span class="p">(</span><span class="n">regression_table</span><span class="o">$</span><span class="n">page.complete</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;HTML-regression-table.html&quot;</span><span class="p">)</span>
+
+<span class="c1"># or save as Word doc (only saves as .doc)</span>
+<span class="nf">tab_model</span><span class="p">(</span><span class="n">lm_fit</span><span class="p">,</span><span class="w"> </span><span class="n">dv.labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Measured Metabolic Cost&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;DOC-regression-table.doc&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<style>
+html, body { background-color: white; }
+table { border-collapse:collapse; border:none; }
+caption { font-weight: bold; text-align:left; }
+td {  }
+.thead { border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; }
+.tdata { padding:0.2cm; text-align:left; vertical-align:top; }
+.arc { background-color:#f2f2f2; }
+.summary { padding-top:0.1cm; padding-bottom:0.1cm; }
+.summarydata { text-align:left; }
+.fixedparts { font-weight:bold; text-align:left; }
+.randomparts { font-weight:bold; text-align:left; padding-top:.8em; }
+.zeroparts { font-weight:bold; text-align:left; padding-top:.8em; }
+.simplexparts { font-weight:bold; text-align:left; padding-top:.8em; }
+.lasttablerow { border-bottom: double; }
+.firsttablerow {  }
+.firstsumrow { border-top:1px solid; }
+.labelcellborder { border-bottom:1px solid; }
+.depvarhead { text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal; }
+.depvarheadnodv { border-top: double; text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal; }
+.leftalign { text-align:left; }
+.centeralign { text-align:center; }
+.firsttablecol { text-align:left; }
+.footnote { font-style:italic; border-top:double black; text-align:right; }
+.subtitle { font-weight: normal; }
+.modelcolumn1 {  }
+.modelcolumn2 {  }
+.modelcolumn3 {  }
+.modelcolumn4 {  }
+.modelcolumn5 {  }
+.modelcolumn6 {  }
+.modelcolumn7 {  }
+.col1 {  }
+.col2 {  }
+.col3 {  }
+.col4 {  }
+.col5 {  }
+.col6 {  }
+</style>
+</head>
+<body>
+<table>
+  <tr>
+    <th class="thead firsttablerow firsttablecol col1">&nbsp;</th>
+    <th colspan="4" class="thead firsttablerow">Measured Metabolic Cost</th>
+  </tr>
+  <tr>
+    <td class="depvarhead firsttablerow firsttablecol col1">Predictors</td>
+    <td class="depvarhead firsttablerow col2">Estimates</td>
+    <td class="depvarhead firsttablerow col3">CI</td>
+    <td class="depvarhead firsttablerow col4">Statistic</td>
+    <td class="depvarhead firsttablerow col5">p</td>
+  </tr>
+  <tr>
+    <td class="tdata firsttablecol col1">(Intercept)</td>
+    <td class="tdata centeralign modelcolumn1 col2">2.21</td>
+    <td class="tdata centeralign modelcolumn1 col3">1.88&nbsp;&ndash;&nbsp;2.53</td>
+    <td class="tdata centeralign modelcolumn1 col4">13.70</td>
+    <td class="tdata centeralign modelcolumn1 col5"><strong>&lt;0.001</strong></td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">incline [level]</td>
+    <td class="tdata centeralign modelcolumn1 col2">1.26</td>
+    <td class="tdata centeralign modelcolumn1 col3">0.81&nbsp;&ndash;&nbsp;1.72</td>
+    <td class="tdata centeralign modelcolumn1 col4">5.54</td>
+    <td class="tdata centeralign modelcolumn1 col5"><strong>&lt;0.001</strong></td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">incline [uphill]</td>
+    <td class="tdata centeralign modelcolumn1 col2">3.99</td>
+    <td class="tdata centeralign modelcolumn1 col3">3.54&nbsp;&ndash;&nbsp;4.45</td>
+    <td class="tdata centeralign modelcolumn1 col4">17.51</td>
+    <td class="tdata centeralign modelcolumn1 col5"><strong>&lt;0.001</strong></td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">speed [1.3]</td>
+    <td class="tdata centeralign modelcolumn1 col2">&#45;0.10</td>
+    <td class="tdata centeralign modelcolumn1 col3">&#45;0.56&nbsp;&ndash;&nbsp;0.37</td>
+    <td class="tdata centeralign modelcolumn1 col4">&#45;0.41</td>
+    <td class="tdata centeralign modelcolumn1 col5">0.681</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">incline [level] × speed<br>[1.3]</td>
+    <td class="tdata centeralign modelcolumn1 col2">&#45;0.03</td>
+    <td class="tdata centeralign modelcolumn1 col3">&#45;0.68&nbsp;&ndash;&nbsp;0.62</td>
+    <td class="tdata centeralign modelcolumn1 col4">&#45;0.10</td>
+    <td class="tdata centeralign modelcolumn1 col5">0.924</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">incline [uphill] × speed<br>[1.3]</td>
+    <td class="tdata centeralign modelcolumn1 col2">0.12</td>
+    <td class="tdata centeralign modelcolumn1 col3">&#45;0.53&nbsp;&ndash;&nbsp;0.77</td>
+    <td class="tdata centeralign modelcolumn1 col4">0.37</td>
+    <td class="tdata centeralign modelcolumn1 col5">0.709</td>
+</tr>
+  <tr>
+    <td class="tdata leftalign summary firstsumrow">Observations</td>
+    <td class="tdata summary summarydata firstsumrow" colspan="4">71</td>
+  </tr>
+  <tr>
+    <td class="tdata leftalign summary">R<sup>2</sup> / R<sup>2</sup> adjusted</td>
+    <td class="tdata summary summarydata" colspan="4">0.910 / 0.903</td>
+  </tr>
+
+</table>
+
+</body></html></div></div>
+</div>
+</section>
+</section>
+<section id="post-hoc-pairwise-comparisons-with-marginal-means">
+<h2>4. Post-hoc pairwise comparisons with marginal means<a class="headerlink" href="#post-hoc-pairwise-comparisons-with-marginal-means" title="Permalink to this heading">#</a></h2>
+<center>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p><strong>Fast (0.8)</strong></p></th>
+<th class="head"><p><strong>Slow (1.3)</strong></p></th>
+<th class="head"><p><mark><strong>Row Mean</strong></mark></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Downhill</strong></p></td>
+<td><p>2.21</p></td>
+<td><p>2.11</p></td>
+<td><p><mark>2.16</mark></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Level</strong></p></td>
+<td><p>3.47</p></td>
+<td><p>3.34</p></td>
+<td><p><mark>3.41</mark></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Uphill</strong></p></td>
+<td><p>6.20</p></td>
+<td><p>6.22</p></td>
+<td><p><mark>6.21</mark></p></td>
+</tr>
+<tr class="row-odd"><td><p><mark><strong>Col Mean</strong></mark></p></td>
+<td><p><mark><strong>3.96</strong></mark></p></td>
+<td><p><mark><strong>3.89</strong></mark></p></td>
+<td><p><mark><strong>3.93</strong></mark></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</center>
+<p>EMMs allow us to follow up significant main effects by testing which specific groups differ from each other, with appropriate corrections for multiple comparisons.</p>
+<section id="estimate-marginal-means">
+<h3>Estimate marginal means<a class="headerlink" href="#estimate-marginal-means" title="Permalink to this heading">#</a></h3>
+<p>Note that ours is an interaction model, and we know that the effect of <code class="docutils literal notranslate"><span class="pre">speed</span></code> is not significant. So really we would like marginal means for incline.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Estimated marginal means for speed - the same as were compared by the t-test</span>
+<span class="n">speed_means</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">emmeans</span><span class="p">(</span><span class="n">lm_fit</span><span class="p">,</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">speed</span><span class="p">)</span>
+<span class="n">speed_means</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;============================================&quot;</span><span class="p">)</span>
+<span class="c1"># Estimated marginal means for incline - the same as were compared by the ANOVA</span>
+<span class="n">incline_means</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">emmeans</span><span class="p">(</span><span class="n">lm_fit</span><span class="p">,</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">incline</span><span class="p">)</span>
+<span class="n">incline_means</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;============================================&quot;</span><span class="p">)</span>
+<span class="c1"># Estimated marginal means for both factors - &quot;splits&quot; them by these two factors</span>
+<span class="n">speed_by_incline_means</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">emmeans</span><span class="p">(</span><span class="n">lm_fit</span><span class="p">,</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">speed</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">incline</span><span class="p">)</span>
+<span class="n">speed_by_incline_means</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;============================================&quot;</span><span class="p">)</span>
+<span class="c1"># Plot estimated marginal means</span>
+<span class="nf">plot_model</span><span class="p">(</span><span class="n">lm_fit</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;pred&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">terms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;incline&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;speed&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">thm</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NOTE: Results may be misleading due to involvement in interactions
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> speed emmean     SE df lower.CL upper.CL
+   0.8   3.96 0.0930 65     3.77     4.14
+   1.3   3.89 0.0944 65     3.70     4.08
+
+Results are averaged over the levels of: incline 
+Confidence level used: 0.95 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;============================================&quot;
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NOTE: Results may be misleading due to involvement in interactions
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> incline  emmean    SE df lower.CL upper.CL
+ downhill   2.16 0.116 65     1.93     2.39
+ level      3.40 0.114 65     3.18     3.63
+ uphill     6.21 0.114 65     5.98     6.44
+
+Results are averaged over the levels of: speed 
+Confidence level used: 0.95 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;============================================&quot;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> speed incline  emmean    SE df lower.CL upper.CL
+   0.8 downhill   2.21 0.161 65     1.88     2.53
+   1.3 downhill   2.11 0.168 65     1.77     2.45
+   0.8 level      3.47 0.161 65     3.15     3.79
+   1.3 level      3.34 0.161 65     3.02     3.66
+   0.8 uphill     6.20 0.161 65     5.88     6.52
+   1.3 uphill     6.22 0.161 65     5.90     6.54
+
+Confidence level used: 0.95 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;============================================&quot;
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Some of the focal terms are of type `character`. This may lead to
+  unexpected results. It is recommended to convert these variables to
+  factors before fitting the model.
+  The following variables are of type character: `incline`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ignoring unknown labels:
+<span class=" -Color -Color-Cyan">•</span> <span class=" -Color -Color-Green">linetype</span> : <span class=" -Color -Color-Blue">&quot;speed&quot;</span>
+<span class=" -Color -Color-Cyan">•</span> <span class=" -Color -Color-Green">shape</span> : <span class=" -Color -Color-Blue">&quot;speed&quot;</span>
+</pre></div>
+</div>
+<img alt="../../_images/822438754de715e5aa8a7396347005ed5cfaa4d42c35010e5cdba2048a43c09f.png" src="../../_images/822438754de715e5aa8a7396347005ed5cfaa4d42c35010e5cdba2048a43c09f.png" />
+</div>
+</div>
+</section>
+<section id="run-pairwise-comparisons-among-the-various-inclines">
+<h3>Run pairwise comparisons among the various inclines<a class="headerlink" href="#run-pairwise-comparisons-among-the-various-inclines" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># With adjustment for multiple comparisons</span>
+<span class="nf">pairs</span><span class="p">(</span><span class="n">incline_means</span><span class="p">,</span><span class="w"> </span><span class="n">adjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;tukey&quot;</span><span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;============================================&quot;</span><span class="p">)</span>
+<span class="nf">pairs</span><span class="p">(</span><span class="n">incline_means</span><span class="p">,</span><span class="w"> </span><span class="n">adjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bonferroni&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> contrast          estimate    SE df t.ratio p.value
+ downhill - level     -1.25 0.163 65  -7.645 &lt;0.0001
+ downhill - uphill    -4.05 0.163 65 -24.864 &lt;0.0001
+ level - uphill       -2.81 0.161 65 -17.413 &lt;0.0001
+
+Results are averaged over the levels of: speed 
+P value adjustment: tukey method for comparing a family of 3 estimates 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;============================================&quot;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> contrast          estimate    SE df t.ratio p.value
+ downhill - level     -1.25 0.163 65  -7.645 &lt;0.0001
+ downhill - uphill    -4.05 0.163 65 -24.864 &lt;0.0001
+ level - uphill       -2.81 0.161 65 -17.413 &lt;0.0001
+
+Results are averaged over the levels of: speed 
+P value adjustment: bonferroni method for 3 tests 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="testing-only-for-hypothesized-effects">
+<h3>Testing only for hypothesized effects<a class="headerlink" href="#testing-only-for-hypothesized-effects" title="Permalink to this heading">#</a></h3>
+<p>If you had a hypothesis going in, for example, only uphill will differ from the other two conditions. The other two conditions will not differ from one another, then you can run this comparison by manually specifying contrasts.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># check levels (what comes first, second and third)</span>
+<span class="nf">factor</span><span class="p">(</span><span class="n">data_calc</span><span class="o">$</span><span class="n">incline</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">levels</span><span class="p">()</span>
+<span class="c1"># incline_means</span>
+<span class="nf">contrast</span><span class="p">(</span><span class="n">incline_means</span><span class="p">,</span><span class="w"> </span>
+<span class="w">         </span><span class="nf">list</span><span class="p">(</span><span class="s">&quot;Uphill - Downhill&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w">    </span><span class="c1"># Compare uphill to downhill</span>
+<span class="w">              </span><span class="s">&quot;Uphill - Level&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">-1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)))</span><span class="w">      </span><span class="c1"># Compare uphill to level</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'downhill'</li><li>'level'</li><li>'uphill'</li></ol>
+</div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> contrast          estimate    SE df t.ratio p.value
+ Uphill - Downhill     4.05 0.163 65  24.864 &lt;0.0001
+ Uphill - Level        2.81 0.161 65  17.413 &lt;0.0001
+
+Results are averaged over the levels of: speed 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="the-end">
+<h1>The End<a class="headerlink" href="#the-end" title="Permalink to this heading">#</a></h1>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./Materials/Week 5"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../Week%204/Week%204%20-%20Codebook.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Week 4: Visualizing Data</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../Week%206/Week%206%20-%20Codebook.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><strong>Week 6</strong>: Codebooks &amp; Cloud Computing</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Week 5: Statistics</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clean-the-entire-workspace">Clean the entire workspace</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-required-libraries">Load required libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#theme-defaults">Theme defaults</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summarize-our-sample-in-tables-and-figures">1. Summarize our sample in tables and figures</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-data">Read data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clean-up-variable-names-in-the-demo-table">Clean up variable names in the demo table</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-try-and-reproduce-what-the-authors-told-us-about-the-sample">Let’s try and reproduce what the authors told us about the sample</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-look-at-histrograms-for-level-slow-and-level-walk">Let’s look at histrograms for level-slow and level-walk</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-basic-statistical-tests">2. Run basic statistical tests</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paired-t-tests">Paired T-Tests</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anova">ANOVA</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-anova">Simple ANOVA</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#repeated-measures-anova">Repeated Measures ANOVA</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlations">Correlations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fit-linear-models">3. Fit linear models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-diagnostics">Model Diagnostics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#publication-ready-regression-tables">Publication-ready regression tables</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#post-hoc-pairwise-comparisons-with-marginal-means">4. Post-hoc pairwise comparisons with marginal means</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimate-marginal-means">Estimate marginal means</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-pairwise-comparisons-among-the-various-inclines">Run pairwise comparisons among the various inclines</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-only-for-hypothesized-effects">Testing only for hypothesized effects</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-end">The End</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Pod 3 Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
