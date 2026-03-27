@@ -1,0 +1,30 @@
+title: ReproRehab Pod 3 Codebooks
+author: Pod 3 Team
+
+execute:
+  execute_notebooks: cache
+
+launch_buttons:
+  colab_url: "https://colab.research.google.com"
+
+repository:
+  url: https://github.com/rinivarg/ReproRehab-Pod3
+  branch: main
+  path_to_book: .
+
+html:
+  use_repository_button: true
+  use_issues_button: true
+
+only_build_toc_files: true
+
+# Configure Sphinx to copy image folders
+sphinx:
+  config:
+    html_extra_path: 
+      - 'Materials/Week 2/imgs'
+      - 'Materials/Week 3/imgs'
+      - 'Materials/Week 4/imgs'
+      - 'Materials/Week 5/imgs'
+      - 'Materials/Week 6/imgs'
+      - 'Materials/Week 7 & 8/imgs'

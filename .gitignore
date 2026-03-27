@@ -1,17 +1,13 @@
+_build/
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+.DS_Store
 
-.vscode
-**/.vscode
-*/.vscode/*
-
-.ipynb_checkpoints
-*/.ipynb_checkpoints/*
-
-# R history
+# R files
 .Rhistory
-**/.Rhistory
+.RData
+.Rproj.user/
 
-
-# Environments
-.env
-
-.Rproj.user
+# VSCode
+.vscode/

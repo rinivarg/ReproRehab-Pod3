@@ -1,0 +1,10 @@
+format: jb-book
+root: intro
+chapters:
+  - file: Materials/Week 1/Week 1 - Codebook
+  - file: Materials/Week 2/Week 2 - Codebook
+  - file: Materials/Week 3/Week 3 - Codebook
+  - file: Materials/Week 4/Week 4 - Codebook
+  - file: Materials/Week 5/Week 5 - Codebook
+  - file: Materials/Week 6/Week 6 - Codebook
+  - file: Materials/Week 7 & 8/Week 7 & 8 - Codebook
