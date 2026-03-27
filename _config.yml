@@ -1,11 +1,11 @@
-title: ReproRehab Pod 3 Codebooks
-author: Pod 3 Team
+title: Pod 3 - Advanced R
+author: Rini Varghese & Andrew Hooyman
 
 execute:
   execute_notebooks: cache
 
-launch_buttons:
-  colab_url: "https://colab.research.google.com"
+# launch_buttons:
+#   colab_url: "https://colab.research.google.com"
 
 repository:
   url: https://github.com/rinivarg/ReproRehab-Pod3
