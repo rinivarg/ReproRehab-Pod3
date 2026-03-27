@@ -1,7 +1,42 @@
-# ReproRehab Pod 3 - Weekly Codebooks
+# ReproRehab Pod 3
+## Advanced R Programming Bootcamp
 
-Welcome to Pod 3's interactive codebook collection for the ReproRehab course!
+<div style="text-align: center; margin: 40px 0;">
+    <img src="pod3-logo.png" alt="Pod 3 Logo" width="400">
+</div>
 
-Use the sidebar to navigate through each week's materials.
+---
 
-**Learn more about ReproRehab:** https://www.reprorehab.usc.edu
+## Welcome! 👋
+
+This interactive codebook contains Pod 3's weekly materials for the **ReproRehab Advanced R Programming Bootcamp** (2025-26).
+
+### What You'll Find Here
+
+- **Week 1**: Tutorial on R/RStudio and "Cheatsheets"
+- **Week 2**: Importing Data into R
+- **Week 3**: Data Cleaning and Manipulation
+- **Week 4**: Summarizing and Visualizing Data
+- **Week 5**: Statistical Analysis
+- **Week 6**: Codebooks and Cloud Computing
+- **Week 7 & 8**: Working Through a Biomechanics Dataset
+
+### How to Use This Book
+
+📖 **Read & Learn**: Browse through the chapters to see code, explanations, and outputs
+
+🔗 **Run Interactively**: Click the Google Colab button within each notebook to run code in your browser
+
+💾 **Download**: Download notebooks to run locally on your machine
+
+### About ReproRehab
+
+ReproRehab is an initiative focused on reproducible research practices in rehabilitation science.
+
+**Learn more:** [reprorehab.usc.edu](https://www.reprorehab.usc.edu)
+
+---
+
+**Teaching Assistants**: Rini Varghese and Andrew Hooyman
+
+**Course Year**: 2025-26
