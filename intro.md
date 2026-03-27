@@ -2,7 +2,7 @@
 ## Advanced R Programming Bootcamp
 
 <div style="text-align: center; margin: 40px 0;">
-    <img src="ReproRehab-06_square_Pod3.png" alt="Pod 3 Logo" width="400">
+    <img src="ReproRehab-06_square_Pod3" alt="Pod 3 Logo" width="400">
 </div>
 
 ---

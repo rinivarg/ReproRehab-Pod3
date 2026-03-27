@@ -4,6 +4,8 @@ author: Rini Varghese & Andrew Hooyman
 execute:
   execute_notebooks: cache
 
+logo: ReproRehab-06_square_Pod3
+
 # launch_buttons:
 #   colab_url: "https://colab.research.google.com"
 
