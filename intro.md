@@ -1,13 +1,5 @@
 # ReproRehab Pod 3
-## Advanced R Programming Bootcamp
-
-<div style="text-align: center; margin: 40px 0;">
-<img src="ReproRehab-06_square_Pod3.png" alt="Pod 3 Logo" style="max-width: 400px; width: 50%; height: auto;">
-</div>
-
----
-
-## Welcome!
+## Welcome to the Advanced R Programming Bootcamp!
 
 This textbook contains Pod 3's weekly materials for the **ReproRehab Advanced R Programming Bootcamp** (2025-26).
 Visit the repository anytime by clicking the GitHub icon on top.
