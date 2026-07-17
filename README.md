@@ -1,5 +1,5 @@
 <img src="ReproRehab-05.png" align = "right" width = "300"><br>
-# ReproRehab POD-3 (2025-26)
+# ReproRehab POD-3 (2026-27)
 *TAs: Andrew Hooyman and Rini Varghese*<br>
 Learn more about ReproRehab here: https://www.reprorehab.usc.edu
 
