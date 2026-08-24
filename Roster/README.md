@@ -1,9 +1,9 @@
-1. Mitra Rouhani
-2. Fisayo Aloba
-3. Hyo Jung Jeong
-4. Cielita Lopez-Lennon
-5. Juliette Pope
-6. Michelle Eliason
-7. Shaaron Brown
-8. Lauren Van Valkenburgh
-9. Kellee Hanigan
+1. Bayan Aldhahwani
+2. Marghuretta Bland
+3. Katherine Burke
+4. Kellie Collins
+5. Pamela Dunlap
+6. Flor Enrique
+7. Sydney Liles
+8. Christine McNichols
+9. Dipti Wani
