@@ -1,0 +1,39 @@
+name: Sync Curriculum Markdown
+
+on:
+  push:
+    paths:
+      - README.md
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-curriculum:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Regenerate Curriculum/CURRICULUM.md
+        env:
+          REPO_DESCRIPTION: ${{ github.event.repository.description }}
+        run: python scripts/update_curriculum_md.py
+
+      - name: Commit and push updates
+        run: |
+          if git diff --quiet Curriculum/CURRICULUM.md; then
+            echo "No curriculum changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Curriculum/CURRICULUM.md
+          git commit -m "Update Curriculum/CURRICULUM.md from README"
+          git push

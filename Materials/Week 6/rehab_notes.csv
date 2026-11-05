@@ -1,0 +1,55 @@
+note_id,patient_id,visit,condition,note_text
+1,P01,1,Knee,"PT Initial Eval 03/02/2026. MRN: 302918. Pt s/p R TKA 10 days ago. c/o knee pain 7/10 &amp; swelling. AROM 5-75°. Amb 50 ft w/ RW, WBAT. Pt tolerated tx well. Will cont w/ POC.
+-- J. Patel, PT, DPT"
+2,P01,2,TKA,"pt reports Pain: 5/10 today, less swelling. Knee ROM 0-90°. amb 150 ft w/ RW. Denies dizzyness. HEP reviewed. Pt tolerated tx well. Will cont w/ POC."
+3,P01,3,Knee,Pt seen 3/16/26. Pain 4 out of 10 after stairs. Swelling mild. Amb 300' w/ SPC. Pt’s goal is to return to golf!! Pt tolerated tx well. Will cont w/ POC.
+4,P01,4,knee ,Discharge 2026-03-30. pain 2/10. AROM 0-115°. amb 500 ft w/o device; stairs reciprocal w/ rail. Indep w/ HEP. Electronically signed by M. Rivera PT
+5,P02,1,TKA,"PT eval 03/04/2026 MRN#551207. Pt s/p L TKA. c/o severe knee pain 8/10, STIFFNESS & swelling. AROM 10-65°. Amb 40ft w/ RW, min A. Call (410) 555-0188 w/ questions. Pt tolerated tx well. Will cont w/ POC."
+6,P02,2,TKA,"Pt reports pain=6/10, poor sleep d/t knee pain. swelling unchanged. Amb 100 ft w/ RW, CGA. Ice &amp; elevation reviewed. Pt tolerated tx well. Will cont w/ POC.
+-- J. Patel, PT, DPT"
+7,P02,3,Knee,NPRS 5/10. Pt frustrated w/ slow progress. AROM 5-95°. Amb 250 ft w/ SPC. Stationary bike x 10 min. Denies nausea. Pt tolerated tx well. Will cont w/ POC.
+8,P02,4,Knee,"pt seen 3/27/26. Pain 3/10, swelling minimal. Amb 400 ft w/o device. Stairs w/ rail. Pt motivated &amp; indep w/ HEP. Plan: d/c to HEP."
+9,P03,1,knee ,"Initial eval 2026-03-05. mrn 774120. Pt s/p R TKA, c/o knee pain 6/10 and swelling. Quad strenght 3/5. AROM 5-80°. Amb 60 ft w/ RW. Pt tolerated tx well. Will cont w/ POC."
+10,P03,2,Knee,"Pt reports pain 6/10, unchanged. Knee stiffness in AM. Swelling   decreased. Amb 120 ft w/ RW. Denies pain at rest. Pt tolerated tx well. Will cont w/ POC."
+11,P03,3,TKA,"pain 4 out of 10. AROM 0-100°. Amb 200' w/ SPC, mild FATIGUE after stairs. Pt tolerated tx well. Will cont w/ POC.
+-- J. Patel, PT, DPT"
+12,P03,4,Knee,Discharge 3/31/26. Pain 3/10. Quad strenght 4+/5. Amb 450 ft w/o device. Pt indep w/ HEP &amp; returned to work.
+13,P04,1,Knee,"PT Eval 03/06/2026. MRN: 610455. Pt s/p L TKA, c/o knee pain 7/10. Swelling moderate. AROM 10-70°. Amb 30 ft w/ RW, mod A. Pt anxious about falling. Pt tolerated tx well. Will cont w/ POC."
+14,P04,2,knee ,pt reports pain 4/10!! Swelling decreased. AROM 5-90°. Amb 150 ft w/ RW. Denies dizziness or nausea. Pt tolerated tx well. Will cont w/ POC.
+15,P04,2,knee ,pt reports pain 4/10!! Swelling decreased. AROM 5-90°. Amb 150 ft w/ RW. Denies dizziness or nausea. Pt tolerated tx well. Will cont w/ POC.
+16,P04,3,TKA,"Pain: 3/10. Amb 300 ft w/ SPC. Stairs w/ rail, step-to pattern. Pt’s confidence improving. Pt tolerated tx well. Will cont w/ POC.
+-- J. Patel, PT, DPT"
+17,P04,4,Knee,"Discharge 2026-04-01. pain 1/10, AROM 0-120°. Amb 600 ft w/o device, stairs reciprocal. Indep w/ HEP. Call 410.555.0177 to schedule f/u."
+18,P05,1,TKA,Initial eval 03/09/2026. MRN#829301. Pt s/p R TKA. c/o pain 5/10 and swelling. AROM 5-85°. Amb 80 ft w/ RW. Pt tolerated tx well. Will cont w/ POC.
+19,P05,2,Knee,"Pt reports pain 5 out of 10, poor sleep. Swelling mild. Amb 150 ft w/ RW, mild fatigue. HEP updated. Pt tolerated tx well. Will cont w/ POC."
+20,P05,3,Knee,NPRS 3/10. AROM 0-105°. Amb 350 ft w/ SPC. Denies swelling. pt motivated!! Pt tolerated tx well. Will cont w/ POC.
+21,P05,4,knee ,"Discharge 4/2/26. Pain 2/10. Amb 500 ft w/o device. Stairs reciprocal. indep w/ HEP.
+-- J. Patel, PT, DPT"
+22,P06,1,Stroke,"PT Initial Eval 03/03/2026. MRN: 483920. Pt s/p CVA w/ L UE &amp; LE weakness. c/o FATIGUE. Amb 15 ft w/ RW, mod A. Impaired balence, high fall risk. Plan: gait &amp; balance training!! Pt tolerated tx well. Will cont w/ POC."
+23,P06,2,CVA,"pt reports fatigeu after breakfast. Amb 40 ft w/ RW, min A. Balance improving. Denies pain. Pt tolerated tx well. Will cont w/ POC.
+-- M. Rivera, PT"
+24,P06,3,Stroke,"Pt seen 3/17/26. Amb 75' w/ hemi walker, CGA. L UE strength 3-/5. Denies dizziness. Fatigue limits participation. Pt tolerated tx well. Will cont w/ POC."
+25,P06,4,stroke,"Amb 150 ft w/ SPC, supervision. Stairs w/ rail, CGA. Reports less fatigue &amp; improved confidence. Family training completed 2026-03-31. Electronically signed by M. Rivera PT"
+26,P07,1,CVA,"PT eval 03/05/2026 MRN#551988. Pt s/p R CVA. c/o L shoulder pain 4/10 &amp; fatigue. Amb 25 ft w/ RW, min A. Impaired balance w/ standing. Pt tolerated tx well. Will cont w/ POC."
+27,P07,2,Stroke,Pt reports dizzyness when standing quickly. SOB w/ exertion. Amb 50 ft w/ RW. Gait training &amp; transfers. Pt tolerated tx well. Will cont w/ POC.
+28,P07,3,Stroke,"Shoulder pain 2/10. Amb 100 ft w/ SPC, CGA. Pt frustrated w/ slow progress?? Fatique noted after 20 min. Pt tolerated tx well. Will cont w/ POC.
+-- M. Rivera, PT"
+29,P07,3,Stroke,   
+30,P07,4,CVA,"Discharge 4/1/26. Amb 200 ft w/ SPC, indep on level surfaces. Needs supervision on stairs. Denies pain. Call 410-555-0142 w/ questions."
+31,P08,1,Stroke,"PT Initial Eval 2026-03-04. mrn 390112. Pt s/p L CVA w/ R UE weakness &amp; expressive aphasia. Difficulty finding words. Amb 10 ft w/ RW, mod A. Pt tolerated tx well. Will cont w/ POC."
+32,P08,2,stroke,"pt FRUSTRATED w/ speech, tearful during session. Fatigue noted. Amb 20 ft w/ RW, mod A. Transfers w/ min A. Pt tolerated tx well. Will cont w/ POC."
+33,P08,3,CVA,"Pt seen 3/18/26. Amb 45' w/ RW, min A. Balance impaired, denies dizziness. Speech therapy carryover. Pt tolerated tx well. Will cont w/ POC.
+-- M. Rivera, PT"
+34,P08,4,Stroke,"Amb 90 ft w/ RW, CGA. Pt anxious about returning home. Fatigue limits endurance. Plan: d/c to inpatient rehab."
+35,P09,1,Stroke,"PT eval 03/10/2026. MRN: 721004. Pt s/p R CVA. L LE weakness, impaired balance. c/o fatigue &amp; poor sleep. Amb 30 ft w/ RW, min A. Pt tolerated tx well. Will cont w/ POC."
+36,P09,2,CVA,"Pt reports improved balance!! Amb 60 ft w/ RW, CGA. Mild fatigue after tx. Denies pain or dizziness. Pt tolerated tx well. Will cont w/ POC."
+37,P09,3,stroke,"Amb 120 ft w/ SPC. Stairs w/ rail, min A. Balence improving. Pt motivated. Pt tolerated tx well. Will cont w/ POC.
+-- M. Rivera, PT"
+38,P09,4,Stroke,"Discharge 2026-04-03. Amb 250 ft w/ SPC, indep. Stairs w/ supervision. Reports improved confidence. Indep w/ HEP."
+39,P10,1,CVA,"PT Initial Eval 03/11/2026. MRN#448210. Pt s/p L CVA. R UE &amp; LE weakness, c/o fatigue &amp; dizziness. Amb 20 ft w/ RW, mod A. Pt tolerated tx well. Will cont w/ POC."
+40,P10,2,Stroke,"pt reports FATIGUE
+and difficulty sleeping. Amb 35 ft w/ RW, min A. Balance training in parallel bars. Pt tolerated tx well. Will cont w/ POC."
+41,P10,2,Stroke,NA
+42,P10,3,stroke,"Pt seen 3/25/26. Amb 80' w/ hemi walker, CGA. R shoulder pain 3/10 w/ reaching. Pt tolerated tx well. Will cont w/ POC."
+43,P10,4,CVA,"Amb 150 ft w/ SPC, supervision. Reports less fatigue. Denies pain. Pt anxious about stairs at home. Call (443) 555-0129 to schedule f/u.
+-- M. Rivera, PT"
