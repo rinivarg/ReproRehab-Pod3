@@ -1,0 +1,494 @@
+---
+title: "Missing Data Lecture"
+author: "Chad Aldridge"
+format: html
+theme: flatly
+toc: true
+toc-location: left
+execute: 
+  warning: false
+embed-resources: true
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+library(modelsummary)
+library(gtsummary)
+library(VIM) # visualization and imputation
+library(naniar) # primarily visualization
+library(mice) # primarily multiple imputation through chain equation
+```
+
+## Why care about missing data
+
+Missing data can lead to "*biased*" estimates and standard errors. Both of these statistics are used to determine "t", "F", "Z" statistics from which we derive **p values and interference**.
+
+## Missing Data Patterns
+
+Rubin (1976) classified missing data into three **missing data mechanisms**, which describe the probabilistic relationship between the missingness indicator $R$ and the data $Y = (Y_{obs}, Y_{mis})$ ([Dong & Peng, 2013](https://pmc.ncbi.nlm.nih.gov/articles/PMC3701793/)).
+
+| Acronym     | Full name                    | Missingness depends on            |
+|-----------------|-------------------------|------------------------------|
+| MCAR        | Missing Completely at Random | Neither observed nor missing data |
+| MAR         | Missing at Random            | Observed data only                |
+| MNAR (NMAR) | Missing Not at Random        | The missing values themselves     |
+
+: Rubin's taxonomy of missing data mechanisms
+
+## Missing Completely at Random (MCAR)
+
+The probability that a value is missing is unrelated to both the observed and the unobserved data ([Newman, 2014](https://journals.sagepub.com/doi/10.1177/1094428114548590)):
+
+$$
+P(R \mid Y_{obs}, Y_{mis}) = P(R)
+$$
+
+The observed cases can be treated as a random subsample of the complete data, so complete-case analysis is unbiased, although statistical power is reduced ([UMCG, 2018](https://www.rug.nl/umcg/research/departments/epidemiology/download-area/missing-data-june-12-2018.pdf)).
+
+**Example:** A Fugl-Meyer assessment score is lost because of a device failure or a misfiled case report form.
+
+## Missing at Random (MAR)
+
+Missingness depends only on observed data. After conditioning on those observed variables, it does not depend on the unobserved values ([Baraldi & Enders, 2010](https://www.uvm.edu/~statdhtx/StatPages/Missing_Data/Baraldi-Enders.html)):
+
+$$
+P(R \mid Y_{obs}, Y_{mis}) = P(R \mid Y_{obs})
+$$
+
+Despite the name, MAR describes *systematic* missingness. Most principled methods (multiple imputation, full information maximum likelihood, and likelihood-based mixed models) assume MAR ([van Buuren, 2018](https://stefvanbuuren.name/fimd/sec-MCAR.html)).
+
+**Example:** Older patients or those with higher baseline NIHSS scores are more likely to miss the 90-day follow-up, and age and NIHSS are fully recorded.
+
+## Missing Not at Random (MNAR)
+
+Missingness depends on the unobserved values themselves, even after conditioning on the observed data ([Little, 2024](https://www.annualreviews.org/doi/pdf/10.1146/annurev-clinpsy-080822-051727)):
+
+$$
+P(R \mid Y_{obs}, Y_{mis}) \neq P(R \mid Y_{obs})
+$$
+
+MNAR is also called *non-ignorable* or *informative* missingness. Valid inference requires an explicit model for the missingness mechanism (e.g., selection or pattern-mixture models) and sensitivity analyses, such as delta-adjusted imputation ([UMCG, 2018](https://www.rug.nl/umcg/research/departments/epidemiology/download-area/missing-data-june-12-2018.pdf)).
+
+**Example:** Patients with poor motor recovery skip the follow-up assessment *because* of that poor recovery.
+
+## Key Considerations
+
+::: callout-note
+## Nesting
+
+MCAR is a special case of MAR ([Dong & Peng, 2013](https://pmc.ncbi.nlm.nih.gov/articles/PMC3701793/)).
+:::
+
+::: callout-warning
+## Testability
+
+Departures from MCAR can be tested (e.g., Little's MCAR test or logistic regression of missingness on observed covariates). However, MAR cannot be distinguished from MNAR using the observed data alone ([Patient Related Outcome Measures](https://www.tandfonline.com/doi/full/10.2147/PROM.S178963)).
+:::
+
+::: callout-tip
+## Mechanisms vs. patterns
+
+MCAR, MAR, and MNAR are *mechanisms* (why data are missing). Missing data *patterns* describe where gaps sit in the data matrix: univariate, monotone (e.g., longitudinal dropout), or arbitrary.
+:::
+
+## References
+
+- Baraldi AN, Enders CK. An introduction to modern missing data analyses. <https://www.uvm.edu/~statdhtx/StatPages/Missing_Data/Baraldi-Enders.html>
+- Little RJA. Missing data analysis. *Annual Review of Clinical Psychology*. <https://www.annualreviews.org/doi/pdf/10.1146/annurev-clinpsy-080822-051727>
+- Newman DA. Missing data: Five practical guidelines. *Organizational Research Methods*. 2014. <https://journals.sagepub.com/doi/10.1177/1094428114548590>
+- Dong Y, Peng CYJ. Principled missing data methods for researchers. *SpringerPlus*. 2013;2:222. <https://pmc.ncbi.nlm.nih.gov/articles/PMC3701793/>
+- Patient Related Outcome Measures. Analytical approaches and estimands to take account of missing patient-reported data in longitudinal studies. <https://www.tandfonline.com/doi/full/10.2147/PROM.S178963>
+- Rubin DB. Inference and missing data. *Biometrika*. 1976;63(3):581–592.
+- UMCG Epidemiology. Help! Statistics! Missing data: An introduction. 2018. <https://www.rug.nl/umcg/research/departments/epidemiology/download-area/missing-data-june-12-2018.pdf>
+- van Buuren S. *Flexible Imputation of Missing Data*, 2nd ed. Section 1.2. <https://stefvanbuuren.name/fimd/sec-MCAR.html>
+
+## Example 1 - MCAR
+
+```{r}
+head(Animals_na)
+```
+
+```{r}
+# matrix plot showing the missing data pattern of lbrain and lbody
+matrixplot(Animals_na, sortby = "lbody")
+```
+
+```{r}
+# scatter plot showing where missing values of lbrain are in relation to lbody values
+scattMiss(Animals_na)
+```
+
+```{r}
+# histogram with an overlay based on a missing data marker
+histMiss(Animals_na)
+```
+
+```{r}
+# let's see if lbrain values differ between observed versus missing status of lbody values
+aggregate(lbody ~ is.na(lbrain), data = Animals_na, FUN = mean)
+```
+
+```{r}
+# now checking the sd across missing status of lbrain
+aggregate(lbody ~ is.na(lbrain), data = Animals_na, FUN = sd)
+```
+
+```{r}
+# quick summary table of the two above
+Animals_na |> 
+  mutate(na_status = is.na(lbrain)) |> 
+  tbl_summary(by = na_status, include = lbody) |> 
+  as_gt() |> 
+  gt::tab_header("Comparing lbody values between missing status of lbrain values")
+```
+
+```{r}
+# statistical test for not MCAR
+naniar::mcar_test(data = Animals_na) 
+```
+
+The non-significant p value tells us to reject the alternative hypothesis that the missing data pattern of the data set is **not** MCAR.
+
+```{r}
+# a simple logistic regression
+summary(glm(is.na(lbrain) ~ lbody, data = Animals_na))
+```
+
+The lack of association between lbody values and missing status of lbrain values reinforce increases the likelihood that given our data, the missing data pattern is MCAR.
+
+```{r}
+# using a loess fit to determine probability of missing data
+loess.fit <- loess(is.na(lbrain) ~ lbody, data = Animals_na, span = 0.7)
+miss_probs <- pmin(pmax(predict(loess.fit, type = "response"),0.00001),0.9999)
+plot(Animals_na$lbody, miss_probs,
+     main = "Relationship of Missing probabilty and lbody", xlab = "lbody values", ylab = "Missing Prob.",
+     ylim = c(0,1))
+```
+
+### Assess the centrality and variability of lbrain
+
+```{r}
+# observed statistics of the lbrain values
+observed_mean <- mean(Animals_na$lbrain, na.rm = T)
+observed_sd   <- sd(Animals_na$lbrain, na.rm = T)
+observed_median <- median(Animals_na$lbrain, na.rm = T)
+observed_IQR    <- IQR(Animals_na$lbrain, na.rm = T)
+```
+
+```{r}
+# impute missing values with the variable's mean, then calculate the mean-imputed mean and sd of lbrain values
+lbrain_imputed       <- impute_mean(Animals_na$lbrain) 
+lbrain_mean_imputed  <- mean(lbrain_imputed)
+lbrain_sd_imputed    <- sd(lbrain_imputed) 
+```
+
+```{r}
+# imputing with the median
+lbrain_imputed         <- impute_median(Animals_na$lbrain) 
+lbrain_median_imputed  <- mean(lbrain_imputed)
+lbrain_sd_imputed      <- sd(lbrain_imputed) 
+lbrain_IQR_imputed     <- IQR(lbrain_imputed)
+```
+
+```{r}
+# hot deck imputation
+hotdecked <- hotdeck(data = Animals_na, variable = "lbrain")
+hotdeck_mean <- mean(hotdecked$lbrain)
+hotdeck_sd   <- sd(hotdecked$lbrain)
+```
+
+Hot decking refers to imputing missing values with observed values from other participants or samples that are similar.
+
+```{r}
+# table to show the difference imputation methods
+data.frame("set" = c("Original", "Imputed"),
+           "Means" = c(observed_mean, lbrain_mean_imputed),
+           "SD" = c(observed_sd, lbrain_sd_imputed),
+           "Median" = c(observed_median, lbrain_median_imputed),
+           "IQR" = c(observed_IQR),
+           "HD Mean" = c(NA, hotdeck_mean),
+           "HD SD" = c(NA, hotdeck_sd)) |> 
+  gt::gt() |> 
+  gt::fmt_number(decimals = 3) |> 
+  gt::tab_header("MCAR Data Pattern")
+```
+
+## Example 2 - MAR
+
+```{r}
+# creating a simulated data set based on age and stroke severity and Fugl-Meyer measures at two time points
+set.seed(2026)
+
+# 1. Simulate complete data
+n <- 500
+age     <- rnorm(n, 68, 10)
+nihss   <- pmax(0, round(rnorm(n, 8, 5)))
+fm_base <- pmin(66, pmax(0, 50 - 1.8 * nihss + rnorm(n, 0, 6)))
+fm_90   <- pmin(66, pmax(0, 10 + 0.85 * fm_base - 0.10 * age + rnorm(n, 0, 5)))
+complete_df <- data.frame(age, nihss, fm_base, fm_90)
+
+```
+
+```{r}
+head(complete_df)
+```
+
+```{r}
+pattern = c(1,1,1,0) # the zero will make that column receive missing data 
+weights = c(0.5,1,-2,0) # giving relative strength of other variable to impact missing data
+
+# cause missing data with ampute function
+na_df <- ampute(data = complete_df,
+                weights = weights,
+                prop = 0.3,
+                mech = "MAR",
+                type = "RIGHT", # lower values have greater probability of missing
+                patterns = pattern)
+```
+
+```{r}
+head(na_df$amp)
+```
+
+```{r}
+# let's visualize the data like before
+matrixplot(na_df$amp, sortby = "fm_base")
+```
+
+```{r}
+histMiss(na_df$amp[,c("fm_base", "fm_90")])
+```
+
+```{r}
+histMiss(na_df$amp[,c("nihss", "fm_90")])
+```
+
+```{r}
+histMiss(na_df$amp[,c("age", "fm_90")])
+```
+
+```{r}
+# generate a table to see this
+na_df$amp |> 
+  mutate(missing_stats = ifelse(is.na(fm_90), "Missing", "Observed")) |> 
+  tbl_summary(by = missing_stats,
+              include = -fm_90) |> 
+  as_gt() |> 
+  gt::tab_header("Missing status of FM at 90 Days")
+```
+
+We see that older age, worse NIHSS scores, and lower Fugl-Meyer values occur in the missing 90-day FM values.
+
+```{r}
+# MCAR test should be significant here
+mcar_test(na_df$amp)
+```
+
+It is. We reject the hypothesis that the missing data pattern is a result of MCAR. However, we don't know if the missing data pattern is MAR or MNAR.
+
+```{r}
+# let's compare the true mean versus the observed mean
+data.frame("set" = c("True", "Observed"),
+           "count" = c(nrow(complete_df), nrow(na_df$amp)),
+           "mean" = c(mean(complete_df$fm_90), mean(na_df$amp$fm_90, na.rm = T)),
+           "sd" = c(sd(complete_df$fm_90), sd(na_df$amp$fm_90, na.rm = T))
+           ) |> 
+  gt::gt() |> 
+  gt::tab_header("90-day FM value means") |> 
+  gt::fmt_number(columns = 3:4,decimals = 2)
+```
+
+```{r}
+# logistic regression to see if baseline variables predict missing 90-day fm
+summary(glm(is.na(fm_90) ~ fm_base + age + nihss, data = na_df$amp, family = binomial))
+```
+
+```{r}
+# what if we use mean impute?
+fm90_mean_imputed <- na_df$amp$fm_90 |> impute_mean()
+
+data.frame("set" = c("True", "Observed", "Mean Imputed"),
+           "count" = c(nrow(complete_df), nrow(na_df$amp), length(fm90_mean_imputed)),
+           "mean" = c(mean(complete_df$fm_90), mean(na_df$amp$fm_90, na.rm = T), mean(fm90_mean_imputed)),
+           "sd" = c(sd(complete_df$fm_90), sd(na_df$amp$fm_90, na.rm = T), sd(fm90_mean_imputed))
+           ) |> 
+  gt::gt() |> 
+  gt::tab_header("90-day FM value means") |> 
+  gt::fmt_number(columns = 3:4,decimals = 2)
+```
+
+```{r}
+# now hot decking
+hotdeckked <- hotdeck(data = na_df$amp, variable = "fm_90")
+
+
+data.frame("set" = c("True", "Observed", "Mean Imputed", "Hot Decking"),
+           "count" = c(nrow(complete_df), nrow(na_df$amp), length(fm90_mean_imputed), nrow(hotdeckked)),
+           "mean" = c(mean(complete_df$fm_90), mean(na_df$amp$fm_90, na.rm = T), mean(fm90_mean_imputed), mean(hotdeckked$fm_90)),
+           "sd" = c(sd(complete_df$fm_90), sd(na_df$amp$fm_90, na.rm = T), sd(fm90_mean_imputed), sd(hotdeckked$fm_90))
+           ) |> 
+  gt::gt() |> 
+  gt::tab_header("90-day FM value means") |> 
+  gt::fmt_number(columns = 3:4,decimals = 2)
+```
+
+As you can see, mean imputation reflects the observed mean, but lowered the variability. Hot decking also preserved the observed mean and standard deviation. Neither imputation method remove the bias due to the MAR.
+
+### Imputation with MICE
+
+::: callout-warning
+### Variables with high proportions of missing data should not be imputed
+A rule of thumb is that a variable missing no more than 20 to 30 percent of its values can be imputed. The range reflects the strength of the observed variables predicting missing status of the variable to be imputed.
+:::
+
+```{r}
+# multiple imputation with the mice package
+imp <- mice(data = na_df$amp,
+            m = 30, # number of imputed data sets to generate
+            method = "pmm", # predictive means matching, similar concept to hot decking
+            printFlag = F,
+            seed = 65465) # set seed for reproducible values
+
+```
+
+::: callout-tip
+## The number of imputed data sets should reflect the proportion of missing data
+We want to impute the number of data sets based on the percentage of rows (e.g., samples or participants) with missing data in at least one column
+:::
+
+```{r}
+# we now will calculate the mean of the each imputed data set with the with() function
+mice_means <- with(imp, mean(fm_90))
+
+# now we calculate the overall mean and sd of the imputed means
+# we will loop over each imp data set
+mice_mean_sd <- lapply(
+  complete(imp, "all"),
+  function(x) data.frame("mean" = mean(x$fm_90), "sd" =  sd(x$fm_90)) # calculate mean and sd 
+) |> 
+  dplyr::bind_rows() |> # joining the 30 sets of means and sd
+  colMeans() # calculating the mean of means and mean of sd's
+
+mice_mean_sd
+```
+
+```{r}
+data.frame("set" = c("True", "Observed", "Mean Imputed", "Hot Decking", "MICE"),
+           "count" = c(nrow(complete_df), nrow(na_df$amp), length(fm90_mean_imputed), nrow(hotdeckked), nrow(na_df$amp)),
+           "mean" = c(mean(complete_df$fm_90), mean(na_df$amp$fm_90, na.rm = T), mean(fm90_mean_imputed), mean(hotdeckked$fm_90), mice_mean_sd[1]),
+           "sd" = c(sd(complete_df$fm_90), sd(na_df$amp$fm_90, na.rm = T), sd(fm90_mean_imputed), sd(hotdeckked$fm_90), mice_mean_sd[2])
+           ) |> 
+  gt::gt() |> 
+  gt::tab_header("90-day FM value means") |> 
+  gt::fmt_number(columns = 3:4,decimals = 2)
+```
+
+The MICE method has the least amount of bias from the true mean and sd of the 90-day FM values.
+
+::: callout-note
+## Modeling with MICE
+What if we want to model the relationship of age, nihss, and baseline FM on 90-day FM?
+:::
+
+```{r}
+# we are going to compare the model estimates across the true data set, observed data, and imputed data sets
+true.fit <- lm(fm_90 ~ fm_base + age + nihss, data = complete_df)
+obsv.fit <- lm(fm_90 ~ fm_base + age + nihss, data = na_df$amp)
+mice.fit <- with(imp, lm(fm_90 ~ fm_base + age + nihss)) |> pool() 
+# pool model estimates using Rubin's rules
+```
+
+```{r}
+modelsummary(list("true model" = true.fit, "observed model" = obsv.fit, "mice" = mice.fit))
+```
+
+## Example 3 - MNAR
+
+With **MNAR** (*missing-not-at-random*), there is an unobserved variable or influence causing the missing data pattern. For example, individuals with little recovery at 90 days post-stroke decide to leave the study.
+
+```{r}
+mnar_df <- ampute(data = complete_df,
+                  prop = 0.3,
+                  mech = "MNAR",
+                  type = "LEFT",
+                  patterns = pattern,
+                  weights = c(0,0,0,1)) # only fm 90 days will determine missing data
+```
+
+
+```{r}
+# compare the MAR and MNAR missing data patterns of 90-day FM values
+par(mfrow = c(1,2))
+matrixplot(na_df$amp, sortby = "fm_base"); title(main = "MAR")
+matrixplot(mnar_df$amp, sortby = "fm_base"); title(main = "MNAR")
+par(mfrow=c(1,1))
+```
+
+::: callout-warning
+## Observed data cannot distinguish between MAR and MNAR
+It is important to remember that the missing data pattern observed in your data cannot tell you whether it is the result of MAR or MNAR. You need to include other variables that may act as proxies (e.g., discharged to SNF vs IFR)
+:::
+
+
+In mathematical terms $R$ is notating "missing":
+
+$$ MAR: ~~ P(~R~|~fm_{90}~) = P(~R~|~fm_{base}~) $$
+
+$$ MNAR: ~~ P(~R~|~fm_{base},~fm_{90}~) \ne P(~R~|~fm_{base}~) $$
+
+We can only determine if these statements are true or false by knowing the true values.
+
+```{r}
+true_fm90  <- mnar_df$data$fm_90 
+mnar.fit1  <- (glm(is.na(fm_90) ~ age + nihss + fm_base, data = mnar_df$amp))
+mnar.fit2  <- (glm(is.na(fm_90) ~ age + nihss + fm_base + true_fm90, data = mnar_df$amp))
+modelsummary(list("Observed Data only" = mnar.fit1, "True Data" = mnar.fit2),
+             gof_map = "none",
+             statistic = c("std.error", "p.value"),
+             title = "Modeling MNAR Missing")
+```
+
+By using the true fm90 values, we show that the FM baseline values do not predict missing status of 90-day FM values.
+
+```{r}
+data.frame("set" = c("True", "Observed"),
+           "mean" = c(mean(complete_df$fm_90), mean(mnar_df$amp$fm_90, na.rm = T)),
+           "sd" = c(sd(complete_df$fm_90), sd(mnar_df$amp$fm_90, na.rm = T))
+           ) |> 
+  gt::gt() |> 
+  gt::fmt_number(decimals = 2) |> 
+  gt::tab_header("MNAR True versus Observed")
+```
+
+```{r}
+# trying to see what happens with mice
+
+imp2 <- mice(data = mnar_df$amp,
+             m = 30, 
+             method = "pmm",
+             printFlag = F)
+```
+
+```{r}
+mnar_mean_sd <- lapply(
+  complete(imp2, "all"),
+  function(i) {data.frame("mean" = mean(i$fm_90), "sd" = sd(i$fm_90))}
+) |> 
+  dplyr::bind_rows() |> 
+  colMeans()
+
+data.frame("set" = c("True", "Observed", "MICE"),
+           "mean" = c(mean(complete_df$fm_90), mean(mnar_df$amp$fm_90, na.rm = T), mnar_mean_sd[1]),
+           "sd" = c(sd(complete_df$fm_90), sd(mnar_df$amp$fm_90, na.rm = T), mnar_mean_sd[2])
+           ) |> 
+  gt::gt() |> 
+  gt::fmt_number(decimals = 2) |> 
+  gt::tab_header("MNAR True versus Observed")
+```
+
+::: callout-tip
+## highly correlated variable can act as proxies to the MNAR variable
+In this case, baseline FM values strongly predict 90-day FM values even though the missing data pattern is due to low 90-day FM values representing limited recovery.
+:::
