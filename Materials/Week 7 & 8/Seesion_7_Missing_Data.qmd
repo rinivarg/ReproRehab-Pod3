@@ -1,7 +1,7 @@
 ---
 title: "Missing Data Lecture"
 author: "Chad Aldridge"
-format: html
+format: typst
 theme: flatly
 toc: true
 toc-location: left
@@ -453,14 +453,19 @@ modelsummary(list("Observed Data only" = mnar.fit1, "True Data" = mnar.fit2),
 By using the true fm90 values, we show that the FM baseline values do not predict missing status of 90-day FM values.
 
 ```{r}
-data.frame("set" = c("True", "Observed"),
-           "mean" = c(mean(complete_df$fm_90), mean(mnar_df$amp$fm_90, na.rm = T)),
-           "sd" = c(sd(complete_df$fm_90), sd(mnar_df$amp$fm_90, na.rm = T))
+# mean imputation
+mean_impute <- impute_mean(mnar_df$amp$fm_90)
+
+data.frame("set" = c("True", "Observed", "Mean Imputed"),
+           "mean" = c(mean(complete_df$fm_90), mean(mnar_df$amp$fm_90, na.rm = T), mean(mean_impute)),
+           "sd" = c(sd(complete_df$fm_90), sd(mnar_df$amp$fm_90, na.rm = T), sd(mean_impute))
            ) |> 
   gt::gt() |> 
   gt::fmt_number(decimals = 2) |> 
   gt::tab_header("MNAR True versus Observed")
 ```
+
+As you can see here, the bias from the true mean remains with mean imputation. It also artificially reduces the standard deviation. This behavior may result in a false positive difference over time or between experimental groups.
 
 ```{r}
 # trying to see what happens with mice
@@ -492,3 +497,18 @@ data.frame("set" = c("True", "Observed", "MICE"),
 ## highly correlated variable can act as proxies to the MNAR variable
 In this case, baseline FM values strongly predict 90-day FM values even though the missing data pattern is due to low 90-day FM values representing limited recovery.
 :::
+
+```{r}
+# comparing mice on MNAR with true
+f <- formula(fm_90 ~ fm_base + age + nihss) # formula
+
+true.fit <- lm(f, data = complete_df) # true model
+mice.fit <- pool(with(imp2, lm(f))) # mice model for MNAR
+```
+
+```{r}
+# model comparison table
+modelsummary(list("True" = true.fit, "MICE" = mice.fit),
+             gof_omit = "(AIC|BIC|Log|F|RMSE)", title = "MICE performance with MNAR")
+```
+
