@@ -1,0 +1,17 @@
+---
+title: "Coding with AI"
+author: "Chad M. Aldridge"
+format: html
+embed-resources: true
+execution:
+  warning: false
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r}
+
+```
+

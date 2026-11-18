@@ -32,8 +32,8 @@ head(demo_clean)
 # Create summary statistics
 demo_summary <- demo_clean %>%
   summarise(
-    sex = paste0(sum(gender == "M", na.rm = TRUE), "F, ", 
-                 sum(gender == "F", na.rm = TRUE), "M"),
+    sex = paste0(sum(gender == "M", na.rm = TRUE), "M, ", 
+                 sum(gender == "F", na.rm = TRUE), "F"),
     age =    paste0(round(mean(age, na.rm = TRUE),0), " ± ",
                     round(sd(age, na.rm = TRUE),0)),
 
@@ -141,17 +141,21 @@ regression_table = tab_model(lm_fit, show.stat = TRUE,
 display_html(head(regression_table$page.complete))
 
 # Estimated marginal means for speed - the same as were compared by the t-test
-speed_means <- emmeans(lm_fit, ~ speed)
+speed_means <- emmeans(lm_fit, specs =  ~ speed)
 speed_means
+
+pairs(speed_means)
 
 display_markdown("------------")
 # Estimated marginal means for incline - the same as were compared by the ANOVA
 incline_means <- emmeans(lm_fit, ~ incline)
 incline_means
 
+pairs(incline_means)
+
 display_markdown("------------")
 # Estimated marginal means for both factors - "splits" them by these two factors
-speed_by_incline_means <- emmeans(lm_fit, ~ speed + incline)
+speed_by_incline_means <- emmeans(lm_fit, ~ speed | incline)
 speed_by_incline_means
 
 display_markdown("------------")
@@ -159,7 +163,7 @@ display_markdown("------------")
 plot_model(lm_fit, type = "pred", terms = c("incline", "speed")) + thm
 
 # With adjustment for multiple comparisons
-pairs(incline_means, adjust = "tukey")
+pairs(incline_means, adjust = "fdr")
 
 display_markdown("------------")
 pairs(incline_means, adjust = "bonferroni")
@@ -168,5 +172,5 @@ pairs(incline_means, adjust = "bonferroni")
 factor(data_calc$incline) %>% levels()
 # incline_means
 contrast(incline_means, 
-         list("Uphill - Downhill" = c(-1, 0, 1),    # Compare uphill to downhill
+         list("Uphill - Downhill" = c(1, 0, -1),    # Compare uphill to downhill
               "Uphill - Level" = c(0, -1, 1)))      # Compare uphill to level

@@ -1,0 +1,654 @@
+---
+title: "Coding in R with AI for Rehabilitation Research"
+subtitle: "A worked teaching example for physical and occupational therapy studies after stroke, TBI, and SCI"
+author: "Chad M. Aldridge, DPT, PT"
+date: today
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 2
+    toc-location: left
+    number-sections: true
+    code-copy: true
+    code-tools: true
+    code-overflow: wrap
+    df-print: kable
+    embed-resources: true
+    fig-width: 7
+    fig-height: 4.2
+    include-in-header:
+      text: |
+        <style>
+        </style>
+        body { font-family: "Source Serif Pro", Georgia, serif; line-height: 1.6; }
+        h1, h2, h3, .title, .subtitle { font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif; }
+        .title { color: #232D4B; }
+        h2 { border-bottom: 2px solid #E57200; padding-bottom: 4px; color: #232D4B; }
+        .callout { font-size: 0.95em; }
+        pre.prompt { white-space: pre-wrap; background: #f6f8fa; border-left: 4px solid #232D4B; padding: 10px 14px; font-size: 0.88em; }
+execute:
+  echo: true
+  warning: false
+  message: false
+editor_options: 
+  chunk_output_type: console
+---
+
+# Purpose and audience {.unnumbered}
+
+This module teaches rehabilitation clinicians and trainees (PT, OT, SLP, and rehabilitation science PhD students) to use a large language model (LLM) such as ChatGPT, Claude, Copilot, or Perplexity as a **coding assistant** for R, without handing it the scientific reasoning. The running example is a simulated multi-site trial of high-intensity gait training in adults with stroke, traumatic brain injury (TBI), or incomplete spinal cord injury (SCI), with outcomes in gait, upper-extremity motor function, cognition, and disability.
+
+**Learning objectives.** By the end, learners should be able to:
+
+1. Write a structured prompt that specifies the estimand, data structure, and constraints before asking for code.
+2. Run, read, and verify AI-generated R code with explicit checks, rather than trusting it because it runs.
+3. Recognize common AI errors in rehabilitation statistics (change-score misuse, ignored clustering, ordinal scales treated as interval, inappropriate dichotomization, and complete-case analysis by default).
+4. Fit and interpret a longitudinal mixed model, a responder analysis anchored to a published MCID, a proportional odds model for the modified Rankin Scale (mRS), and a simulation-based power analysis.
+
+::: {.callout-important}
+## Data governance comes first
+Never paste protected health information (PHI), medical record numbers, dates of birth, or raw participant-level data into a public AI tool. Share **structure, not data**: a data dictionary, the output of `str()` on a synthetic copy, or variable names and types. Check your institution's IRB and information-security policy on approved AI tools before using them with study data.
+:::
+
+# The AI-assisted coding loop
+
+AI is most useful when the analyst owns the question and the AI owns the typing. Use this five-step loop for every task.
+
+| Step | Who leads | What happens |
+|---|---|---|
+| 1. Specify | You | Define the estimand, population, outcome, time point, and data structure |
+| 2. Generate | AI | Draft code from a structured prompt |
+| 3. Run | You | Execute line by line on synthetic or de-identified data |
+| 4. Verify | You (AI can help) | Check dimensions, ranges, missingness, model specification, and against a hand calculation |
+| 5. Document | You | Comment the code, record the prompt, and save `sessionInfo()` |
+
+## A reusable prompt template
+
+A prompt that states the clinical context, the estimand, and the data structure produces far better code than "analyze my gait data." The template below works well for rehabilitation studies.
+
+<pre class="prompt">
+ROLE: You are an R programmer helping a rehabilitation researcher. Use tidyverse style.
+CONTEXT: [Design, e.g., 2-arm RCT, 4 sites, stroke/TBI/SCI, assessments at weeks 0, 4, 8, 12]
+ESTIMAND: [e.g., Difference in mean comfortable gait speed (m/s) at week 8 between arms,
+          adjusted for baseline, in all randomized participants (treatment-policy strategy)]
+DATA: [Paste output of str() or a data dictionary from SYNTHETIC data only]
+CONSTRAINTS: [Packages allowed; do not use complete-case analysis silently; treat site as fixed
+             because there are only 4 sites; report 95% CIs]
+DELIVERABLE: Commented R code, then a list of the assumptions your code makes,
+             then 3 checks I should run to confirm it is correct.
+</pre>
+
+The last line matters most. Asking the AI to list its own assumptions exposes choices you may not agree with.
+
+# Setup and a synthetic dataset
+
+We simulate data rather than use real records. This is also a good habit for real projects: build and debug code on a synthetic dataset that mirrors the structure of the real one, then run the verified code on the real data in a secure environment.
+
+```{r}
+#| label: setup
+library(tidyverse)   # data wrangling and ggplot2
+library(lme4)        # mixed models
+library(lmerTest)    # Satterthwaite df for lmer
+library(nlme)        # MMRM-style gls with unstructured covariance
+library(emmeans)     # model-based contrasts
+library(ordinal)     # proportional odds models
+theme_set(theme_minimal(base_size = 12))
+```
+
+::: {.callout-note collapse="true"}
+## Prompt used to draft the simulation (click to expand)
+<pre class="prompt">
+Write R code to simulate a 2-arm rehabilitation RCT (n = 120; usual care vs high-intensity
+gait training, HIGT) across 4 sites. Diagnoses: stroke (50%), TBI (25%), incomplete SCI (25%).
+Assessments at weeks 0, 4, 8, 12. Outcomes: comfortable 10MWT gait speed (m/s, > 0),
+MoCA (integer 0-30), FMA-UE (integer 0-66, stroke only, NA otherwise), and mRS at week 12
+(0-5, stroke only). HIGT adds about 0.12 m/s by week 8 with partial retention at week 12.
+Include participant random intercepts and slopes, a small site effect, and dropout that is
+more likely in slower walkers (MAR). Return WIDE data like a REDCap export.
+</pre>
+:::
+
+```{r}
+# AI joined Stroke, TBI, and SCI together. Can we read this code and change it?
+
+#| label: simulate
+set.seed(2026)
+n <- 120
+weeks <- c(0, 4, 8, 12)
+
+participants <- tibble(
+  id        = sprintf("P%03d", 1:n),
+  site      = factor(sample(paste0("Site", LETTERS[1:4]), n, replace = TRUE)),
+  diagnosis = factor(sample(c("Stroke", "TBI", "SCI"), n, replace = TRUE,
+                            prob = c(0.50, 0.25, 0.25)),
+                     levels = c("Stroke", "TBI", "SCI")),
+  age       = round(rnorm(n, 58, 13)),
+  sex       = sample(c("F", "M"), n, replace = TRUE),
+  months_post_injury = round(rexp(n, 1 / 10) + 1) # the rexp() is a random draw from an exponential distribution; why is the AI adding 1 before rounding?
+) |>
+  group_by(diagnosis) |>                                   # randomize within diagnosis
+  mutate(arm = sample(rep(c("Usual care", "HIGT"), length.out = n()))) |>
+  ungroup() |>
+  mutate(arm = factor(arm, levels = c("Usual care", "HIGT")))
+
+site_eff <- c(SiteA = 0, SiteB = 0.04, SiteC = -0.03, SiteD = 0.02)
+
+long_true <- participants |>
+  mutate(
+    b0     = rnorm(n, 0, 0.15),                            # random intercept
+    b1     = rnorm(n, 0, 0.004),                           # random slope (per week)
+    gs_bl  = case_when(diagnosis == "Stroke" ~ 0.55,
+                       diagnosis == "TBI"    ~ 0.80,
+                       diagnosis == "SCI"    ~ 0.45) + b0 + site_eff[as.character(site)], # what is happening here?
+    moca_bl = case_when(diagnosis == "TBI" ~ 22, diagnosis == "Stroke" ~ 23, TRUE ~ 26) +
+              rnorm(n, 0, 2.5),
+    fma_bl  = rnorm(n, 35, 12) # why is the fma for all simlated participants?
+  ) |>
+  crossing(week = weeks) |> # what does the crossing function do?
+  mutate( # what is happening with this mutation function for trt_gain, gait speed, moca, and fma_ue?
+    trt_gain = if_else(arm == "HIGT", 0.015 * pmin(week, 8) - 0.005 * pmax(week - 8, 0), 0), # why if_else and not ifelse?
+    gait_speed = pmax(0.05, gs_bl + (0.0075 + b1) * week + trt_gain + rnorm(n(), 0, 0.06)),
+    moca   = round(pmin(30, pmax(0, moca_bl + 0.12 * week + rnorm(n(), 0, 1.2)))),
+    fma_ue = if_else(diagnosis == "Stroke", 
+                     round(pmin(66, pmax(0, fma_bl + 0.35 * pmin(week, 8) + rnorm(n(), 0, 2.5)))),
+                     NA_real_) # why is there NA_real_ here?
+  )
+
+# Monotone dropout after baseline; slower baseline walkers drop out more often (MAR)
+dropout_week <- participants |>
+  left_join(distinct(long_true, id, gs_bl), by = "id") |>
+  mutate(p_drop = plogis(-2.6 - 4 * (gs_bl - 0.6)), # what is happening with the plogis function?
+         drop_at = case_when(runif(n) < p_drop ~ sample(c(4, 8, 12), n, replace = TRUE),
+                             TRUE ~ Inf)) |>
+  select(id, drop_at) # do you agree with the MAR principal here? 
+
+long_true <- long_true |>
+  left_join(dropout_week, by = "id") |>
+  mutate(across(c(gait_speed, moca, fma_ue), ~ if_else(week >= drop_at, NA_real_, .x)))
+
+# mRS at week 12 for stroke only, linked to week-12 walking ability
+mrs <- long_true |>
+  filter(week == 12, diagnosis == "Stroke") |>
+  mutate(latent = -3 * (gs_bl + trt_gain) + rnorm(n(), 0, 0.6),
+         mrs_wk12 = as.integer(cut(latent, c(-Inf, -2.9, -2.3, -1.7, -1.1, -0.6, Inf))) - 1L,
+         mrs_wk12 = if_else(is.na(gait_speed), NA_integer_, mrs_wk12)) |> # do you agree with using gait speed as a measure to determine the mRS?
+  select(id, mrs_wk12)
+
+# Wide "REDCap-style" export: one row per participant
+rehab_wide <- long_true |>
+  select(id, site, diagnosis, arm, age, sex, months_post_injury,
+         week, gait_speed, moca, fma_ue) |>
+  pivot_wider(names_from = week,
+              values_from = c(gait_speed, moca, fma_ue),
+              names_glue = "{.value}_wk{week}") |>
+  left_join(mrs, by = "id") |>
+  mutate(across(starts_with("gait_speed"), ~ round(.x, 2)))
+
+dim(rehab_wide)
+head(rehab_wide[, 1:10], 4)
+```
+
+```{r}
+# check the distribution of simulated data values
+rehab_wide |> 
+  gtsummary::tbl_summary(include = c(matches("gait")), by = diagnosis)
+
+# if slower gait speeds are associated with more drop out, then wide do we have more dropout at higher gait speeds
+# seen in stroke and tbi diagnosis groups, but not SCI?
+```
+
+```{r}
+# let's check missing data patterns. 
+VIM::matrixplot(select(rehab_wide,gait_speed_wk0:gait_speed_wk12), sortby = "gait_speed_wk0", main = " gait speed")
+VIM::matrixplot(select(rehab_wide,matches("moca")), main = " MoCA")
+VIM::matrixplot(select(rehab_wide,matches("fma")), main = " FMA UE") # is this good?
+```
+
+```{r}
+# does the missing data rate make sense for diagnosis group?
+rehab_wide$diagnosis |> levels() # Stroke = 0, TBI = 2, SCI = 3
+VIM::matrixplot(select(rehab_wide, diagnosis, matches("gait")), sortby = "diagnosis") # so most of the missing data is in Stroke not SCI
+```
+
+
+## What to share with the AI
+
+Instead of the data, share the structure. The `str()` output below is safe to paste because the data are synthetic. For real data, paste the structure of a synthetic copy or a data dictionary.
+
+```{r}
+#| label: structure
+str(rehab_wide, give.attr = F, vec.len = 2)
+```
+
+# Example 1: Reshape and validate
+
+Most rehabilitation datasets arrive wide (one row per participant). Longitudinal models need long format (one row per participant per visit).
+
+<pre class="prompt">
+Using the data structure above, reshape rehab_wide to long format with columns id, site,
+diagnosis, arm, age, sex, months_post_injury, week (numeric), gait_speed, moca, fma_ue.
+Then write stopifnot() checks for: number of rows, range of each outcome, and that
+FMA-UE is missing for all non-stroke participants.
+</pre>
+
+```{r}
+#| label: reshape
+rehab_long <- rehab_wide |>
+  pivot_longer(cols = matches("_wk\\d+$"),
+               names_to = c(".value", "week"),
+               names_pattern = "(.*)_wk(\\d+)") |>
+  mutate(week = as.numeric(week))
+
+# Verification: these checks encode clinical knowledge the AI cannot know for sure
+stopifnot(
+  nrow(rehab_long) == nrow(rehab_wide) * 4,
+  all(rehab_long$gait_speed > 0 & rehab_long$gait_speed < 2.5, na.rm = TRUE),  # plausible m/s
+  all(rehab_long$moca %in% 0:30 | is.na(rehab_long$moca)),
+  all(rehab_long$fma_ue %in% 0:66 | is.na(rehab_long$fma_ue)),
+  all(is.na(rehab_long$fma_ue[rehab_long$diagnosis != "Stroke"]))
+)
+```
+
+::: {.callout-tip}
+## Teaching point
+The AI wrote the reshape; the analyst wrote the plausibility limits. A gait speed of 12 m/s (a units error from seconds) or a MoCA of 31 would pass silently through an AI-generated pipeline unless someone who knows the instruments writes the checks.
+:::
+
+## Missing data audit
+
+Before modeling, describe missingness by arm and visit. AI tools frequently default to `na.omit()` without saying so.
+
+```{r}
+#| label: missing
+rehab_long |>
+  group_by(arm, week) |>
+  summarise(n_observed = sum(!is.na(gait_speed)),
+            pct_missing = round(100 * mean(is.na(gait_speed)), 1),
+            .groups = "drop") |>
+  pivot_wider(names_from = week, values_from = c(n_observed, pct_missing),
+              names_glue = "wk{week}_{.value}")
+```
+
+```{r}
+#| label: missing-mar
+# Is dropout related to baseline walking? (supports MAR over MCAR, cannot rule out MNAR)
+rehab_wide |>
+  mutate(missing_wk8 = is.na(gait_speed_wk8)) |>
+  group_by(missing_wk8) |>
+  summarise(n = n(), mean_baseline_gs = round(mean(gait_speed_wk0), 2))
+```
+
+Slower baseline walkers are more likely to be missing at week 8, so a complete-case comparison would overrepresent faster walkers. A likelihood-based mixed model that uses all observed visits is valid under missing at random (MAR) conditional on the variables in the model.
+
+# Example 2: Descriptive table and trajectories
+
+```{r}
+#| label: table1
+rehab_wide |>
+  group_by(arm) |>
+  summarise(
+    N = as.character(n()),
+    `Age, mean (SD)` = sprintf("%.1f (%.1f)", mean(age), sd(age)),
+    `Female, n (%)` = sprintf("%d (%.0f%%)", sum(sex == "F"), 100 * mean(sex == "F")),
+    `Stroke / TBI / SCI` = paste(table(diagnosis), collapse = " / "),
+    `Months post-injury, median [IQR]` = sprintf("%.0f [%.0f, %.0f]",
+        median(months_post_injury), quantile(months_post_injury, .25), quantile(months_post_injury, .75)),
+    `Baseline gait speed, m/s` = sprintf("%.2f (%.2f)", mean(gait_speed_wk0), sd(gait_speed_wk0)),
+    `Baseline MoCA, median [IQR]` = sprintf("%.0f [%.0f, %.0f]",
+        median(moca_wk0), quantile(moca_wk0, .25), quantile(moca_wk0, .75))
+  ) |>
+  pivot_longer(-arm, names_to = "Characteristic") |>
+  pivot_wider(names_from = arm, values_from = value)
+```
+
+```{r}
+#| label: fig-trajectories
+#| fig-cap: "Individual (thin) and mean (thick, 95% CI) comfortable gait speed trajectories by arm and diagnosis. The dashed line marks 0.8 m/s, a commonly used threshold for community ambulation."
+rehab_long |>
+  filter(!is.na(gait_speed)) |>
+  ggplot(aes(week, gait_speed, colour = arm)) +
+  geom_line(aes(group = id), alpha = 0.15) +
+  stat_summary(fun.data = mean_cl_normal, geom = "pointrange", linewidth = 0.8,
+               position = position_dodge(width = 1)) +
+  stat_summary(fun = mean, geom = "line", linewidth = 1.1) +
+  geom_hline(yintercept = 0.8, linetype = "dashed", colour = "grey40") +
+  facet_wrap(~ diagnosis) +
+  scale_x_continuous(breaks = c(0, 4, 8, 12)) +
+  scale_colour_manual(values = c("Usual care" = "#6C757D", "HIGT" = "#E57200")) +
+  labs(x = "Week", y = "Comfortable gait speed (m/s)", colour = NULL) +
+  theme(legend.position = "bottom")
+```
+
+::: {.callout-note}
+## Look before you model
+The simulation gave HIGT the **same** true effect in every diagnosis, yet the TBI panel may suggest little or no benefit. With roughly 30 participants per diagnostic group, apparent subgroup differences of this size arise from sampling variability alone. Keep this figure in mind for Exercise 3.
+:::
+
+# Example 3: Critiquing an AI first draft
+
+This is the core exercise. A short, unstructured prompt typically returns code like the block below. It runs without error, which is exactly why it is dangerous.
+
+<pre class="prompt">
+I have gait speed at baseline and week 8 for two groups. Test whether HIGT works.
+</pre>
+
+```{r}
+#| label: ai-draft
+#| eval: false
+# Typical AI first draft (do not use)
+d <- na.omit(rehab_wide)                                  # (1)
+d$change <- d$gait_speed_wk8 - d$gait_speed_wk0           # (2)
+t.test(change ~ arm, data = d)                            # (3)
+d$responder <- ifelse(d$change > 0.1, 1, 0)               # (4)
+```
+
+| Line | Problem | Why it matters in rehabilitation trials |
+|---|---|---|
+| (1) | `na.omit()` on the whole wide table | Drops every participant missing any variable, including FMA-UE, which is missing by design for all TBI and SCI participants. Most of the sample disappears and the remainder is biased toward faster walkers. |
+| (2)-(3) | Unadjusted change-score t-test | Ignores baseline imbalance and regression to the mean; ANCOVA with baseline as a covariate is more efficient in randomized trials ([Vickers and Altman, 2001](https://www.bmj.com/content/323/7321/1123)). Also ignores site and diagnosis used in randomization. |
+| (3) | Uses only week 8 | Discards weeks 4 and 12 and the information they carry about dropouts. |
+| (4) | Arbitrary 0.1 m/s responder cut | Threshold not justified for the population; dichotomizing a continuous outcome loses power ([Altman and Royston, 2006](https://www.bmj.com/content/332/7549/1080.1)). |
+
+Running the draft shows the first problem directly:
+
+::: {.callout-warning}
+## Sources that AI uses are limited
+The AI is pulling information from open access sources primarily to update its token prediction weights, but this means that highly prized information on methods and seminal papers may not be accessible by the AI.
+:::
+
+```{r}
+#| label: ai-draft-n
+c(original_n = nrow(rehab_wide), after_na_omit = nrow(na.omit(rehab_wide)))
+```
+
+::: {.callout-tip}
+## A better follow-up prompt
+"Revise this. Do not drop participants with missing data. Fit a mixed model using all post-baseline visits, adjusting for baseline gait speed, diagnosis, and site as fixed effects. Report the adjusted difference at week 8 with a 95% CI. Explain what missing-data assumption the model makes."
+:::
+
+# Example 4: Longitudinal mixed model
+
+The primary analysis uses all post-baseline visits with baseline gait speed as a covariate (a constrained-baseline ANCOVA in mixed-model form). Site is a fixed effect because four levels are too few to estimate a variance component reliably.
+
+::: {.callout-note}
+What is a constrained-baseline ANCOVA in a mixed model form? Why would we want this? what does this mean? 
+:::
+
+```{r}
+#| label: lmm
+post <- rehab_long |>
+  filter(week > 0) |> # why are we filtering out week == 0 here?
+  left_join(select(rehab_wide, id, gs_baseline = gait_speed_wk0), by = "id") |>
+  mutate(week_f = factor(week))
+
+fit_lmm <- lmer(gait_speed ~ arm * week_f + gs_baseline + diagnosis + site + (1 | id),
+                data = post)
+
+summary(fit_lmm)$coefficients |> round(3)
+```
+
+```{r}
+#| label: emmeans
+emm <- emmeans(fit_lmm, ~ arm | week_f, lmer.df = "satterthwaite")
+contrast(emm, method = "revpairwise") |>
+  summary(infer = TRUE) |> # what is the summary function doing here?
+  as_tibble() |>
+  mutate(across(where(is.numeric), ~ round(.x, 3)))
+```
+
+**Interpretation for a clinical audience.** At week 8, participants in HIGT walked faster than those in usual care by the estimated difference shown above (m/s), adjusted for baseline speed, diagnosis, and site. Compare this estimate and its confidence interval, not the p-value alone, with the minimal clinically important difference (MCID) for the population.
+
+## Sensitivity analysis: MMRM with unstructured covariance
+
+Regulatory-style trial analyses often use a mixed model for repeated measures (MMRM) with an unstructured within-participant covariance. Asking the AI to "fit the same model as an MMRM in nlme" is a good test of whether it understands the difference.
+
+```{r}
+#| label: mmrm
+fit_mmrm <- gls(gait_speed ~ arm * week_f + gs_baseline + diagnosis + site,
+                correlation = corSymm(form = ~ as.integer(week_f) | id), # this correlation structure is what? Is week_f as random slope or intercept?
+                weights = varIdent(form = ~ 1 | week_f), # what does this do? why do we want variance of residuals clustered by week?
+                data = post, na.action = na.omit, method = "REML")
+
+emmeans(fit_mmrm, ~ arm | week_f, mode = "df.error") |>
+  contrast(method = "revpairwise") |>
+  summary(infer = TRUE) |>
+  as_tibble() |>
+  mutate(across(where(is.numeric), ~ round(.x, 3)))
+```
+
+::: {.call-out-warning}
+## Corerlation Structures in mixed-effects models
+Are you prepared to defend an unstructured correlation structure? Is there a reason for not using an exchangeable correlation structure (i.e., corCompSymm() )
+:::
+
+`na.action = na.omit` here removes only missing **rows** (visits), not participants, so every participant with at least one post-baseline visit contributes. Agreement between the random-intercept model and the MMRM is reassuring; a large discrepancy would prompt a closer look at the covariance structure.
+
+## Verify the model, not just the output
+
+```{r}
+#| label: verify-model
+c(participants_in_model = n_distinct(post$id[!is.na(post$gait_speed)]),
+  observations_in_model = nobs(fit_lmm))
+
+# Residual diagnostics
+par(mfrow = c(1, 2))
+plot(fitted(fit_lmm), resid(fit_lmm), xlab = "Fitted", ylab = "Residual", pch = 16, cex = 0.6)
+abline(h = 0, lty = 2)
+qqnorm(resid(fit_lmm), pch = 16, cex = 0.6); qqline(resid(fit_lmm))
+
+# we are verifying the model based on knowing the ground truth should the simulated data. AI is predicting the most likely model
+```
+
+# Example 5: Responder analysis anchored to a published MCID
+
+Responder analyses are intuitive for clinicians but should be secondary to the continuous analysis. The threshold must come from the literature for a comparable population, not from the AI. In subacute stroke, [Tilson et al. (2010)](https://pmc.ncbi.nlm.nih.gov/articles/PMC2816032/) estimated an MCID of 0.16 m/s for comfortable gait speed anchored to the mRS, and a [systematic review across stroke, hip fracture, and MS](https://onlinelibrary.wiley.com/doi/10.1111/jep.12158) concluded that changes of 0.10 to 0.20 m/s may be important. For the FMA-UE in chronic stroke with minimal to moderate impairment, [Page et al. (2012)](https://academic.oup.com/ptj/article-abstract/92/6/791/2735128) reported clinically important differences of 4.25 to 7.25 points.
+
+```{r}
+#| label: responder
+mcid_gs <- 0.16   # Tilson et al. 2010, subacute stroke; state the source in code
+
+resp <- rehab_wide |>
+  filter(!is.na(gait_speed_wk8)) |>
+  mutate(responder = as.integer(gait_speed_wk8 - gait_speed_wk0 >= mcid_gs))
+
+fit_resp <- glm(responder ~ arm + gait_speed_wk0 + diagnosis + site,
+                family = binomial, data = resp)
+
+resp |> group_by(arm) |> summarise(n = n(), responders = sum(responder),
+                                    pct = round(100 * mean(responder), 1))
+
+broom::tidy(fit_resp, exponentiate = TRUE, conf.int = TRUE) |>
+  filter(term == "armHIGT") |>
+  select(term, odds_ratio = estimate, conf.low, conf.high, p.value) |>
+  mutate(across(where(is.numeric), ~ round(.x, 3)))
+```
+
+::: {.callout-warning}
+## Two caveats learners should state
+First, this analysis is complete-case at week 8; report it as secondary. Second, the 0.16 m/s value was derived in subacute stroke and may not transfer to chronic TBI or incomplete SCI. Ask the AI to parameterize thresholds by diagnosis rather than hard-coding one value.
+:::
+
+# Example 6: Ordinal outcomes (mRS)
+
+The mRS is ordinal. AI tools often run a t-test or linear regression on mRS scores, which treats the distance from 0 to 1 as equal to the distance from 4 to 5. A proportional odds model respects the ordering.
+
+```{r}
+#| label: ordinal
+mrs_dat <- rehab_wide |>
+  filter(diagnosis == "Stroke" & !is.na(mrs_wk12)) |>
+  mutate(mrs_f = factor(mrs_wk12, levels = 0:5, ordered = TRUE))
+
+table(mrs_dat$arm, mrs_dat$mrs_f)
+
+fit_po <- clm(mrs_f ~ arm + gait_speed_wk0 + site, data = mrs_dat)
+summary(fit_po)$coefficients["armHIGT", ] |> round(3)
+
+# Common odds ratio for a shift toward LOWER (better) mRS with HIGT
+exp(-coef(fit_po)["armHIGT"]) |> round(2)
+```
+
+::: {.callout-tip}
+## Verification prompt
+"In the ordinal::clm parameterization, does a negative coefficient for armHIGT mean lower or higher mRS? Show me how to confirm the direction with predicted category probabilities." Then check it yourself:
+:::
+
+```{r}
+#| label: ordinal-check
+newd <- expand_grid(arm = factor(c("Usual care", "HIGT"), levels = levels(mrs_dat$arm)),
+                    gait_speed_wk0 = mean(mrs_dat$gait_speed_wk0), site = "SiteA")
+p <- predict(fit_po, newdata = newd, type = "prob")$fit
+cbind(newd["arm"], round(p, 3))
+```
+
+The sign convention differs across R packages (`MASS::polr`, `ordinal::clm`, `rms::orm`), and AI tools confuse them often. Predicted probabilities settle the question.
+
+::: {.callout-warning}
+The AI draft is not testing the proportional assumption. Where you aware of this?
+:::
+
+```{r}
+#| label: ordinal-po-check
+# 1. Check cell counts first: empty cells make proportional odds (PO) tests unreliable
+table(mrs_dat$arm, mrs_dat$mrs_f)
+
+# 2. Score-type test: does any covariate need cut-point-specific effects?
+nominal_test(fit_po)
+
+# 3. Likelihood-ratio test: PO model vs partial PO model, where arm's effect
+#    is allowed to differ at each cut point
+fit_ppo <- clm(mrs_f ~ gait_speed_wk0 + site, nominal = ~ arm, data = mrs_dat) # there is a failure to converge warning here
+anova(fit_po, fit_ppo)
+
+# 4. Graphical check: separate binary logits for P(mRS > k).
+#    If PO holds, the log ORs should be roughly constant across k.
+#    In clm, logit P(Y <= j) = theta_j - beta*x, so a positive beta means higher mRS.
+#    This matches glm on P(Y > k), so compare with coef(fit_po)["armHIGT"] directly.
+bin_logits <- map_dfr(0:4, function(k) {
+  d  <- mutate(mrs_dat, y = as.integer(mrs_wk12 > k))
+  f  <- glm(y ~ arm + gait_speed_wk0 + site, family = binomial, data = d)
+  ci <- confint.default(f)["armHIGT", ]
+  tibble(cut = paste0("mRS > ", k), events = sum(d$y), n = nrow(d),
+         log_or = coef(f)["armHIGT"], lower = ci[1], upper = ci[2])
+})
+bin_logits # what is happening here? what does fitted probabilities numerically 0 or 1 occurred mean?
+
+ggplot(bin_logits, aes(cut, log_or)) +
+  geom_pointrange(aes(ymin = lower, ymax = upper)) +
+  geom_hline(yintercept = coef(fit_po)["armHIGT"], linetype = "dashed", colour = "#E57200") +
+  labs(x = NULL, y = "Log OR for HIGT (higher = worse mRS)",
+       caption = "Dashed line: common log OR from the PO model")
+
+# 5. Re-check with sparse categories collapsed (mRS 0-2 / 3 / 4-5)
+mrs_dat <- mrs_dat |>
+  mutate(mrs3 = cut(mrs_wk12, c(-Inf, 2, 3, Inf),
+                    labels = c("0-2", "3", "4-5"), ordered_result = TRUE))
+table(mrs_dat$arm, mrs_dat$mrs3)
+
+fit_po3  <- clm(mrs3 ~ arm + gait_speed_wk0 + site, data = mrs_dat) # what does this warning mean?
+fit_ppo3 <- clm(mrs3 ~ gait_speed_wk0 + site, nominal = ~ arm, data = mrs_dat) # what does the nominal parameter do? does it make sense to do it?
+nominal_test(fit_po3)
+anova(fit_po3, fit_ppo3)
+```
+
+
+# Example 7: Power by simulation for the next trial
+
+Closed-form power formulas exist for simple designs, but simulation generalizes to any design the analyst can describe, and it is easy to ask AI to scaffold. The assumptions (effect size, SD, correlation with baseline, attrition) must come from pilot data or literature.
+
+<pre class="prompt">
+Write a simulation-based power analysis for a 2-arm trial. Outcome: week-8 gait speed,
+analyzed by ANCOVA adjusting for baseline. Assume baseline SD 0.20 m/s, baseline-to-week-8
+correlation 0.70, true difference 0.06 m/s, 15% attrition. Evaluate n = 20 to 120 per arm,
+1000 replicates each, alpha = 0.05. Use base R for speed.
+</pre>
+
+The 0.06 m/s difference is deliberately smaller than the published MCIDs because the comparison is against an active usual-care arm that also improves. Justify the planning value from pilot data or prior trials, not from the AI.
+
+```{r}
+# what is going on here?
+#| label: power
+sim_power <- function(n_per_arm, delta = 0.06, sd = 0.20, rho = 0.70,
+                      attrition = 0.15, n_sims = 1000, alpha = 0.05) {
+  mean(replicate(n_sims, {
+    n_tot <- 2 * n_per_arm
+    arm   <- rep(0:1, each = n_per_arm)
+    bl    <- rnorm(n_tot, 0.6, sd)
+    wk8   <- 0.6 + rho * (bl - 0.6) + sqrt(1 - rho^2) * rnorm(n_tot, 0, sd) + delta * arm
+    keep  <- runif(n_tot) > attrition # what did the AI code here?
+    fit   <- lm(wk8[keep] ~ arm[keep] + bl[keep])
+    summary(fit)$coefficients[2, 4] < alpha
+  }))
+}
+
+set.seed(42)
+power_tbl <- tibble(n_per_arm = seq(20, 120, by = 10)) |>
+  mutate(power = map_dbl(n_per_arm, sim_power))
+power_tbl
+```
+
+```{r}
+#| label: fig-power
+#| fig-cap: "Simulated power for a 0.06 m/s difference in week-8 gait speed (ANCOVA, 15% attrition)."
+ggplot(power_tbl, aes(n_per_arm, power)) +
+  geom_line(colour = "#232D4B", linewidth = 1) + geom_point(colour = "#232D4B", size = 2) +
+  geom_hline(yintercept = 0.8, linetype = "dashed", colour = "#E57200") +
+  scale_y_continuous(limits = c(0, 1), labels = scales::percent) +
+  scale_x_continuous(breaks = seq(20, 120, by = 20)) +
+  labs(x = "Participants randomized per arm", y = "Power")
+```
+
+**Check the simulation against theory.** The ANCOVA residual SD is approximately \(\sigma\sqrt{1-\rho^2}\). A quick closed-form check:
+
+```{r}
+#| label: power-check
+sd_resid <- 0.20 * sqrt(1 - 0.70^2)
+power.t.test(n = 80 * 0.85, delta = 0.06, sd = sd_resid)$power |> round(3)
+power_tbl$power[power_tbl$n_per_arm == 80]
+```
+
+If the simulated and analytic values disagree substantially, the simulation code has a bug. This cross-check is the kind of verification the AI rarely volunteers.
+
+# Common AI errors in rehabilitation statistics
+
+| AI default | Better practice | Prompt to prevent it |
+|---|---|---|
+| `na.omit()` or complete-case analysis | Mixed model or MMRM using all visits; multiple imputation when appropriate | "Do not drop participants with missing data; state the missing-data assumption." |
+| Change-score t-test | ANCOVA or mixed model adjusted for baseline | "Adjust for baseline as a covariate." |
+| Ignores clustering (repeated visits, sites, therapists) | Random effect for participant; fixed site effect when sites are few | "Account for repeated measures within participant and for site." |
+| Linear model on ordinal scales (mRS, FIM items, Berg items) | Proportional odds model; check proportional odds | "The outcome is ordinal; use a cumulative logit model." |
+| Hard-coded or invented MCID | Literature-based MCID matched to population and chronicity | "Use MCID = X from [citation]; make it a named parameter." |
+| Ignores ceiling effects (MoCA, FMA-UE, Berg) | Inspect distributions; consider ordinal or bounded models | "Check for ceiling effects before modeling." |
+| Invented function arguments or packages | Run the code and read the documentation (`?function`) | "Use only functions from these packages: ..." |
+| p-values without effect sizes | Report estimates with 95% CIs in clinical units | "Report the difference in m/s with a 95% CI." |
+
+# Exercises
+
+1. **Cognition.** Write a prompt that asks for a mixed model of MoCA over time by arm and diagnosis. Before running it, list two features of MoCA data that the model should respect (integer, bounded at 30, possible ceiling). Then check whether the AI's code handled them.
+2. **Upper extremity (OT focus).** Restrict to stroke participants and analyze FMA-UE at week 8. Ask the AI to explain why HIGT might not change FMA-UE (intervention specificity) and how that changes your hypothesis.
+3. **Effect modification.** Ask the AI to test whether the HIGT effect differs by diagnosis. Then ask it to compute the power for that interaction relative to the main effect. Discuss why trials are rarely powered for subgroup effects.
+4. **Missing data.** Ask for a multiple imputation analysis with `mice` and compare it with the mixed model. Ask the AI to explain when the two should agree.
+5. **Reproducibility.** Ask the AI to convert one analysis into a function with documented arguments and unit tests using `testthat`.
+
+# Reporting AI use
+
+Journals increasingly require disclosure of AI assistance. A transparent methods statement might read:
+
+> Analysis code was drafted with the assistance of [tool, version] and was reviewed, executed, and verified by the authors on synthetic data before application to study data. No participant data were shared with the AI tool. All statistical decisions were made by the authors.
+
+Keep a prompt log alongside the code (for example, a `prompts.md` file in the project repository) so that reviewers and collaborators can see how the code was generated.
+
+# References {.unnumbered}
+
+- Altman DG, Royston P. The cost of dichotomising continuous variables. *BMJ*. 2006;332:1080. <https://www.bmj.com/content/332/7549/1080.1>
+- Bohannon RW, Glenney SS. Minimal clinically important difference for change in comfortable gait speed of adults with pathology: a systematic review. *J Eval Clin Pract*. 2014;20:295-300. <https://onlinelibrary.wiley.com/doi/10.1111/jep.12158>
+- Page SJ, Fulk GD, Boyne P. Clinically important differences for the upper-extremity Fugl-Meyer Scale in people with minimal to moderate impairment due to chronic stroke. *Phys Ther*. 2012;92:791-798. <https://academic.oup.com/ptj/article-abstract/92/6/791/2735128>
+- Tilson JK, Sullivan KJ, Cen SY, et al. Meaningful gait speed improvement during the first 60 days poststroke: minimal clinically important difference. *Phys Ther*. 2010;90:196-208. <https://pmc.ncbi.nlm.nih.gov/articles/PMC2816032/>
+- Vickers AJ, Altman DG. Analysing controlled trials with baseline and follow up measurements. *BMJ*. 2001;323:1123-1124. <https://www.bmj.com/content/323/7321/1123>
+
+# Session information {.unnumbered}
+
+```{r}
+#| label: session
+sessionInfo()
+```

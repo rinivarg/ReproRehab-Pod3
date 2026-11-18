@@ -1,5 +1,7 @@
 rm(list = ls())
 
+#setwd("Materials/Week 4/")
+
 ReqdLibs = c("readxl","ggplot2","ggthemes","dplyr","tidyr","forcats","janitor","IRdisplay","patchwork","png")
 
 # note if you have not installed any of the packages above, 
@@ -16,7 +18,7 @@ ggplot(mpg, aes(cty, hwy)) +
   # to fit and overlay a loess trendline
   geom_smooth(formula = y ~ x, method = "lm")
 
-ggplot(mpg, aes(cty, hwy, colour = class)) +
+ggplot(mpg, aes(cty, hwy, color = class)) +
   geom_point() +
   scale_colour_viridis_d()
 
@@ -36,8 +38,8 @@ ggplot(mpg, aes(cty, hwy, colour = class)) +
     legend.text=element_text(size=16,face="bold"),
     axis.line = element_line(linewidth = 0.75),
     axis.text = element_text(colour = "black",size=35),
-    text = element_text(colour = "black",size=35)    
-  )
+    text = element_text(colour = "black",size=35)
+  ) 
 
 
 ggplot(mpg, aes(cty, hwy)) +
@@ -45,7 +47,7 @@ ggplot(mpg, aes(cty, hwy)) +
   geom_smooth(formula = y ~ x, method = "lm") +
   scale_colour_viridis_c() +
   facet_grid(year ~ drv) +
-  coord_fixed() +
+  #coord_fixed() +
   theme_tufte() +
   theme(
     legend.position = "top",
@@ -80,7 +82,7 @@ fs = c("1","3","5")
 sl = c("2","4","6")
 
 
-dat.raw %>% 
+data.def <- dat.raw %>% 
 # so we can refer to those trial conditions more succinctly 
 # let's separate these characters into workable parts
 separate(trial,into=c("prefix","num"), sep = " ",fill="right",remove = FALSE) %>%  
@@ -103,10 +105,10 @@ mutate(cond = if_else(num == "rest", num, "walk"),
                          cond == "rest" ~ 0,
                            TRUE ~ NA_real_)) %>% 
 # remove unwanted variables
-select(!c("X","prefix","num")) %>% 
+select(!c("X","prefix","num"))# %>% 
 
 # assign to a new 'defined' data frame
-{.->> dat.def}
+#{.->> dat.def}
 
 tail(dat.def)
 
@@ -129,7 +131,7 @@ head(dat.summ,7)
 # we need weight data from the demographic excel file!
 # read excel file
 
-demo=read_excel("SubjectInfo.xlsx")
+demo=read_xlsx("SubjectInfo.xlsx")
 
 tail(demo)
 
@@ -137,7 +139,7 @@ tail(demo)
 # to clean var names so that they don't contain spaces and parentheses.. 
 # also makes it easyt to use dplyr to mutate later #uncomment below
 
-demo.clean = demo %>% clean_names()
+demo.clean = demo %>% janitor::clean_names()
 dat.summdemo = merge(dat.summ,demo.clean,by.x = 'Sub', by.y = 'subject_no')
 
 head(demo.clean)
@@ -176,14 +178,14 @@ thm = theme(
 
 repro.fig = 
 # FUNCTION CALL
-ggplot(dat.calc2, aes(x = incline,y = C_meas, group = speed, label = speed)) + 
+ggplot(dat.calc2, aes(x = incline, y = C_meas, group = speed, label = speed)) + 
 
 # LAYERS THAT SUMMARIZE WHILE PLOTTING! - this is one of the most powerful features of ggplot
 stat_summary(geom = "bar", fun = mean, col = NA, fill = "black", width = 0.7, na.rm = TRUE,
              position=position_dodge(width = 0.82, preserve = 'single')) + 
-stat_summary(geom = "errorbar",fun.data = mean_se, width = 0.15, lwd=2.5, col="darkgray", na.rm = TRUE,
+stat_summary(geom = "errorbar",fun.data = mean_cl_boot, width = 0.15, lwd=2.5, col="darkgray", na.rm = TRUE,
             position=position_dodge(0.82, preserve = 'single')) + 
-stat_summary(geom = "text", fun.y = mean, position = position_dodge(0.82, preserve = 'total'), na.rm = TRUE,
+stat_summary(geom = "text", fun.y = mean, position = position_dodge(0.8, preserve = 'total'), na.rm = TRUE,
              vjust = -1.25, size = 10) +
 
 # AXIS LIMITS
@@ -198,4 +200,4 @@ repro.fig
 
 
 # saving your figures as image files
-ggsave(file='reproduced_figure.svg', plot=repro.fig, width=12, height=8)
+ggsave(file='reproduced_figure.tiff', plot=repro.fig, width=12, height=8)

@@ -20,6 +20,9 @@ rm(list=ls())
 ReqdLibs = c("here","ggplot2","ggthemes","dplyr","tidyr","corrplot","readxl","IRdisplay")
 invisible(lapply(ReqdLibs, library, character.only = TRUE))
 
+wd <- here("Materials", "Week 3")
+setwd(wd)
+
 
 # ## Theme defaults
 thm = theme(
@@ -56,10 +59,13 @@ ggplot(data.all,aes(x=t,y=VO2,color=trial))+
 
 class(data.all$Sub)
 levels(data.all$Sub)
-data.all$Sub=factor(data.all$Sub,levels = c("Sub1","Sub2","Sub3","Sub4",
+data.all$Sub=factor(data.all$Sub, levels = c("Sub1","Sub2","Sub3","Sub4",
                                             "Sub5", "Sub6","Sub7","Sub8",
                                             "Sub9","Sub10","Sub11","Sub12",
                                             "Sub13"))
+
+
+
 #This is more desireable anyway because a factor class is treated as a categorical variable 
 # when you run regressions or other statistical analyses.
 class(data.all$Sub)
@@ -81,7 +87,7 @@ ggplot(data.all,aes(x=t,y=VO2,color=trial))+
  
 # To do that, let's first see how much of the extra to remove. Let's look at how long all subject's trial 5 was. The function aggregate will provide some summary stat based on how I want the dataset aggregated. Here I just want the max time for trial 5 across all subjects. To reduce the output I just index the data.all to only include trial 5. Looks like Sub 2 did 873 seconds, and everyone else did ~440
 
-aggregate(t~Sub,data.all[data.all$trial=="trial 5",],max)  #%>% mutate(a = median(.$t))
+aggregate(t ~ Sub, data.all[data.all$trial=="trial 5", ], max)  #%>% mutate(a = median(.$t))
 
 
 # ### trim the data
@@ -132,15 +138,15 @@ dim(data.agg)
 # along the trial variable
 
 # Using the pivot_wider function from tidyr to create a new variable for each trial
-data.agg.wide = pivot_wider(data.agg,names_from = trial,
-                       values_from = VO2:VT,id_cols = Sub)
+data.agg.wide = pivot_wider(data.agg, names_from = trial,
+                       values_from = VO2:VT, id_cols = Sub)
 
 head(data.agg.wide)
 
 
 # ### Visualizing correlations across trials using the wider format data
 
-#create a correlation matrix with only comlete observations,
+#create a correlation matrix with only complete observations,
 #Can only include numeric variables.
 cmat=cor(data.agg.wide[,-1],use="complete.obs")
 
@@ -168,7 +174,7 @@ head(demo)
 # ### merging the demo data to the aggregate data in the long format
 # Note that if the names of the reference variable (in this case subject ID) by which the two data frames are being merged are different then we have to call that explicitly.
 
-demo.data = merge(data.agg,demo,by.x = "Sub",by.y = "Subject No")
+demo.data = merge(data.agg, demo, by.x = "Sub",by.y = "Subject No")
 head(demo.data)
 
 
@@ -177,7 +183,7 @@ head(demo.data)
 
 # So, let's combine the demographic data with our previously created `data.agg.wide` dataframe.
 
-demo.data_wide = merge(data.agg.wide,demo,by.x = "Sub",by.y = "Subject No")
+demo.data_wide = merge(data.agg.wide, demo,by.x = "Sub",by.y = "Subject No")
 head(demo.data_wide)
 
 

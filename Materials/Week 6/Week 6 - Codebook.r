@@ -20,6 +20,9 @@
 
 # Clear the entire workspace
 
+#setwd("Materials/Week 6/")
+
+
 rm(list = ls())
 
 # Load required libraries
@@ -176,9 +179,9 @@ str_count(x, "Pt")          # how many times does "Pt" appear?
 #
 # (i) Digits and repetition: \\d, +, {n}
 
-str_extract(x, "\\d")              # one digit
-str_extract(x, "\\d+")             # one or more digits in a row
-str_extract(x, "\\d{2}/\\d{2}/\\d{4}")   # a date: 2 digits / 2 digits / 4 digits
+str_extract_all(x, "\\d")              # one digit
+str_extract_all(x, "\\d+")             # one or more digits in a row
+str_extract(notes$note_text, "\\d{2}/\\d{2}/\\d{4}")   # a date: 2 digits / 2 digits / 4 digits
 
 # Notice: str_extract() returns only the first match. The last line finds a date by describing its shape.
 #
@@ -210,9 +213,7 @@ notes %>%
 
 # same question, ignoring case
 notes %>%
-  filter(str_detect(note_text, regex("fatigue", ignore_case = TRUE))) %>%
-  nrow()
-
+  filter(str_detect(note_text, regex("fatigue", ignore_case = TRUE))) 
 # Notice: Case-sensitive search finds only some of the fatigue notes; ignoring case finds more. And there are still misspellings like fatigeu hiding! We'll catch those in Part C.
 #
 # > Regex is deterministic: the same pattern on the same text gives the same answer every time, and you can always read why something matched. That makes it transparent, but it only finds what you thought to ask for.
@@ -236,6 +237,10 @@ show_note <- function(data, id, cols) {
 }
 
 notes_clean <- notes     # we'll add new columns to this copy
+
+myfun <- function() {
+  print("Hello World")
+}
 
 # (i) De-identify
 # Clinical notes contain protected health information (PHI). We remove four kinds, each written in more than one format:
